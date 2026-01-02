@@ -1,0 +1,56 @@
+# Quartus II files
+*. rpt
+*.summary
+*.smsg
+*.done
+*.pin
+*.sof
+*.pof
+*.qws
+*.bak
+*~
+*.rpt. html
+*.rpt.htm
+
+# Carpetas generadas por Quartus
+db/
+incremental_db/
+simulation/
+timing/
+testbench/simulation/
+greybox_tmp/
+*.qpg
+*.qtl
+
+# Archivos de bloqueo
+*.flock
+*. jdi
+
+# ModelSim/QuestaSim
+work/
+*.mti
+*.dat
+*. dbs
+*.psm
+*.bak
+transcript
+vsim.wlf
+*.wlf
+
+# Vivado (si usas Xilinx)
+*.jou
+*.log
+*.str
+. Xil/
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+
+# Archivos del sistema
+. DS_Store
+Thumbs. db
+*. swp
+*.swo
+*~
