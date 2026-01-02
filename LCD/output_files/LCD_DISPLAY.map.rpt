@@ -1,5 +1,5 @@
 Analysis & Synthesis report for LCD_DISPLAY
-Thu Jan 01 21:46:49 2026
+Fri Jan 02 09:48:31 2026
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -46,13 +46,13 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Jan 01 21:46:49 2026       ;
+; Analysis & Synthesis Status        ; Successful - Fri Jan 02 09:48:31 2026       ;
 ; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; LCD_DISPLAY                                 ;
 ; Top-level Entity Name              ; LCD_DISPLAY                                 ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 259                                         ;
-;     Total combinational functions  ; 259                                         ;
+; Total logic elements               ; 258                                         ;
+;     Total combinational functions  ; 255                                         ;
 ;     Dedicated logic registers      ; 39                                          ;
 ; Total registers                    ; 39                                          ;
 ; Total pins                         ; 264                                         ;
@@ -164,20 +164,19 @@ refer to the applicable agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
-;     Processors 3-4         ;   0.0%      ;
+;     Processors 2-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                   ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                            ; Library ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------+---------+
-; LCD_DISPLAY.vhd                  ; yes             ; User VHDL File  ; C:/Users/steel/Documents/FPGA_tasks/LCD/LCD_DISPLAY.vhd ;         ;
-; TIMER.vhd                        ; yes             ; User VHDL File  ; C:/Users/steel/Documents/FPGA_tasks/LCD/TIMER.vhd       ;         ;
-; LCD_CONTROL.vhd                  ; yes             ; User VHDL File  ; C:/Users/steel/Documents/FPGA_tasks/LCD/LCD_CONTROL.vhd ;         ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------+---------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                            ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                     ; Library ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+---------+
+; LCD_DISPLAY.vhd                  ; yes             ; User VHDL File  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/LCD/LCD_DISPLAY.vhd ;         ;
+; TIMER.vhd                        ; yes             ; User VHDL File  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/LCD/TIMER.vhd       ;         ;
+; LCD_CONTROL.vhd                  ; yes             ; User VHDL File  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/LCD/LCD_CONTROL.vhd ;         ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+---------+
 
 
 +----------------------------------------------------------+
@@ -185,16 +184,16 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+------------+
 ; Resource                                    ; Usage      ;
 +---------------------------------------------+------------+
-; Estimated Total logic elements              ; 259        ;
+; Estimated Total logic elements              ; 258        ;
 ;                                             ;            ;
-; Total combinational functions               ; 259        ;
+; Total combinational functions               ; 255        ;
 ; Logic element usage by number of LUT inputs ;            ;
-;     -- 4 input functions                    ; 218        ;
-;     -- 3 input functions                    ; 12         ;
-;     -- <=2 input functions                  ; 29         ;
+;     -- 4 input functions                    ; 214        ;
+;     -- 3 input functions                    ; 13         ;
+;     -- <=2 input functions                  ; 28         ;
 ;                                             ;            ;
 ; Logic elements by mode                      ;            ;
-;     -- normal mode                          ; 236        ;
+;     -- normal mode                          ; 232        ;
 ;     -- arithmetic mode                      ; 23         ;
 ;                                             ;            ;
 ; Total registers                             ; 39         ;
@@ -207,7 +206,7 @@ refer to the applicable agreement for further details.
 ;                                             ;            ;
 ; Maximum fan-out node                        ; COUNT_2[0] ;
 ; Maximum fan-out                             ; 63         ;
-; Total fan-out                               ; 1372       ;
+; Total fan-out                               ; 1366       ;
 ; Average fan-out                             ; 1.66       ;
 +---------------------------------------------+------------+
 
@@ -217,8 +216,8 @@ refer to the applicable agreement for further details.
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name        ; Entity Name ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------+-------------+--------------+
-; |LCD_DISPLAY               ; 259 (232)           ; 39 (21)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 264  ; 0            ; 0          ; |LCD_DISPLAY               ; LCD_DISPLAY ; work         ;
-;    |TIMER:U_TIMER|         ; 27 (27)             ; 18 (18)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_DISPLAY|TIMER:U_TIMER ; TIMER       ; work         ;
+; |LCD_DISPLAY               ; 255 (230)           ; 39 (21)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 264  ; 0            ; 0          ; |LCD_DISPLAY               ; LCD_DISPLAY ; work         ;
+;    |TIMER:U_TIMER|         ; 25 (25)             ; 18 (18)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_DISPLAY|TIMER:U_TIMER ; TIMER       ; work         ;
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -247,7 +246,7 @@ Encoding Type:  One-Hot
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 34    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 6     ;
+; Number of registers using Clock Enable       ; 15    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -270,8 +269,8 @@ Encoding Type:  One-Hot
 ; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |LCD_DISPLAY|COUNT_2[4]       ;
 ; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |LCD_DISPLAY|COUNT_1[3]       ;
 ; 70:1               ; 2 bits    ; 92 LEs        ; 86 LEs               ; 6 LEs                  ; Yes        ; |LCD_DISPLAY|LCD_DATA[0]~reg0 ;
-; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; No         ; |LCD_DISPLAY|Selector14       ;
-; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; No         ; |LCD_DISPLAY|Selector13       ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; No         ; |LCD_DISPLAY|STATE            ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; No         ; |LCD_DISPLAY|STATE            ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------+
 
 
@@ -292,23 +291,23 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; boundary_port         ; 264                         ;
 ; cycloneiii_ff         ; 39                          ;
-;     CLR               ; 11                          ;
+;     CLR               ; 2                           ;
 ;     CLR SCLR          ; 17                          ;
-;     ENA CLR           ; 2                           ;
+;     ENA CLR           ; 11                          ;
 ;     ENA CLR SCLR      ; 4                           ;
 ;     plain             ; 5                           ;
-; cycloneiii_lcell_comb ; 259                         ;
+; cycloneiii_lcell_comb ; 255                         ;
 ;     arith             ; 23                          ;
 ;         2 data inputs ; 22                          ;
 ;         3 data inputs ; 1                           ;
-;     normal            ; 236                         ;
+;     normal            ; 232                         ;
 ;         1 data inputs ; 3                           ;
-;         2 data inputs ; 4                           ;
-;         3 data inputs ; 11                          ;
-;         4 data inputs ; 218                         ;
+;         2 data inputs ; 3                           ;
+;         3 data inputs ; 12                          ;
+;         4 data inputs ; 214                         ;
 ;                       ;                             ;
 ; Max LUT depth         ; 7.00                        ;
-; Average LUT depth     ; 4.71                        ;
+; Average LUT depth     ; 4.83                        ;
 +-----------------------+-----------------------------+
 
 
@@ -327,35 +326,35 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Thu Jan 01 21:46:37 2026
+    Info: Processing started: Fri Jan 02 09:48:14 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off LCD_DISPLAY -c LCD_DISPLAY
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file lcd_display.vhd
-    Info (12022): Found design unit 1: LCD_DISPLAY-COMP File: C:/Users/steel/Documents/FPGA_tasks/LCD/LCD_DISPLAY.vhd Line: 21
-    Info (12023): Found entity 1: LCD_DISPLAY File: C:/Users/steel/Documents/FPGA_tasks/LCD/LCD_DISPLAY.vhd Line: 6
+    Info (12022): Found design unit 1: LCD_DISPLAY-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/LCD/LCD_DISPLAY.vhd Line: 21
+    Info (12023): Found entity 1: LCD_DISPLAY File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/LCD/LCD_DISPLAY.vhd Line: 6
 Info (12021): Found 2 design units, including 1 entities, in source file timer.vhd
-    Info (12022): Found design unit 1: TIMER-COMP File: C:/Users/steel/Documents/FPGA_tasks/LCD/TIMER.vhd Line: 14
-    Info (12023): Found entity 1: TIMER File: C:/Users/steel/Documents/FPGA_tasks/LCD/TIMER.vhd Line: 5
+    Info (12022): Found design unit 1: TIMER-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/LCD/TIMER.vhd Line: 14
+    Info (12023): Found entity 1: TIMER File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/LCD/TIMER.vhd Line: 5
 Info (12021): Found 2 design units, including 0 entities, in source file lcd_control.vhd
-    Info (12022): Found design unit 1: LCD_CONTROL File: C:/Users/steel/Documents/FPGA_tasks/LCD/LCD_CONTROL.vhd Line: 5
-    Info (12022): Found design unit 2: LCD_CONTROL-body File: C:/Users/steel/Documents/FPGA_tasks/LCD/LCD_CONTROL.vhd Line: 41
+    Info (12022): Found design unit 1: LCD_CONTROL File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/LCD/LCD_CONTROL.vhd Line: 5
+    Info (12022): Found design unit 2: LCD_CONTROL-body File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/LCD/LCD_CONTROL.vhd Line: 41
 Info (12021): Found 2 design units, including 1 entities, in source file lcd_test.vhd
-    Info (12022): Found design unit 1: LCD_TEST-COMP File: C:/Users/steel/Documents/FPGA_tasks/LCD/LCD_TEST.vhd Line: 15
-    Info (12023): Found entity 1: LCD_TEST File: C:/Users/steel/Documents/FPGA_tasks/LCD/LCD_TEST.vhd Line: 5
+    Info (12022): Found design unit 1: LCD_TEST-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/LCD/LCD_TEST.vhd Line: 15
+    Info (12023): Found entity 1: LCD_TEST File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/LCD/LCD_TEST.vhd Line: 5
 Info (12127): Elaborating entity "LCD_DISPLAY" for the top level hierarchy
-Info (12128): Elaborating entity "TIMER" for hierarchy "TIMER:U_TIMER" File: C:/Users/steel/Documents/FPGA_tasks/LCD/LCD_DISPLAY.vhd Line: 47
+Info (12128): Elaborating entity "TIMER" for hierarchy "TIMER:U_TIMER" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/LCD/LCD_DISPLAY.vhd Line: 48
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 524 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 523 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 258 input pins
     Info (21059): Implemented 6 output pins
-    Info (21061): Implemented 260 logic cells
+    Info (21061): Implemented 259 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4802 megabytes
-    Info: Processing ended: Thu Jan 01 21:46:49 2026
-    Info: Elapsed time: 00:00:12
-    Info: Total CPU time (on all processors): 00:00:24
+    Info: Peak virtual memory: 4793 megabytes
+    Info: Processing ended: Fri Jan 02 09:48:31 2026
+    Info: Elapsed time: 00:00:17
+    Info: Total CPU time (on all processors): 00:00:38
 
 

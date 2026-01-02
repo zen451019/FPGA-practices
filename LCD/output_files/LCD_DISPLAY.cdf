@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(10M08SCE144) Path("C:/Users/steel/Documents/FPGA_tasks/LCD/output_files/") File("LCD_DISPLAY.sof") MfrSpec(OpMask(1));
+		Device PartName(10M08SCE144) Path("C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/LCD/output_files/") File("LCD_DISPLAY.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

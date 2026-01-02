@@ -1,5 +1,5 @@
 Flow report for LCD_DISPLAY
-Thu Jan 01 21:46:49 2026
+Fri Jan 02 09:48:31 2026
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -40,15 +40,15 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Thu Jan 01 21:46:49 2026       ;
+; Flow Status                        ; Successful - Fri Jan 02 09:48:31 2026       ;
 ; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; LCD_DISPLAY                                 ;
 ; Top-level Entity Name              ; LCD_DISPLAY                                 ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M08SCE144C8G                              ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 259                                         ;
-;     Total combinational functions  ; 259                                         ;
+; Total logic elements               ; 258                                         ;
+;     Total combinational functions  ; 255                                         ;
 ;     Dedicated logic registers      ; 39                                          ;
 ; Total registers                    ; 39                                          ;
 ; Total pins                         ; 264                                         ;
@@ -66,7 +66,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 01/01/2026 21:46:38 ;
+; Start date & time ; 01/02/2026 09:48:15 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; LCD_DISPLAY         ;
 +-------------------+---------------------+
@@ -77,7 +77,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 88972150710489.176732199808376         ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 88972150710489.176736529413004         ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
@@ -92,8 +92,8 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:12     ; 1.0                     ; 4802 MB             ; 00:00:23                           ;
-; Total                ; 00:00:12     ; --                      ; --                  ; 00:00:23                           ;
+; Analysis & Synthesis ; 00:00:17     ; 1.0                     ; 4793 MB             ; 00:00:38                           ;
+; Total                ; 00:00:17     ; --                      ; --                  ; 00:00:38                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

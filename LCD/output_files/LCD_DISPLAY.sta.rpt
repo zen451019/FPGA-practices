@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for LCD_DISPLAY
-Thu Jan 01 21:44:25 2026
+Fri Jan 02 09:44:08 2026
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -91,55 +91,51 @@ refer to the applicable agreement for further details.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.83        ;
+; Average used               ; 1.69        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;  27.9%      ;
-;     Processors 3-4         ;  27.6%      ;
+;     Processor 2            ;  24.0%      ;
+;     Processors 3-4         ;  22.3%      ;
 +----------------------------+-------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Clocks                                                                                                                                                                                                                                           ;
-+-----------------------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------------------------------------------+
-; Clock Name                              ; Type ; Period ; Frequency  ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets                                     ;
-+-----------------------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------------------------------------------+
-; CLK                                     ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { CLK }                                     ;
-; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER } ;
-+-----------------------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                          ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------+
+; Clock Name ; Type ; Period ; Frequency  ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------+
+; CLK        ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { CLK } ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------+
 
 
-+-------------------------------------------------------------------------------+
-; Slow 1200mV 85C Model Fmax Summary                                            ;
-+------------+-----------------+-----------------------------------------+------+
-; Fmax       ; Restricted Fmax ; Clock Name                              ; Note ;
-+------------+-----------------+-----------------------------------------+------+
-; 184.6 MHz  ; 184.6 MHz       ; CLK                                     ;      ;
-; 184.81 MHz ; 184.81 MHz      ; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ;      ;
-+------------+-----------------+-----------------------------------------+------+
++-------------------------------------------------+
+; Slow 1200mV 85C Model Fmax Summary              ;
++-----------+-----------------+------------+------+
+; Fmax      ; Restricted Fmax ; Clock Name ; Note ;
++-----------+-----------------+------------+------+
+; 10.81 MHz ; 10.81 MHz       ; CLK        ;      ;
++-----------+-----------------+------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
-+-------------------------------------------------------------------+
-; Slow 1200mV 85C Model Setup Summary                               ;
-+-----------------------------------------+---------+---------------+
-; Clock                                   ; Slack   ; End Point TNS ;
-+-----------------------------------------+---------+---------------+
-; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; -89.163 ; -408.998      ;
-; CLK                                     ; -4.417  ; -224.676      ;
-+-----------------------------------------+---------+---------------+
++-------------------------------------+
+; Slow 1200mV 85C Model Setup Summary ;
++-------+---------+-------------------+
+; Clock ; Slack   ; End Point TNS     ;
++-------+---------+-------------------+
+; CLK   ; -91.512 ; -749.512          ;
++-------+---------+-------------------+
 
 
-+-----------------------------------------------------------------+
-; Slow 1200mV 85C Model Hold Summary                              ;
-+-----------------------------------------+-------+---------------+
-; Clock                                   ; Slack ; End Point TNS ;
-+-----------------------------------------+-------+---------------+
-; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; 0.360 ; 0.000         ;
-; CLK                                     ; 0.381 ; 0.000         ;
-+-----------------------------------------+-------+---------------+
++------------------------------------+
+; Slow 1200mV 85C Model Hold Summary ;
++-------+-------+--------------------+
+; Clock ; Slack ; End Point TNS      ;
++-------+-------+--------------------+
+; CLK   ; 0.362 ; 0.000              ;
++-------+-------+--------------------+
 
 
 ------------------------------------------
@@ -154,14 +150,13 @@ No paths to report.
 No paths to report.
 
 
-+------------------------------------------------------------------+
-; Slow 1200mV 85C Model Minimum Pulse Width Summary                ;
-+-----------------------------------------+--------+---------------+
-; Clock                                   ; Slack  ; End Point TNS ;
-+-----------------------------------------+--------+---------------+
-; CLK                                     ; -3.000 ; -105.603      ;
-; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; -1.487 ; -31.227       ;
-+-----------------------------------------+--------+---------------+
++---------------------------------------------------+
+; Slow 1200mV 85C Model Minimum Pulse Width Summary ;
++-------+--------+----------------------------------+
+; Clock ; Slack  ; End Point TNS                    ;
++-------+--------+----------------------------------+
+; CLK   ; -3.000 ; -136.830                         ;
++-------+--------+----------------------------------+
 
 
 -----------------------------------------------
@@ -170,35 +165,32 @@ No paths to report.
 No synchronizer chains to report.
 
 
-+-------------------------------------------------------------------------------+
-; Slow 1200mV 0C Model Fmax Summary                                             ;
-+------------+-----------------+-----------------------------------------+------+
-; Fmax       ; Restricted Fmax ; Clock Name                              ; Note ;
-+------------+-----------------+-----------------------------------------+------+
-; 192.46 MHz ; 192.46 MHz      ; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ;      ;
-; 193.69 MHz ; 193.69 MHz      ; CLK                                     ;      ;
-+------------+-----------------+-----------------------------------------+------+
++------------------------------------------------+
+; Slow 1200mV 0C Model Fmax Summary              ;
++----------+-----------------+------------+------+
+; Fmax     ; Restricted Fmax ; Clock Name ; Note ;
++----------+-----------------+------------+------+
+; 11.7 MHz ; 11.7 MHz        ; CLK        ;      ;
++----------+-----------------+------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
-+-------------------------------------------------------------------+
-; Slow 1200mV 0C Model Setup Summary                                ;
-+-----------------------------------------+---------+---------------+
-; Clock                                   ; Slack   ; End Point TNS ;
-+-----------------------------------------+---------+---------------+
-; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; -82.129 ; -376.601      ;
-; CLK                                     ; -4.163  ; -206.183      ;
-+-----------------------------------------+---------+---------------+
++------------------------------------+
+; Slow 1200mV 0C Model Setup Summary ;
++-------+---------+------------------+
+; Clock ; Slack   ; End Point TNS    ;
++-------+---------+------------------+
+; CLK   ; -84.478 ; -698.084         ;
++-------+---------+------------------+
 
 
-+-----------------------------------------------------------------+
-; Slow 1200mV 0C Model Hold Summary                               ;
-+-----------------------------------------+-------+---------------+
-; Clock                                   ; Slack ; End Point TNS ;
-+-----------------------------------------+-------+---------------+
-; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; 0.322 ; 0.000         ;
-; CLK                                     ; 0.341 ; 0.000         ;
-+-----------------------------------------+-------+---------------+
++-----------------------------------+
+; Slow 1200mV 0C Model Hold Summary ;
++-------+-------+-------------------+
+; Clock ; Slack ; End Point TNS     ;
++-------+-------+-------------------+
+; CLK   ; 0.324 ; 0.000             ;
++-------+-------+-------------------+
 
 
 -----------------------------------------
@@ -213,14 +205,13 @@ No paths to report.
 No paths to report.
 
 
-+------------------------------------------------------------------+
-; Slow 1200mV 0C Model Minimum Pulse Width Summary                 ;
-+-----------------------------------------+--------+---------------+
-; Clock                                   ; Slack  ; End Point TNS ;
-+-----------------------------------------+--------+---------------+
-; CLK                                     ; -3.000 ; -105.603      ;
-; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; -1.487 ; -31.227       ;
-+-----------------------------------------+--------+---------------+
++--------------------------------------------------+
+; Slow 1200mV 0C Model Minimum Pulse Width Summary ;
++-------+--------+---------------------------------+
+; Clock ; Slack  ; End Point TNS                   ;
++-------+--------+---------------------------------+
+; CLK   ; -3.000 ; -136.830                        ;
++-------+--------+---------------------------------+
 
 
 ----------------------------------------------
@@ -229,24 +220,22 @@ No paths to report.
 No synchronizer chains to report.
 
 
-+-------------------------------------------------------------------+
-; Fast 1200mV 0C Model Setup Summary                                ;
-+-----------------------------------------+---------+---------------+
-; Clock                                   ; Slack   ; End Point TNS ;
-+-----------------------------------------+---------+---------------+
-; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; -33.076 ; -143.360      ;
-; CLK                                     ; -1.170  ; -49.157       ;
-+-----------------------------------------+---------+---------------+
++------------------------------------+
+; Fast 1200mV 0C Model Setup Summary ;
++-------+---------+------------------+
+; Clock ; Slack   ; End Point TNS    ;
++-------+---------+------------------+
+; CLK   ; -33.958 ; -239.712         ;
++-------+---------+------------------+
 
 
-+-----------------------------------------------------------------+
-; Fast 1200mV 0C Model Hold Summary                               ;
-+-----------------------------------------+-------+---------------+
-; Clock                                   ; Slack ; End Point TNS ;
-+-----------------------------------------+-------+---------------+
-; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; 0.150 ; 0.000         ;
-; CLK                                     ; 0.156 ; 0.000         ;
-+-----------------------------------------+-------+---------------+
++-----------------------------------+
+; Fast 1200mV 0C Model Hold Summary ;
++-------+-------+-------------------+
+; Clock ; Slack ; End Point TNS     ;
++-------+-------+-------------------+
+; CLK   ; 0.152 ; 0.000             ;
++-------+-------+-------------------+
 
 
 -----------------------------------------
@@ -261,14 +250,13 @@ No paths to report.
 No paths to report.
 
 
-+------------------------------------------------------------------+
-; Fast 1200mV 0C Model Minimum Pulse Width Summary                 ;
-+-----------------------------------------+--------+---------------+
-; Clock                                   ; Slack  ; End Point TNS ;
-+-----------------------------------------+--------+---------------+
-; CLK                                     ; -3.000 ; -74.102       ;
-; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; -1.000 ; -21.000       ;
-+-----------------------------------------+--------+---------------+
++--------------------------------------------------+
+; Fast 1200mV 0C Model Minimum Pulse Width Summary ;
++-------+--------+---------------------------------+
+; Clock ; Slack  ; End Point TNS                   ;
++-------+--------+---------------------------------+
+; CLK   ; -3.000 ; -95.854                         ;
++-------+--------+---------------------------------+
 
 
 ----------------------------------------------
@@ -277,18 +265,16 @@ No paths to report.
 No synchronizer chains to report.
 
 
-+--------------------------------------------------------------------------------------------------------+
-; Multicorner Timing Analysis Summary                                                                    ;
-+------------------------------------------+----------+-------+----------+---------+---------------------+
-; Clock                                    ; Setup    ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
-+------------------------------------------+----------+-------+----------+---------+---------------------+
-; Worst-case Slack                         ; -89.163  ; 0.150 ; N/A      ; N/A     ; -3.000              ;
-;  CLK                                     ; -4.417   ; 0.156 ; N/A      ; N/A     ; -3.000              ;
-;  LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; -89.163  ; 0.150 ; N/A      ; N/A     ; -1.487              ;
-; Design-wide TNS                          ; -633.674 ; 0.0   ; 0.0      ; 0.0     ; -136.83             ;
-;  CLK                                     ; -224.676 ; 0.000 ; N/A      ; N/A     ; -105.603            ;
-;  LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; -408.998 ; 0.000 ; N/A      ; N/A     ; -31.227             ;
-+------------------------------------------+----------+-------+----------+---------+---------------------+
++--------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                            ;
++------------------+----------+-------+----------+---------+---------------------+
+; Clock            ; Setup    ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
++------------------+----------+-------+----------+---------+---------------------+
+; Worst-case Slack ; -91.512  ; 0.152 ; N/A      ; N/A     ; -3.000              ;
+;  CLK             ; -91.512  ; 0.152 ; N/A      ; N/A     ; -3.000              ;
+; Design-wide TNS  ; -749.512 ; 0.0   ; 0.0      ; 0.0     ; -136.83             ;
+;  CLK             ; -749.512 ; 0.000 ; N/A      ; N/A     ; -136.830            ;
++------------------+----------+-------+----------+---------+---------------------+
 
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -311,8 +297,8 @@ No synchronizer chains to report.
 +---------------------+-----------------------+-----------------+-----------------+
 ; Pin                 ; I/O Standard          ; 10-90 Rise Time ; 90-10 Fall Time ;
 +---------------------+-----------------------+-----------------+-----------------+
-; RST                 ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; CLK                 ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
+; RST                 ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_TMS~        ; 2.5 V Schmitt Trigger ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_TCK~        ; 2.5 V Schmitt Trigger ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_TDI~        ; 2.5 V Schmitt Trigger ; 2000 ps         ; 2000 ps         ;
@@ -368,29 +354,23 @@ No synchronizer chains to report.
 +--------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------+
-; Setup Transfers                                                                                                                   ;
-+-----------------------------------------+-----------------------------------------+--------------+----------+----------+----------+
-; From Clock                              ; To Clock                                ; RR Paths     ; FR Paths ; RF Paths ; FF Paths ;
-+-----------------------------------------+-----------------------------------------+--------------+----------+----------+----------+
-; CLK                                     ; CLK                                     ; 2148         ; 0        ; 0        ; 0        ;
-; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; CLK                                     ; 37           ; 1        ; 0        ; 0        ;
-; CLK                                     ; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; > 2147483647 ; 0        ; 0        ; 0        ;
-; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; 641          ; 0        ; 0        ; 0        ;
-+-----------------------------------------+-----------------------------------------+--------------+----------+----------+----------+
++-----------------------------------------------------------------------+
+; Setup Transfers                                                       ;
++------------+----------+--------------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths     ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+--------------+----------+----------+----------+
+; CLK        ; CLK      ; > 2147483647 ; 0        ; 0        ; 0        ;
++------------+----------+--------------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------+
-; Hold Transfers                                                                                                                    ;
-+-----------------------------------------+-----------------------------------------+--------------+----------+----------+----------+
-; From Clock                              ; To Clock                                ; RR Paths     ; FR Paths ; RF Paths ; FF Paths ;
-+-----------------------------------------+-----------------------------------------+--------------+----------+----------+----------+
-; CLK                                     ; CLK                                     ; 2148         ; 0        ; 0        ; 0        ;
-; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; CLK                                     ; 37           ; 1        ; 0        ; 0        ;
-; CLK                                     ; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; > 2147483647 ; 0        ; 0        ; 0        ;
-; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; 641          ; 0        ; 0        ; 0        ;
-+-----------------------------------------+-----------------------------------------+--------------+----------+----------+----------+
++-----------------------------------------------------------------------+
+; Hold Transfers                                                        ;
++------------+----------+--------------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths     ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+--------------+----------+----------+----------+
+; CLK        ; CLK      ; > 2147483647 ; 0        ; 0        ; 0        ;
++------------+----------+--------------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
 
@@ -420,14 +400,13 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +---------------------------------+-------+------+
 
 
-+--------------------------------------------------------------------------------------------------------+
-; Clock Status Summary                                                                                   ;
-+-----------------------------------------+-----------------------------------------+------+-------------+
-; Target                                  ; Clock                                   ; Type ; Status      ;
-+-----------------------------------------+-----------------------------------------+------+-------------+
-; CLK                                     ; CLK                                     ; Base ; Constrained ;
-; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER ; Base ; Constrained ;
-+-----------------------------------------+-----------------------------------------+------+-------------+
++-------------------------------------+
+; Clock Status Summary                ;
++--------+-------+------+-------------+
+; Target ; Clock ; Type ; Status      ;
++--------+-------+------+-------------+
+; CLK    ; CLK   ; Base ; Constrained ;
++--------+-------+------+-------------+
 
 
 +---------------------------------------------------------------------------------------------------+
@@ -482,7 +461,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime TimeQuest Timing Analyzer
     Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Thu Jan 01 21:44:21 2026
+    Info: Processing started: Fri Jan 02 09:44:04 2026
 Info: Command: quartus_sta LCD_DISPLAY -c LCD_DISPLAY
 Info: qsta_default_script.tcl version: #3
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -492,7 +471,6 @@ Info (21077): High junction temperature is 85 degrees C
 Critical Warning (332012): Synopsys Design Constraints File file not found: 'LCD_DISPLAY.sdc'. A Synopsys Design Constraints File is required by the TimeQuest Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
 Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
 Info (332105): Deriving Clocks
-    Info (332105): create_clock -period 1.000 -name LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER
     Info (332105): create_clock -period 1.000 -name CLK CLK
 Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
@@ -500,70 +478,61 @@ Info: Found TIMEQUEST_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1200mV 85C Model
 Info: Can't run Report Timing Closure Recommendations. The current device family is not supported.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -89.163
+Info (332146): Worst-case setup slack is -91.512
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):   -89.163            -408.998 LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER 
-    Info (332119):    -4.417            -224.676 CLK 
-Info (332146): Worst-case hold slack is 0.360
+    Info (332119):   -91.512            -749.512 CLK 
+Info (332146): Worst-case hold slack is 0.362
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.360               0.000 LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER 
-    Info (332119):     0.381               0.000 CLK 
+    Info (332119):     0.362               0.000 CLK 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000            -105.603 CLK 
-    Info (332119):    -1.487             -31.227 LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER 
+    Info (332119):    -3.000            -136.830 CLK 
 Info: Analyzing Slow 1200mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -82.129
+Info (332146): Worst-case setup slack is -84.478
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):   -82.129            -376.601 LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER 
-    Info (332119):    -4.163            -206.183 CLK 
-Info (332146): Worst-case hold slack is 0.322
+    Info (332119):   -84.478            -698.084 CLK 
+Info (332146): Worst-case hold slack is 0.324
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.322               0.000 LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER 
-    Info (332119):     0.341               0.000 CLK 
+    Info (332119):     0.324               0.000 CLK 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000            -105.603 CLK 
-    Info (332119):    -1.487             -31.227 LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER 
+    Info (332119):    -3.000            -136.830 CLK 
 Info: Analyzing Fast 1200mV 0C Model
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -33.076
+Info (332146): Worst-case setup slack is -33.958
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):   -33.076            -143.360 LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER 
-    Info (332119):    -1.170             -49.157 CLK 
-Info (332146): Worst-case hold slack is 0.150
+    Info (332119):   -33.958            -239.712 CLK 
+Info (332146): Worst-case hold slack is 0.152
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.150               0.000 LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER 
-    Info (332119):     0.156               0.000 CLK 
+    Info (332119):     0.152               0.000 CLK 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000             -74.102 CLK 
-    Info (332119):    -1.000             -21.000 LCD_DISPLAY:U_LCD|TIMER:U_TIMER|TRIGGER 
+    Info (332119):    -3.000             -95.854 CLK 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime TimeQuest Timing Analyzer was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 4794 megabytes
-    Info: Processing ended: Thu Jan 01 21:44:25 2026
+    Info: Peak virtual memory: 4796 megabytes
+    Info: Processing ended: Fri Jan 02 09:44:08 2026
     Info: Elapsed time: 00:00:04
     Info: Total CPU time (on all processors): 00:00:06
 
