@@ -1,5 +1,5 @@
 Analysis & Synthesis report for ADS1115
-Sat Jan 24 14:19:15 2026
+Fri Feb 06 19:10:19 2026
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -13,19 +13,21 @@ Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |ADS1115|STATE_AFTER_WAIT
-  9. State Machine - |ADS1115|STATE
- 10. State Machine - |ADS1115|I2C:U_I2C|STATE
- 11. Registers Removed During Synthesis
- 12. Removed Registers Triggering Further Register Optimizations
- 13. General Register Statistics
- 14. Inverted Register Statistics
- 15. Multiplexer Restructuring Statistics (Restructuring Performed)
- 16. Parameter Settings for User Entity Instance: I2C:U_I2C
- 17. Port Connectivity Checks: "I2C:U_I2C"
- 18. Post-Synthesis Netlist Statistics for Top Partition
- 19. Elapsed Time Per Partition
- 20. Analysis & Synthesis Messages
+  8. State Machine - |SINGLE_SHOT|STATE
+  9. State Machine - |SINGLE_SHOT|ADS1115:U_ADS1115|STATE_AFTER_WAIT
+ 10. State Machine - |SINGLE_SHOT|ADS1115:U_ADS1115|STATE
+ 11. State Machine - |SINGLE_SHOT|ADS1115:U_ADS1115|I2C:U_I2C|STATE
+ 12. Registers Removed During Synthesis
+ 13. Removed Registers Triggering Further Register Optimizations
+ 14. General Register Statistics
+ 15. Inverted Register Statistics
+ 16. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 17. Parameter Settings for User Entity Instance: ADS1115:U_ADS1115|I2C:U_I2C
+ 18. Port Connectivity Checks: "ADS1115:U_ADS1115|I2C:U_I2C"
+ 19. Port Connectivity Checks: "ADS1115:U_ADS1115"
+ 20. Post-Synthesis Netlist Statistics for Top Partition
+ 21. Elapsed Time Per Partition
+ 22. Analysis & Synthesis Messages
 
 
 
@@ -51,16 +53,16 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Jan 24 14:19:15 2026       ;
+; Analysis & Synthesis Status        ; Successful - Fri Feb 06 19:10:19 2026       ;
 ; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; ADS1115                                     ;
-; Top-level Entity Name              ; ADS1115                                     ;
+; Top-level Entity Name              ; SINGLE_SHOT                                 ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 183                                         ;
-;     Total combinational functions  ; 137                                         ;
-;     Dedicated logic registers      ; 99                                          ;
-; Total registers                    ; 99                                          ;
-; Total pins                         ; 34                                          ;
+; Total logic elements               ; 232                                         ;
+;     Total combinational functions  ; 199                                         ;
+;     Dedicated logic registers      ; 120                                         ;
+; Total registers                    ; 120                                         ;
+; Total pins                         ; 20                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -76,7 +78,7 @@ refer to the applicable agreement for further details.
 ; Option                                                                     ; Setting            ; Default Value      ;
 +----------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                     ; 10M08SCE144C8G     ;                    ;
-; Top-level entity name                                                      ; ADS1115            ; ADS1115            ;
+; Top-level entity name                                                      ; SINGLE_SHOT        ; ADS1115            ;
 ; Family name                                                                ; MAX 10             ; Cyclone V          ;
 ; Use smart compilation                                                      ; Off                ; Off                ;
 ; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
@@ -173,14 +175,15 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                            ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                     ; Library ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+---------+
-; I2C.vhd                          ; yes             ; User VHDL File  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/I2C.vhd     ;         ;
-; ADS1115.vhd                      ; yes             ; User VHDL File  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/ADS1115.vhd ;         ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+---------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                ;
++----------------------------------+-----------------+-----------------+--------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                         ; Library ;
++----------------------------------+-----------------+-----------------+--------------------------------------------------------------------------------------+---------+
+; I2C.vhd                          ; yes             ; User VHDL File  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/I2C.vhd         ;         ;
+; ADS1115.vhd                      ; yes             ; User VHDL File  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/ADS1115.vhd     ;         ;
+; SINGLE_SHOT.vhd                  ; yes             ; User VHDL File  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/SINGLE_SHOT.vhd ;         ;
++----------------------------------+-----------------+-----------------+--------------------------------------------------------------------------------------+---------+
 
 
 +---------------------------------------------------------+
@@ -188,79 +191,91 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 183       ;
+; Estimated Total logic elements              ; 232       ;
 ;                                             ;           ;
-; Total combinational functions               ; 137       ;
+; Total combinational functions               ; 199       ;
 ; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 83        ;
-;     -- 3 input functions                    ; 32        ;
-;     -- <=2 input functions                  ; 22        ;
+;     -- 4 input functions                    ; 95        ;
+;     -- 3 input functions                    ; 47        ;
+;     -- <=2 input functions                  ; 57        ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 129       ;
-;     -- arithmetic mode                      ; 8         ;
+;     -- normal mode                          ; 160       ;
+;     -- arithmetic mode                      ; 39        ;
 ;                                             ;           ;
-; Total registers                             ; 99        ;
-;     -- Dedicated logic registers            ; 99        ;
+; Total registers                             ; 120       ;
+;     -- Dedicated logic registers            ; 120       ;
 ;     -- I/O registers                        ; 0         ;
 ;                                             ;           ;
-; I/O pins                                    ; 34        ;
+; I/O pins                                    ; 20        ;
 ;                                             ;           ;
 ; Embedded Multiplier 9-bit elements          ; 0         ;
 ;                                             ;           ;
 ; Maximum fan-out node                        ; CLK~input ;
-; Maximum fan-out                             ; 99        ;
-; Total fan-out                               ; 857       ;
-; Average fan-out                             ; 2.80      ;
+; Maximum fan-out                             ; 120       ;
+; Total fan-out                               ; 1130      ;
+; Average fan-out                             ; 3.13      ;
 +---------------------------------------------+-----------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                ;
-+----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name ; Entity Name ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
-; |ADS1115                   ; 137 (27)            ; 99 (47)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 34   ; 0            ; 0          ; |ADS1115            ; ADS1115     ; work         ;
-;    |I2C:U_I2C|             ; 110 (110)           ; 52 (52)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADS1115|I2C:U_I2C  ; I2C         ; work         ;
-+----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                     ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                      ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------------------------+-------------+--------------+
+; |SINGLE_SHOT               ; 199 (5)             ; 120 (5)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 20   ; 0            ; 0          ; |SINGLE_SHOT                             ; SINGLE_SHOT ; work         ;
+;    |ADS1115:U_ADS1115|     ; 194 (83)            ; 115 (66)                  ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |SINGLE_SHOT|ADS1115:U_ADS1115           ; ADS1115     ; work         ;
+;       |I2C:U_I2C|          ; 111 (111)           ; 49 (49)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |SINGLE_SHOT|ADS1115:U_ADS1115|I2C:U_I2C ; I2C         ; work         ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
 Encoding Type:  One-Hot
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |ADS1115|STATE_AFTER_WAIT                                                                                                                                                                                                                    ;
-+-----------------------------------+--------------------------------+--------------------------------+----------------------------+----------------------------------+-----------------------------------+----------------------------+-----------------------+
-; Name                              ; STATE_AFTER_WAIT.WAIT_I2C_DONE ; STATE_AFTER_WAIT.WAIT_I2C_BUSY ; STATE_AFTER_WAIT.READ_DATA ; STATE_AFTER_WAIT.WAIT_CONVERSION ; STATE_AFTER_WAIT.START_CONVERSION ; STATE_AFTER_WAIT.CONFIGURE ; STATE_AFTER_WAIT.IDLE ;
-+-----------------------------------+--------------------------------+--------------------------------+----------------------------+----------------------------------+-----------------------------------+----------------------------+-----------------------+
-; STATE_AFTER_WAIT.IDLE             ; 0                              ; 0                              ; 0                          ; 0                                ; 0                                 ; 0                          ; 0                     ;
-; STATE_AFTER_WAIT.CONFIGURE        ; 0                              ; 0                              ; 0                          ; 0                                ; 0                                 ; 1                          ; 1                     ;
-; STATE_AFTER_WAIT.START_CONVERSION ; 0                              ; 0                              ; 0                          ; 0                                ; 1                                 ; 0                          ; 1                     ;
-; STATE_AFTER_WAIT.WAIT_CONVERSION  ; 0                              ; 0                              ; 0                          ; 1                                ; 0                                 ; 0                          ; 1                     ;
-; STATE_AFTER_WAIT.READ_DATA        ; 0                              ; 0                              ; 1                          ; 0                                ; 0                                 ; 0                          ; 1                     ;
-; STATE_AFTER_WAIT.WAIT_I2C_BUSY    ; 0                              ; 1                              ; 0                          ; 0                                ; 0                                 ; 0                          ; 1                     ;
-; STATE_AFTER_WAIT.WAIT_I2C_DONE    ; 1                              ; 0                              ; 0                          ; 0                                ; 0                                 ; 0                          ; 1                     ;
-+-----------------------------------+--------------------------------+--------------------------------+----------------------------+----------------------------------+-----------------------------------+----------------------------+-----------------------+
++--------------------------------------------------------------------------------------------------+
+; State Machine - |SINGLE_SHOT|STATE                                                               ;
++-----------------------+-----------------------+----------------+--------------------+------------+
+; Name                  ; STATE.WAIT_CONVERSION ; STATE.WAIT_PIN ; STATE.SEND_COMMAND ; STATE.IDLE ;
++-----------------------+-----------------------+----------------+--------------------+------------+
+; STATE.IDLE            ; 0                     ; 0              ; 0                  ; 0          ;
+; STATE.SEND_COMMAND    ; 0                     ; 0              ; 1                  ; 1          ;
+; STATE.WAIT_PIN        ; 0                     ; 1              ; 0                  ; 1          ;
+; STATE.WAIT_CONVERSION ; 1                     ; 0              ; 0                  ; 1          ;
++-----------------------+-----------------------+----------------+--------------------+------------+
 
 
 Encoding Type:  One-Hot
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |ADS1115|STATE                                                                                                                                       ;
-+------------------------+---------------------+---------------------+-----------------+-----------------------+------------------------+-----------------+------------+
-; Name                   ; STATE.WAIT_I2C_DONE ; STATE.WAIT_I2C_BUSY ; STATE.READ_DATA ; STATE.WAIT_CONVERSION ; STATE.START_CONVERSION ; STATE.CONFIGURE ; STATE.IDLE ;
-+------------------------+---------------------+---------------------+-----------------+-----------------------+------------------------+-----------------+------------+
-; STATE.IDLE             ; 0                   ; 0                   ; 0               ; 0                     ; 0                      ; 0               ; 0          ;
-; STATE.CONFIGURE        ; 0                   ; 0                   ; 0               ; 0                     ; 0                      ; 1               ; 1          ;
-; STATE.START_CONVERSION ; 0                   ; 0                   ; 0               ; 0                     ; 1                      ; 0               ; 1          ;
-; STATE.WAIT_CONVERSION  ; 0                   ; 0                   ; 0               ; 1                     ; 0                      ; 0               ; 1          ;
-; STATE.READ_DATA        ; 0                   ; 0                   ; 1               ; 0                     ; 0                      ; 0               ; 1          ;
-; STATE.WAIT_I2C_BUSY    ; 0                   ; 1                   ; 0               ; 0                     ; 0                      ; 0               ; 1          ;
-; STATE.WAIT_I2C_DONE    ; 1                   ; 0                   ; 0               ; 0                     ; 0                      ; 0               ; 1          ;
-+------------------------+---------------------+---------------------+-----------------+-----------------------+------------------------+-----------------+------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |SINGLE_SHOT|ADS1115:U_ADS1115|STATE_AFTER_WAIT                                                                                                                                                         ;
++----------------------------------+--------------------------------+--------------------------------+----------------------------+----------------------------------+----------------------------+-----------------------+
+; Name                             ; STATE_AFTER_WAIT.WAIT_I2C_DONE ; STATE_AFTER_WAIT.WAIT_I2C_BUSY ; STATE_AFTER_WAIT.READ_DATA ; STATE_AFTER_WAIT.WAIT_CONVERSION ; STATE_AFTER_WAIT.CONFIGURE ; STATE_AFTER_WAIT.IDLE ;
++----------------------------------+--------------------------------+--------------------------------+----------------------------+----------------------------------+----------------------------+-----------------------+
+; STATE_AFTER_WAIT.IDLE            ; 0                              ; 0                              ; 0                          ; 0                                ; 0                          ; 0                     ;
+; STATE_AFTER_WAIT.CONFIGURE       ; 0                              ; 0                              ; 0                          ; 0                                ; 1                          ; 1                     ;
+; STATE_AFTER_WAIT.WAIT_CONVERSION ; 0                              ; 0                              ; 0                          ; 1                                ; 0                          ; 1                     ;
+; STATE_AFTER_WAIT.READ_DATA       ; 0                              ; 0                              ; 1                          ; 0                                ; 0                          ; 1                     ;
+; STATE_AFTER_WAIT.WAIT_I2C_BUSY   ; 0                              ; 1                              ; 0                          ; 0                                ; 0                          ; 1                     ;
+; STATE_AFTER_WAIT.WAIT_I2C_DONE   ; 1                              ; 0                              ; 0                          ; 0                                ; 0                          ; 1                     ;
++----------------------------------+--------------------------------+--------------------------------+----------------------------+----------------------------------+----------------------------+-----------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |SINGLE_SHOT|ADS1115:U_ADS1115|STATE                                                                                       ;
++-----------------------+---------------------+---------------------+-----------------+-----------------------+-----------------+------------+
+; Name                  ; STATE.WAIT_I2C_DONE ; STATE.WAIT_I2C_BUSY ; STATE.READ_DATA ; STATE.WAIT_CONVERSION ; STATE.CONFIGURE ; STATE.IDLE ;
++-----------------------+---------------------+---------------------+-----------------+-----------------------+-----------------+------------+
+; STATE.IDLE            ; 0                   ; 0                   ; 0               ; 0                     ; 0               ; 0          ;
+; STATE.CONFIGURE       ; 0                   ; 0                   ; 0               ; 0                     ; 1               ; 1          ;
+; STATE.WAIT_CONVERSION ; 0                   ; 0                   ; 0               ; 1                     ; 0               ; 1          ;
+; STATE.READ_DATA       ; 0                   ; 0                   ; 1               ; 0                     ; 0               ; 1          ;
+; STATE.WAIT_I2C_BUSY   ; 0                   ; 1                   ; 0               ; 0                     ; 0               ; 1          ;
+; STATE.WAIT_I2C_DONE   ; 1                   ; 0                   ; 0               ; 0                     ; 0               ; 1          ;
++-----------------------+---------------------+---------------------+-----------------+-----------------------+-----------------+------------+
 
 
 Encoding Type:  One-Hot
 +--------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |ADS1115|I2C:U_I2C|STATE                                                                                                         ;
+; State Machine - |SINGLE_SHOT|ADS1115:U_ADS1115|I2C:U_I2C|STATE                                                                                   ;
 +----------------+------------+----------------+----------+----------------+----------+----------------+---------------+-------------+-------------+
 ; Name           ; STATE.STOP ; STATE.MSTR_ACK ; STATE.RD ; STATE.SLV_ACK2 ; STATE.WR ; STATE.SLV_ACK1 ; STATE.COMMAND ; STATE.START ; STATE.READY ;
 +----------------+------------+----------------+----------+----------------+----------+----------------+---------------+-------------+-------------+
@@ -276,36 +291,47 @@ Encoding Type:  One-Hot
 +----------------+------------+----------------+----------+----------------+----------+----------------+---------------+-------------+-------------+
 
 
-+---------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                              ;
-+----------------------------------------+----------------------------------------+
-; Register name                          ; Reason for Removal                     ;
-+----------------------------------------+----------------------------------------+
-; RW                                     ; Stuck at GND due to stuck port data_in ;
-; CONFIG_REG[2..4]                       ; Stuck at GND due to stuck port data_in ;
-; CONFIG_REG[0,1]                        ; Stuck at VCC due to stuck port data_in ;
-; I2C:U_I2C|ADDR_RW[7]                   ; Merged with I2C:U_I2C|ADDR_RW[4]       ;
-; I2C:U_I2C|ADDR_RW[1..3,5,6]            ; Merged with I2C:U_I2C|ADDR_RW[0]       ;
-; CONFIG_REG[8]                          ; Merged with CONFIG_REG[15]             ;
-; I2C:U_I2C|ADDR_RW[0]                   ; Stuck at GND due to stuck port data_in ;
-; I2C:U_I2C|ADDR_RW[4]                   ; Stuck at VCC due to stuck port data_in ;
-; STATE_AFTER_WAIT.START_CONVERSION      ; Merged with STATE_AFTER_WAIT.READ_DATA ;
-; STATE_AFTER_WAIT.WAIT_CONVERSION       ; Merged with STATE_AFTER_WAIT.READ_DATA ;
-; STATE_AFTER_WAIT.WAIT_I2C_BUSY         ; Merged with STATE_AFTER_WAIT.READ_DATA ;
-; STATE_AFTER_WAIT.WAIT_I2C_DONE         ; Merged with STATE_AFTER_WAIT.READ_DATA ;
-; STATE_AFTER_WAIT.READ_DATA             ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 20 ;                                        ;
-+----------------------------------------+----------------------------------------+
++----------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                       ;
++-----------------------------------------------------+----------------------------------------------------+
+; Register name                                       ; Reason for Removal                                 ;
++-----------------------------------------------------+----------------------------------------------------+
+; CONFIGURED                                          ; Lost fanout                                        ;
+; CONFIG_EN                                           ; Lost fanout                                        ;
+; ADS1115:U_ADS1115|CONFIGURED                        ; Lost fanout                                        ;
+; ADS1115:U_ADS1115|MAX_WAIT[4..7,11,12,14,15,19..30] ; Stuck at GND due to stuck port data_in             ;
+; ADS1115:U_ADS1115|CONFIG_REG[14,15]                 ; Stuck at VCC due to stuck port data_in             ;
+; ADS1115:U_ADS1115|CONFIG_REG[9..13]                 ; Stuck at GND due to stuck port data_in             ;
+; ADS1115:U_ADS1115|CONFIG_REG[7,8]                   ; Stuck at VCC due to stuck port data_in             ;
+; ADS1115:U_ADS1115|CONFIG_REG[2..6]                  ; Stuck at GND due to stuck port data_in             ;
+; ADS1115:U_ADS1115|CONFIG_REG[0,1]                   ; Stuck at VCC due to stuck port data_in             ;
+; ADS1115:U_ADS1115|MAX_WAIT[31]                      ; Merged with ADS1115:U_ADS1115|MAX_WAIT[0]          ;
+; ADS1115:U_ADS1115|MAX_WAIT[1..3,8,9,13,16..18]      ; Merged with ADS1115:U_ADS1115|MAX_WAIT[10]         ;
+; ADS1115:U_ADS1115|I2C:U_I2C|ADDR_RW[7]              ; Merged with ADS1115:U_ADS1115|I2C:U_I2C|ADDR_RW[4] ;
+; ADS1115:U_ADS1115|I2C:U_I2C|ADDR_RW[2,3,5,6]        ; Merged with ADS1115:U_ADS1115|I2C:U_I2C|ADDR_RW[1] ;
+; ADS1115:U_ADS1115|DATA_WR[2..4]                     ; Merged with ADS1115:U_ADS1115|DATA_WR[5]           ;
+; ADS1115:U_ADS1115|I2C:U_I2C|ADDR_RW[1]              ; Stuck at GND due to stuck port data_in             ;
+; ADS1115:U_ADS1115|DATA_WR[5]                        ; Stuck at GND due to stuck port data_in             ;
+; ADS1115:U_ADS1115|I2C:U_I2C|DATA_TX[2..5]           ; Stuck at GND due to stuck port data_in             ;
+; ADS1115:U_ADS1115|I2C:U_I2C|ADDR_RW[4]              ; Stuck at VCC due to stuck port data_in             ;
+; ADS1115:U_ADS1115|STATE_AFTER_WAIT.IDLE             ; Lost fanout                                        ;
+; ADS1115:U_ADS1115|STATE_AFTER_WAIT.WAIT_CONVERSION  ; Lost fanout                                        ;
+; ADS1115:U_ADS1115|STATE_AFTER_WAIT.WAIT_I2C_BUSY    ; Lost fanout                                        ;
+; ADS1115:U_ADS1115|STATE_AFTER_WAIT.WAIT_I2C_DONE    ; Lost fanout                                        ;
+; ADS1115:U_ADS1115|MAX_WAIT[0]                       ; Stuck at GND due to stuck port data_in             ;
+; Total Number of Removed Registers = 69              ;                                                    ;
++-----------------------------------------------------+----------------------------------------------------+
 
 
-+------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                        ;
-+---------------+---------------------------+----------------------------------------+
-; Register name ; Reason for Removal        ; Registers Removed due to This Register ;
-+---------------+---------------------------+----------------------------------------+
-; RW            ; Stuck at GND              ; I2C:U_I2C|ADDR_RW[0]                   ;
-;               ; due to stuck port data_in ;                                        ;
-+---------------+---------------------------+----------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                  ;
++--------------------------------+---------------------------+---------------------------------------------------------------------------------+
+; Register name                  ; Reason for Removal        ; Registers Removed due to This Register                                          ;
++--------------------------------+---------------------------+---------------------------------------------------------------------------------+
+; ADS1115:U_ADS1115|MAX_WAIT[30] ; Stuck at GND              ; ADS1115:U_ADS1115|DATA_WR[5], ADS1115:U_ADS1115|I2C:U_I2C|DATA_TX[5],           ;
+;                                ; due to stuck port data_in ; ADS1115:U_ADS1115|I2C:U_I2C|DATA_TX[4], ADS1115:U_ADS1115|I2C:U_I2C|DATA_TX[3], ;
+;                                ;                           ; ADS1115:U_ADS1115|I2C:U_I2C|DATA_TX[2]                                          ;
++--------------------------------+---------------------------+---------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -313,12 +339,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 99    ;
-; Number of registers using Synchronous Clear  ; 0     ;
+; Total registers                              ; 120   ;
+; Number of registers using Synchronous Clear  ; 32    ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 66    ;
+; Number of registers using Asynchronous Clear ; 102   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 71    ;
+; Number of registers using Clock Enable       ; 87    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -328,41 +354,45 @@ Encoding Type:  One-Hot
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; I2C:U_I2C|BIT_CNT[2]                   ; 20      ;
-; I2C:U_I2C|BIT_CNT[1]                   ; 27      ;
-; I2C:U_I2C|BIT_CNT[0]                   ; 24      ;
-; I2C:U_I2C|SDA_INT                      ; 2       ;
-; I2C:U_I2C|BUSY                         ; 11      ;
+; ADS1115:U_ADS1115|I2C:U_I2C|BIT_CNT[0] ; 22      ;
+; ADS1115:U_ADS1115|I2C:U_I2C|BIT_CNT[2] ; 20      ;
+; ADS1115:U_ADS1115|I2C:U_I2C|BIT_CNT[1] ; 20      ;
+; ADS1115:U_ADS1115|I2C:U_I2C|BUSY       ; 11      ;
+; ADS1115:U_ADS1115|I2C:U_I2C|SDA_INT    ; 2       ;
 ; Total number of inverted registers = 5 ;         ;
 +----------------------------------------+---------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                              ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output    ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------+
-; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |ADS1115|DATA_WR[0]           ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |ADS1115|DATA_WR[5]           ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |ADS1115|I2C:U_I2C|DATA_TX[3] ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |ADS1115|I2C:U_I2C|BIT_CNT[1] ;
-; 8:1                ; 3 bits    ; 15 LEs        ; 12 LEs               ; 3 LEs                  ; No         ; |ADS1115|Selector6            ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------+
+; 3:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |SINGLE_SHOT|ADS1115:U_ADS1115|I2C:U_I2C|DATA_TX[1] ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 32 LEs               ; 64 LEs                 ; Yes        ; |SINGLE_SHOT|ADS1115:U_ADS1115|WAIT_COUNT[20]       ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |SINGLE_SHOT|ADS1115:U_ADS1115|DATA_WR[5]           ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 2 LEs                ; 6 LEs                  ; Yes        ; |SINGLE_SHOT|ADS1115:U_ADS1115|BYTE_COUNT[0]        ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |SINGLE_SHOT|ADS1115:U_ADS1115|DATA_WR[7]           ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |SINGLE_SHOT|ADS1115:U_ADS1115|I2C:U_I2C|BIT_CNT[2] ;
+; 11:1               ; 2 bits    ; 14 LEs        ; 8 LEs                ; 6 LEs                  ; No         ; |SINGLE_SHOT|ADS1115:U_ADS1115|Selector8            ;
+; 11:1               ; 2 bits    ; 14 LEs        ; 8 LEs                ; 6 LEs                  ; No         ; |SINGLE_SHOT|ADS1115:U_ADS1115|Selector5            ;
+; 11:1               ; 2 bits    ; 14 LEs        ; 6 LEs                ; 8 LEs                  ; No         ; |SINGLE_SHOT|ADS1115:U_ADS1115|Selector3            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------+
 
 
-+--------------------------------------------------------+
-; Parameter Settings for User Entity Instance: I2C:U_I2C ;
-+----------------+----------+----------------------------+
-; Parameter Name ; Value    ; Type                       ;
-+----------------+----------+----------------------------+
-; clk_freq_hz    ; 50000000 ; Signed Integer             ;
-; i2c_freq_hz    ; 100000   ; Signed Integer             ;
-+----------------+----------+----------------------------+
++--------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ADS1115:U_ADS1115|I2C:U_I2C ;
++----------------+----------+----------------------------------------------+
+; Parameter Name ; Value    ; Type                                         ;
++----------------+----------+----------------------------------------------+
+; clk_freq_hz    ; 50000000 ; Signed Integer                               ;
+; i2c_freq_hz    ; 100000   ; Signed Integer                               ;
++----------------+----------+----------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +----------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "I2C:U_I2C"                                                                                ;
+; Port Connectivity Checks: "ADS1115:U_ADS1115|I2C:U_I2C"                                                              ;
 +------------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port       ; Type   ; Severity ; Details                                                                             ;
 +------------+--------+----------+-------------------------------------------------------------------------------------+
@@ -374,31 +404,46 @@ Note: In order to hide this table in the UI and the text report file, please set
 +------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
++---------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ADS1115:U_ADS1115"                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; channel[1..0]   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; channel[2]      ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; pga             ; Input  ; Info     ; Stuck at GND                                                                        ;
+; data_rate[1..0] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; data_rate[2]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; continuous      ; Input  ; Info     ; Stuck at GND                                                                        ;
+; busy            ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
 +-----------------------------------------------------+
 ; Post-Synthesis Netlist Statistics for Top Partition ;
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 34                          ;
-; cycloneiii_ff         ; 99                          ;
-;     CLR               ; 20                          ;
-;     ENA               ; 25                          ;
-;     ENA CLR           ; 46                          ;
+; boundary_port         ; 20                          ;
+; cycloneiii_ff         ; 120                         ;
+;     CLR               ; 25                          ;
+;     ENA               ; 10                          ;
+;     ENA CLR           ; 45                          ;
+;     ENA CLR SCLR      ; 32                          ;
 ;     plain             ; 8                           ;
 ; cycloneiii_io_obuf    ; 2                           ;
-; cycloneiii_lcell_comb ; 138                         ;
-;     arith             ; 8                           ;
-;         2 data inputs ; 7                           ;
+; cycloneiii_lcell_comb ; 199                         ;
+;     arith             ; 39                          ;
+;         2 data inputs ; 38                          ;
 ;         3 data inputs ; 1                           ;
-;     normal            ; 130                         ;
-;         0 data inputs ; 1                           ;
-;         1 data inputs ; 3                           ;
-;         2 data inputs ; 12                          ;
-;         3 data inputs ; 31                          ;
-;         4 data inputs ; 83                          ;
+;     normal            ; 160                         ;
+;         1 data inputs ; 5                           ;
+;         2 data inputs ; 14                          ;
+;         3 data inputs ; 46                          ;
+;         4 data inputs ; 95                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 6.00                        ;
-; Average LUT depth     ; 3.02                        ;
+; Max LUT depth         ; 7.20                        ;
+; Average LUT depth     ; 3.44                        ;
 +-----------------------+-----------------------------+
 
 
@@ -417,7 +462,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Sat Jan 24 14:19:03 2026
+    Info: Processing started: Fri Feb 06 19:10:04 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ADS1115 -c ADS1115
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -427,26 +472,36 @@ Info (12021): Found 2 design units, including 1 entities, in source file i2c.vhd
 Info (12021): Found 2 design units, including 1 entities, in source file ads1115.vhd
     Info (12022): Found design unit 1: ADS1115-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/ADS1115.vhd Line: 32
     Info (12023): Found entity 1: ADS1115 File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/ADS1115.vhd Line: 5
-Info (12127): Elaborating entity "ADS1115" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at ADS1115.vhd(24): used implicit default value for signal "BUSY" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/ADS1115.vhd Line: 24
-Warning (10036): Verilog HDL or VHDL warning at ADS1115.vhd(85): object "ACK_ERR" assigned a value but never read File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/ADS1115.vhd Line: 85
-Info (12128): Elaborating entity "I2C" for hierarchy "I2C:U_I2C" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/ADS1115.vhd Line: 96
+Info (12021): Found 2 design units, including 1 entities, in source file single_shot.vhd
+    Info (12022): Found design unit 1: SINGLE_SHOT-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/SINGLE_SHOT.vhd Line: 15
+    Info (12023): Found entity 1: SINGLE_SHOT File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/SINGLE_SHOT.vhd Line: 5
+Info (12127): Elaborating entity "SINGLE_SHOT" for the top level hierarchy
+Warning (10540): VHDL Signal Declaration warning at SINGLE_SHOT.vhd(47): used explicit default value for signal "CHANNEL" because signal was never assigned a value File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/SINGLE_SHOT.vhd Line: 47
+Warning (10540): VHDL Signal Declaration warning at SINGLE_SHOT.vhd(48): used explicit default value for signal "PGA" because signal was never assigned a value File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/SINGLE_SHOT.vhd Line: 48
+Warning (10540): VHDL Signal Declaration warning at SINGLE_SHOT.vhd(49): used explicit default value for signal "DATA_RATE" because signal was never assigned a value File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/SINGLE_SHOT.vhd Line: 49
+Warning (10540): VHDL Signal Declaration warning at SINGLE_SHOT.vhd(50): used explicit default value for signal "CONTINUOUS" because signal was never assigned a value File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/SINGLE_SHOT.vhd Line: 50
+Warning (10036): Verilog HDL or VHDL warning at SINGLE_SHOT.vhd(53): object "BUSY" assigned a value but never read File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/SINGLE_SHOT.vhd Line: 53
+Warning (10036): Verilog HDL or VHDL warning at SINGLE_SHOT.vhd(56): object "DATA_VALID" assigned a value but never read File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/SINGLE_SHOT.vhd Line: 56
+Info (12128): Elaborating entity "ADS1115" for hierarchy "ADS1115:U_ADS1115" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/SINGLE_SHOT.vhd Line: 59
+Warning (10036): Verilog HDL or VHDL warning at ADS1115.vhd(102): object "ACK_ERR" assigned a value but never read File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/ADS1115.vhd Line: 102
+Info (12128): Elaborating entity "I2C" for hierarchy "ADS1115:U_ADS1115|I2C:U_I2C" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/ADS1115.vhd Line: 118
 Info (13000): Registers with preset signals will power-up high File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/I2C.vhd Line: 93
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
-Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "BUSY" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/ADS1115.vhd Line: 24
 Info (286030): Timing-Driven Synthesis is running
+Critical Warning (18061): Ignored Power-Up Level option on the following registers
+    Critical Warning (18010): Register ADS1115:U_ADS1115|MAX_WAIT[0] will power up to Low File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADS1115/ADS1115.vhd Line: 135
+Info (17049): 7 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 227 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 14 input pins
-    Info (21059): Implemented 18 output pins
+Info (21057): Implemented 260 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 2 input pins
+    Info (21059): Implemented 16 output pins
     Info (21060): Implemented 2 bidirectional pins
-    Info (21061): Implemented 193 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 4794 megabytes
-    Info: Processing ended: Sat Jan 24 14:19:16 2026
-    Info: Elapsed time: 00:00:13
-    Info: Total CPU time (on all processors): 00:00:24
+    Info (21061): Implemented 240 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 10 warnings
+    Info: Peak virtual memory: 4792 megabytes
+    Info: Processing ended: Fri Feb 06 19:10:19 2026
+    Info: Elapsed time: 00:00:15
+    Info: Total CPU time (on all processors): 00:00:32
 
 

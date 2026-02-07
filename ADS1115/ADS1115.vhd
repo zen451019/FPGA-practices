@@ -30,7 +30,7 @@ ENTITY ADS1115 IS
 END ENTITY;
 
 ARCHITECTURE COMP OF ADS1115 IS 
-    TYPE MACHINE IS (IDLE, CONFIGURE, START_CONVERSION, WAIT_CONVERSION, READ_DATA, WAIT_I2C_BUSY, WAIT_I2C_DONE);
+    TYPE MACHINE IS (IDLE, CONFIGURE, WAIT_CONVERSION, READ_DATA, WAIT_I2C_BUSY, WAIT_I2C_DONE);
     SIGNAL STATE : MACHINE := IDLE;
     SIGNAL STATE_AFTER_WAIT : MACHINE := IDLE;
 
@@ -76,6 +76,23 @@ ARCHITECTURE COMP OF ADS1115 IS
         RETURN CONFIG;
     END FUNCTION;
 
+    SIGNAL MAX_WAIT : INTEGER;
+
+FUNCTION CALC_MAX_WAIT (DATA_RATE : STD_LOGIC_VECTOR(2 DOWNTO 0)) RETURN INTEGER IS
+BEGIN
+    CASE DATA_RATE IS
+        -- Valores calculados: (1/SPS) * 1.2 * 50,000,000
+        WHEN "000" => RETURN 7500000; -- 8SPS   (teórico 125ms -> espera 150ms)
+        WHEN "001" => RETURN 3750000; -- 16SPS  (teórico 62.5ms -> espera 75ms)
+        WHEN "010" => RETURN 1875000; -- 32SPS  (teórico 31.2ms -> espera 37.5ms)
+        WHEN "011" => RETURN 937500;  -- 64SPS  (teórico 15.6ms -> espera 18.7ms)
+        WHEN "100" => RETURN 468750;  -- 128SPS (teórico 7.8ms -> espera 9.3ms)
+        WHEN "101" => RETURN 240000;  -- 250SPS (teórico 4ms -> espera 4.8ms)
+        WHEN "110" => RETURN 126315;  -- 475SPS (teórico 2.1ms -> espera 2.5ms)
+        WHEN OTHERS => RETURN 69767;  -- 860SPS (teórico 1.16ms -> espera 1.4ms)
+    END CASE;
+END FUNCTION;
+
     SIGNAL EN : STD_LOGIC;
     CONSTANT I2C_ADDRESS : STD_LOGIC_VECTOR(6 DOWNTO 0) := "1001000"; -- Dirección I2C del ADS1115
     SIGNAL RW : STD_LOGIC;
@@ -88,10 +105,15 @@ ARCHITECTURE COMP OF ADS1115 IS
     CONSTANT ADS1115_POINTER_CONVERSION : STD_LOGIC_VECTOR(7 DOWNTO 0) := "00000000";
     CONSTANT ADS1115_POINTER_CONFIG     : STD_LOGIC_VECTOR(7 DOWNTO 0) := "00000001";
     SIGNAL CONFIG_REG : STD_LOGIC_VECTOR(15 DOWNTO 0);
-    SIGNAL COUNT : INTEGER RANGE 0 TO 2 := 0;
+    SIGNAL CONFIGURED : STD_LOGIC := '0'; -- Indica si ya se configuró en modo continuo
+    SIGNAL BYTE_COUNT : INTEGER RANGE 0 TO 2 := 0;
+    SIGNAL WAIT_COUNT : INTEGER := 0;
     
 
 BEGIN
+
+    -- Nuevo: BUSY de salida
+    BUSY <= '1' WHEN STATE /= IDLE ELSE '0';
 
     U_I2C : I2C
     PORT MAP (
@@ -117,24 +139,39 @@ BEGIN
             EN <= '0';
             RW <= '0';
             DATA_WR <= (OTHERS => '0');
+            CONFIGURED <= '0';
+            BYTE_COUNT <= 0;
+            WAIT_COUNT <= 0;
+            MAX_WAIT <= 0; -- Nuevo: init seguro
         ELSIF rising_edge(CLK) THEN
             CASE STATE IS
                 WHEN IDLE =>
-                IF START_CONV = '1' AND BUSY_I2C = '0' THEN
-                    IF CONFIG_EN = '1' THEN
+                    CONV_READY <= '0';
+                    EN <= '0';
+                    IF START_CONV = '1' AND BUSY_I2C = '0' THEN
+                        -- Asegurar configuración y tiempo siempre
                         CONFIG_REG <= BUILD_CONFIG_REG(CHANNEL, PGA, DATA_RATE, CONTINUOUS);
+                        MAX_WAIT   <= CALC_MAX_WAIT(DATA_RATE);
+
+                        IF CONFIG_EN = '1' THEN
+                            CONFIGURED <= '0'; -- Forzar reconfiguración
+                            STATE <= CONFIGURE;
+                        ELSIF CONTINUOUS = '1' AND CONFIGURED = '1' THEN
+                            STATE <= WAIT_CONVERSION; -- ya configurado
+                        ELSE
+                            STATE <= CONFIGURE; -- single-shot o primera vez continuo
+                        END IF;
                     END IF;
-                    STATE <= CONFIGURE;
-                END IF;
 
                 WHEN CONFIGURE =>
                     EN <= '1';
                     RW <= '0'; -- Write
                     
-                    CASE COUNT IS
-                        WHEN 0 => DATA_WR <= ADS1115_POINTER_CONFIG; -- 0x01 = Pointer to Config Register
+                    CASE BYTE_COUNT IS
+                        WHEN 0 => DATA_WR <= ADS1115_POINTER_CONFIG; -- 0x01
                         WHEN 1 => DATA_WR <= CONFIG_REG(15 DOWNTO 8); -- MSB
                         WHEN 2 => DATA_WR <= CONFIG_REG(7 DOWNTO 0);  -- LSB
+                        WHEN OTHERS => NULL;
                     END CASE;
                     
                     STATE <= WAIT_I2C_BUSY;
@@ -148,31 +185,56 @@ BEGIN
                 WHEN WAIT_I2C_DONE =>
                     IF BUSY_I2C = '0' THEN
                         EN <= '0'; -- Disable I2C
-                        IF COUNT = 2 THEN
-                            COUNT <= 0;
-                            STATE <= START_CONVERSION;
-                        ELSE
-                            COUNT <= COUNT + 1;
-                            STATE <= STATE_AFTER_WAIT; 
+                        IF STATE_AFTER_WAIT = CONFIGURE THEN
+                            IF BYTE_COUNT = 2 THEN
+                                BYTE_COUNT <= 0;
+                                CONFIGURED <= '1';
+                                WAIT_COUNT <= 0;
+                                STATE <= WAIT_CONVERSION;
+                            ELSE
+                                BYTE_COUNT <= BYTE_COUNT + 1;
+                                STATE <= CONFIGURE;
+                            END IF;
+                        ELSIF STATE_AFTER_WAIT = READ_DATA THEN
+                            IF BYTE_COUNT = 2 THEN
+                                BYTE_COUNT <= 0;
+                                CONV_READY <= '1';
+                                STATE <= IDLE;
+                            ELSE
+                                BYTE_COUNT <= BYTE_COUNT + 1;
+                                STATE <= READ_DATA;
+                            END IF;
                         END IF;
                     END IF;
 
                 WHEN WAIT_CONVERSION =>
-                    -- Esperar a que la conversión esté lista
-                    -- (Implementación de espera aquí)
-                    CONV_READY <= '1';
-                    STATE <= READ_DATA;
+                    IF WAIT_COUNT < MAX_WAIT THEN
+                        WAIT_COUNT <= WAIT_COUNT + 1;
+                    ELSE
+                        WAIT_COUNT <= 0;
+                        BYTE_COUNT <= 0;
+                        STATE <= READ_DATA;
+                    END IF;
                 
-                WHEN START_CONVERSION =>
-                    -- Iniciar conversión (Implementación I2C aquí)
-                    STATE <= WAIT_CONVERSION;
-
                 WHEN READ_DATA =>
-                    -- Leer los datos convertidos (Implementación I2C aquí)
-                    DATA_OUT <= DATA_RD & DATA_RD; -- Suponiendo lectura de 16 bits en dos partes
-                    CONV_READY <= '0';
-                    STATE <= IDLE;
+                    EN <= '1';
+                    
+                    CASE BYTE_COUNT IS
+                        WHEN 0 => 
+                            RW <= '0'; -- Write
+                            DATA_WR <= ADS1115_POINTER_CONVERSION; -- 0x00
+                        WHEN 1 => 
+                            RW <= '1'; -- Read
+                            DATA_OUT(15 DOWNTO 8) <= DATA_RD; -- MSB
+                        WHEN 2 => 
+                            RW <= '1'; -- Read
+                            DATA_OUT(7 DOWNTO 0) <= DATA_RD; -- LSB
+                        WHEN OTHERS => NULL;
+                    END CASE;
+                    
+                    STATE <= WAIT_I2C_BUSY;
+                    STATE_AFTER_WAIT <= READ_DATA;
             END CASE;
         END IF;
     END PROCESS;
-END ARCHITECTURE;
+   END ARCHITECTURE;
