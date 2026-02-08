@@ -24,7 +24,7 @@ ARCHITECTURE COMP OF ADC_AND_LCD IS
     SIGNAL SHIFT_REG : STD_LOGIC_VECTOR(28 DOWNTO 0) := (OTHERS => '0');
     SIGNAL SHIFT_COUNT : INTEGER RANGE 0 TO 13 := 0;
 
-    -- Función Double Dabble
+    -- Funciï¿½n Double Dabble
     FUNCTION ADD3_IF_GE5(DIGIT : STD_LOGIC_VECTOR(3 DOWNTO 0))
         RETURN STD_LOGIC_VECTOR IS
     BEGIN
@@ -40,6 +40,7 @@ BEGIN
         VARIABLE TEMP_S : INTEGER;
         VARIABLE TEMP_BIN : STD_LOGIC_VECTOR(12 DOWNTO 0);
         VARIABLE TEMP_SHIFT : STD_LOGIC_VECTOR(28 DOWNTO 0); -- ? Variable temporal
+        VARIABLE TEMP_MULT : unsigned(16 downto 0);
     BEGIN
         IF RESET = '0' THEN
             STATE <= IDLE;
@@ -64,7 +65,8 @@ BEGIN
                     END IF;
                     
                     -- Inicializar BCD
-                    TEMP_BIN := STD_LOGIC_VECTOR(to_unsigned((TEMP_S * 1875) / 10000, 13));
+                    TEMP_MULT := to_unsigned(TEMP_S * 3, TEMP_MULT'length);
+                    TEMP_BIN := STD_LOGIC_VECTOR(TEMP_MULT(16 downto 4));
                     SHIFT_REG <= (OTHERS => '0');
                     SHIFT_REG(12 DOWNTO 0) <= TEMP_BIN;
                     SHIFT_COUNT <= 0;
@@ -75,13 +77,13 @@ BEGIN
                         -- ? Usar variable temporal para evitar conflictos
                         TEMP_SHIFT := SHIFT_REG;
                         
-                        -- Aplicar ADD3 a cada dígito
+                        -- Aplicar ADD3 a cada dï¿½gito
                         TEMP_SHIFT(28 DOWNTO 25) := ADD3_IF_GE5(TEMP_SHIFT(28 DOWNTO 25));
                         TEMP_SHIFT(24 DOWNTO 21) := ADD3_IF_GE5(TEMP_SHIFT(24 DOWNTO 21));
                         TEMP_SHIFT(20 DOWNTO 17) := ADD3_IF_GE5(TEMP_SHIFT(20 DOWNTO 17));
                         TEMP_SHIFT(16 DOWNTO 13) := ADD3_IF_GE5(TEMP_SHIFT(16 DOWNTO 13));
                         
-                        -- Ahora sí hacer shift
+                        -- Ahora sï¿½ hacer shift
                         SHIFT_REG <= TEMP_SHIFT(27 DOWNTO 0) & '0';
                         SHIFT_COUNT <= SHIFT_COUNT + 1;
                     ELSE

@@ -1,5 +1,5 @@
 Power Analyzer report for ADC_AND_LCD
-Sun Feb 08 17:35:23 2026
+Sun Feb 08 18:42:40 2026
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -52,19 +52,19 @@ refer to the applicable agreement for further details.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.52        ;
+; Average used               ; 1.17        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-4         ;  17.4%      ;
+;     Processors 2-4         ;   5.7%      ;
 +----------------------------+-------------+
 
 
 +-------------------------------------------------------------------------------------------+
 ; Power Analyzer Summary                                                                    ;
 +----------------------------------------+--------------------------------------------------+
-; Power Analyzer Status                  ; Successful - Sun Feb 08 17:35:23 2026            ;
+; Power Analyzer Status                  ; Successful - Sun Feb 08 18:42:40 2026            ;
 ; Quartus Prime Version                  ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition      ;
 ; Revision Name                          ; ADC_AND_LCD                                      ;
 ; Top-level Entity Name                  ; LCD_OUT                                          ;
@@ -161,35 +161,20 @@ refer to the applicable agreement for further details.
 (1) The "Block Thermal Static Power" for all block types except Pins and the Voltage Regulator, if one exists, is part of the "Core Static Thermal Power Dissipation" value found on the PowerPlay Power Analyzer-->Summary report panel. The "Core Static Thermal Power Dissipation" also contains the thermal static power dissipated by the routing.
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Thermal Power Dissipation by Hierarchy                                                                                                                                                                                                                                                                                                                       ;
-+---------------------------------------------------------+--------------------------------------+---------------------------------+-----------------------------------+-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-; Compilation Hierarchy Node                              ; Total Thermal Power by Hierarchy (1) ; Block Thermal Dynamic Power (1) ; Block Thermal Static Power (1)(2) ; Routing Thermal Dynamic Power (1) ; Full Hierarchy Name                                                                                                                               ;
-+---------------------------------------------------------+--------------------------------------+---------------------------------+-----------------------------------+-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-; |LCD_OUT                                                ; 0.08 mW (0.08 mW)                    ; 0.00 mW (0.00 mW)               ; 0.08 mW (0.08 mW)                 ; 0.00 mW (0.00 mW)                 ; |LCD_OUT                                                                                                                                          ;
-;     |hard_block:auto_generated_inst                     ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|hard_block:auto_generated_inst                                                                                                           ;
-;     |SINGLE_SHOT:inst                                   ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|SINGLE_SHOT:inst                                                                                                                         ;
-;         |ADS1115:U_ADS1115                              ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|SINGLE_SHOT:inst|ADS1115:U_ADS1115                                                                                                       ;
-;             |I2C:U_I2C                                  ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C                                                                                             ;
-;     |LCD_DISPLAY:inst1                                  ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|LCD_DISPLAY:inst1                                                                                                                        ;
-;         |TIMER:U_TIMER                                  ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|LCD_DISPLAY:inst1|TIMER:U_TIMER                                                                                                          ;
-;     |ADC_AND_LCD:inst2                                  ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|ADC_AND_LCD:inst2                                                                                                                        ;
-;         |lpm_divide:Div0                                ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_divide:Div0                                                                                                        ;
-;             |lpm_divide_5do:auto_generated              ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_divide:Div0|lpm_divide_5do:auto_generated                                                                          ;
-;                 |abs_divider_adg:divider                ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_divide:Div0|lpm_divide_5do:auto_generated|abs_divider_adg:divider                                                  ;
-;                     |alt_u_div_8le:divider              ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_divide:Div0|lpm_divide_5do:auto_generated|abs_divider_adg:divider|alt_u_div_8le:divider                            ;
-;                     |lpm_abs_db9:my_abs_num             ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_divide:Div0|lpm_divide_5do:auto_generated|abs_divider_adg:divider|lpm_abs_db9:my_abs_num                           ;
-;         |lpm_mult:Mult0                                 ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_mult:Mult0                                                                                                         ;
-;             |multcore:mult_core                         ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core                                                                                      ;
-;                 |mpar_add:padder                        ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder                                                                      ;
-;                     |lpm_add_sub:adder[0]               ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]                                                 ;
-;                         |add_sub_ckg:auto_generated     ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]|add_sub_ckg:auto_generated                      ;
-;                     |lpm_add_sub:adder[1]               ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[1]                                                 ;
-;                         |add_sub_6vg:auto_generated     ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[1]|add_sub_6vg:auto_generated                      ;
-;                     |mpar_add:sub_par_add               ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add                                                 ;
-;                         |lpm_add_sub:adder[0]           ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add|lpm_add_sub:adder[0]                            ;
-;                             |add_sub_1vg:auto_generated ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add|lpm_add_sub:adder[0]|add_sub_1vg:auto_generated ;
-+---------------------------------------------------------+--------------------------------------+---------------------------------+-----------------------------------+-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Thermal Power Dissipation by Hierarchy                                                                                                                                                                                                       ;
++-------------------------------------+--------------------------------------+---------------------------------+-----------------------------------+-----------------------------------+-------------------------------------------------------+
+; Compilation Hierarchy Node          ; Total Thermal Power by Hierarchy (1) ; Block Thermal Dynamic Power (1) ; Block Thermal Static Power (1)(2) ; Routing Thermal Dynamic Power (1) ; Full Hierarchy Name                                   ;
++-------------------------------------+--------------------------------------+---------------------------------+-----------------------------------+-----------------------------------+-------------------------------------------------------+
+; |LCD_OUT                            ; 0.08 mW (0.08 mW)                    ; 0.00 mW (0.00 mW)               ; 0.08 mW (0.08 mW)                 ; 0.00 mW (0.00 mW)                 ; |LCD_OUT                                              ;
+;     |hard_block:auto_generated_inst ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|hard_block:auto_generated_inst               ;
+;     |SINGLE_SHOT:inst               ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|SINGLE_SHOT:inst                             ;
+;         |ADS1115:U_ADS1115          ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|SINGLE_SHOT:inst|ADS1115:U_ADS1115           ;
+;             |I2C:U_I2C              ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C ;
+;     |LCD_DISPLAY:inst1              ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|LCD_DISPLAY:inst1                            ;
+;         |TIMER:U_TIMER              ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|LCD_DISPLAY:inst1|TIMER:U_TIMER              ;
+;     |ADC_AND_LCD:inst2              ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |LCD_OUT|ADC_AND_LCD:inst2                            ;
++-------------------------------------+--------------------------------------+---------------------------------+-----------------------------------+-----------------------------------+-------------------------------------------------------+
 (1) Value in parentheses is the power consumed at that level of hierarchy. Value not in parentheses is the power consumed at that level of hierarchy plus the power consumed by all levels of hierarchy below it.
 
 (2) The "Block Thermal Static Power" for all levels of hierarchy except the top-level hierarchy is part of the "Core Static Thermal Power Dissipation" value found on the PowerPlay Power Analyzer-->Summary report panel. The "Core Static Thermal Power Dissipation" also contains the thermal static power dissipated by the routing.
@@ -245,31 +230,31 @@ refer to the applicable agreement for further details.
 (2) Currents reported in column "Minimum Power Supply Current" are sufficient for power-up, configuration, and user operation of the device.
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------+
-; Confidence Metric Details                                                                                                                         ;
-+----------------------------------------------------------------------------------------+--------------+------------+--------------+---------------+
-; Data Source                                                                            ; Total        ; Pin        ; Registered   ; Combinational ;
-+----------------------------------------------------------------------------------------+--------------+------------+--------------+---------------+
-; Simulation (from file)                                                                 ;              ;            ;              ;               ;
-;     -- Number of signals with Toggle Rate from Simulation                              ; 0 (0.0%)     ; 0 (0.0%)   ; 0 (0.0%)     ; 0 (0.0%)      ;
-;     -- Number of signals with Static Probability from Simulation                       ; 0 (0.0%)     ; 0 (0.0%)   ; 0 (0.0%)     ; 0 (0.0%)      ;
-;                                                                                        ;              ;            ;              ;               ;
-; Node, entity or clock assignment                                                       ;              ;            ;              ;               ;
-;     -- Number of signals with Toggle Rate from Node, entity or clock assignment        ; 0 (0.0%)     ; 0 (0.0%)   ; 0 (0.0%)     ; 0 (0.0%)      ;
-;     -- Number of signals with Static Probability from Node, entity or clock assignment ; 1 (0.1%)     ; 0 (0.0%)   ; 0 (0.0%)     ; 1 (0.1%)      ;
-;                                                                                        ;              ;            ;              ;               ;
-; Vectorless estimation                                                                  ;              ;            ;              ;               ;
-;     -- Number of signals with Toggle Rate from Vectorless estimation                   ; 1701 (99.4%) ; 9 (47.4%)  ; 229 (100.0%) ; 1463 (100.0%) ;
-;     -- Number of signals with Zero toggle rate, from Vectorless estimation             ; 7 (0.4%)     ; 1 (5.3%)   ; 0 (0.0%)     ; 6 (0.4%)      ;
-;     -- Number of signals with Static Probability from Vectorless estimation            ; 1700 (99.4%) ; 9 (47.4%)  ; 229 (100.0%) ; 1462 (99.9%)  ;
-;                                                                                        ;              ;            ;              ;               ;
-; Default assignment                                                                     ;              ;            ;              ;               ;
-;     -- Number of signals with Toggle Rate from Default assignment                      ; 0 (0.0%)     ; 0 (0.0%)   ; 0 (0.0%)     ; 0 (0.0%)      ;
-;     -- Number of signals with Static Probability from Default assignment               ; 10 (0.6%)    ; 10 (52.6%) ; 0 (0.0%)     ; 0 (0.0%)      ;
-;                                                                                        ;              ;            ;              ;               ;
-; Assumed 0                                                                              ;              ;            ;              ;               ;
-;     -- Number of signals with Toggle Rate assumed 0                                    ; 10 (0.6%)    ; 10 (52.6%) ; 0 (0.0%)     ; 0 (0.0%)      ;
-+----------------------------------------------------------------------------------------+--------------+------------+--------------+---------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Confidence Metric Details                                                                                                                        ;
++----------------------------------------------------------------------------------------+-------------+------------+--------------+---------------+
+; Data Source                                                                            ; Total       ; Pin        ; Registered   ; Combinational ;
++----------------------------------------------------------------------------------------+-------------+------------+--------------+---------------+
+; Simulation (from file)                                                                 ;             ;            ;              ;               ;
+;     -- Number of signals with Toggle Rate from Simulation                              ; 0 (0.0%)    ; 0 (0.0%)   ; 0 (0.0%)     ; 0 (0.0%)      ;
+;     -- Number of signals with Static Probability from Simulation                       ; 0 (0.0%)    ; 0 (0.0%)   ; 0 (0.0%)     ; 0 (0.0%)      ;
+;                                                                                        ;             ;            ;              ;               ;
+; Node, entity or clock assignment                                                       ;             ;            ;              ;               ;
+;     -- Number of signals with Toggle Rate from Node, entity or clock assignment        ; 0 (0.0%)    ; 0 (0.0%)   ; 0 (0.0%)     ; 0 (0.0%)      ;
+;     -- Number of signals with Static Probability from Node, entity or clock assignment ; 1 (0.1%)    ; 0 (0.0%)   ; 0 (0.0%)     ; 1 (0.2%)      ;
+;                                                                                        ;             ;            ;              ;               ;
+; Vectorless estimation                                                                  ;             ;            ;              ;               ;
+;     -- Number of signals with Toggle Rate from Vectorless estimation                   ; 743 (98.7%) ; 9 (47.4%)  ; 229 (100.0%) ; 505 (100.0%)  ;
+;     -- Number of signals with Zero toggle rate, from Vectorless estimation             ; 7 (0.9%)    ; 1 (5.3%)   ; 0 (0.0%)     ; 6 (1.2%)      ;
+;     -- Number of signals with Static Probability from Vectorless estimation            ; 742 (98.5%) ; 9 (47.4%)  ; 229 (100.0%) ; 504 (99.8%)   ;
+;                                                                                        ;             ;            ;              ;               ;
+; Default assignment                                                                     ;             ;            ;              ;               ;
+;     -- Number of signals with Toggle Rate from Default assignment                      ; 0 (0.0%)    ; 0 (0.0%)   ; 0 (0.0%)     ; 0 (0.0%)      ;
+;     -- Number of signals with Static Probability from Default assignment               ; 10 (1.3%)   ; 10 (52.6%) ; 0 (0.0%)     ; 0 (0.0%)      ;
+;                                                                                        ;             ;            ;              ;               ;
+; Assumed 0                                                                              ;             ;            ;              ;               ;
+;     -- Number of signals with Toggle Rate assumed 0                                    ; 10 (1.3%)   ; 10 (52.6%) ; 0 (0.0%)     ; 0 (0.0%)      ;
++----------------------------------------------------------------------------------------+-------------+------------+--------------+---------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------------------------+
@@ -286,7 +271,7 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Power Analyzer
     Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Sun Feb 08 17:35:20 2026
+    Info: Processing started: Sun Feb 08 18:42:38 2026
 Info: Command: quartus_pow --read_settings_files=off --write_settings_files=off ADC_AND_LCD -c ADC_AND_LCD
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (21077): Low junction temperature is 0 degrees C
@@ -304,9 +289,9 @@ Info (334004): Delay annotation completed successfully
 Info (215049): Average toggle rate for this design is 0.000 millions of transitions / sec
 Info (215031): Total thermal power estimate for the design is 116.31 mW
 Info: Quartus Prime Power Analyzer was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 4828 megabytes
-    Info: Processing ended: Sun Feb 08 17:35:23 2026
-    Info: Elapsed time: 00:00:03
-    Info: Total CPU time (on all processors): 00:00:04
+    Info: Peak virtual memory: 4822 megabytes
+    Info: Processing ended: Sun Feb 08 18:42:40 2026
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:03
 
 
