@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "MAX 10"
 set_global_assignment -name DEVICE 10M08SCE144C8G
-set_global_assignment -name TOP_LEVEL_ENTITY ADC_AND_LCD
+set_global_assignment -name TOP_LEVEL_ENTITY LCD_OUT
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 17.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "19:42:06  FEBRUARY 06, 2026"
 set_global_assignment -name LAST_QUARTUS_VERSION "17.1.0 Lite Edition"
@@ -58,6 +58,16 @@ set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name FLOW_ENABLE_POWER_ANALYZER ON
 set_global_assignment -name POWER_DEFAULT_INPUT_IO_TOGGLE_RATE "12.5 %"
 set_global_assignment -name BDF_FILE LCD_OUT.bdf
+set_location_assignment PIN_26 -to CLK
+set_location_assignment PIN_28 -to SDA
+set_location_assignment PIN_27 -to SCL
+set_location_assignment PIN_44 -to RESET
+set_location_assignment PIN_29 -to LCD_EN
+set_location_assignment PIN_32 -to LCD_RS
+set_location_assignment PIN_41 -to LCD_DATA[0]
+set_location_assignment PIN_39 -to LCD_DATA[1]
+set_location_assignment PIN_38 -to LCD_DATA[2]
+set_location_assignment PIN_33 -to LCD_DATA[3]
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top

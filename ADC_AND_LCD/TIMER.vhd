@@ -1,4 +1,4 @@
-LIBRARY IEEE;
+ LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.NUMERIC_STD.ALL;
 
@@ -22,7 +22,7 @@ BEGIN
 
     PROCESS (CLK, RST)
     BEGIN
-        IF RST = '1' THEN
+        IF RST = '0' THEN
             COUNT <= 0;
             ENABLE <= '0';
             MAX_COUNT <= MAX_SLOW;

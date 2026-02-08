@@ -1,5 +1,5 @@
 Analysis & Synthesis report for ADC_AND_LCD
-Sun Feb 08 13:25:42 2026
+Sun Feb 08 17:35:02 2026
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -13,17 +13,28 @@ Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |ADC_AND_LCD|STATE
-  9. Registers Removed During Synthesis
- 10. General Register Statistics
- 11. Multiplexer Restructuring Statistics (Restructuring Performed)
- 12. Parameter Settings for User Entity Instance: Top-level Entity: |ADC_AND_LCD
- 13. Parameter Settings for Inferred Entity Instance: lpm_mult:Mult0
- 14. Parameter Settings for Inferred Entity Instance: lpm_divide:Div0
- 15. lpm_mult Parameter Settings by Entity Instance
- 16. Post-Synthesis Netlist Statistics for Top Partition
- 17. Elapsed Time Per Partition
- 18. Analysis & Synthesis Messages
+  8. State Machine - |LCD_OUT|SINGLE_SHOT:inst|STATE
+  9. State Machine - |LCD_OUT|SINGLE_SHOT:inst|ADS1115:U_ADS1115|STATE_AFTER_WAIT
+ 10. State Machine - |LCD_OUT|SINGLE_SHOT:inst|ADS1115:U_ADS1115|STATE
+ 11. State Machine - |LCD_OUT|SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C|STATE
+ 12. State Machine - |LCD_OUT|ADC_AND_LCD:inst2|STATE
+ 13. State Machine - |LCD_OUT|LCD_DISPLAY:inst1|STATE
+ 14. Registers Removed During Synthesis
+ 15. Removed Registers Triggering Further Register Optimizations
+ 16. General Register Statistics
+ 17. Inverted Register Statistics
+ 18. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 19. Parameter Settings for User Entity Instance: LCD_DISPLAY:inst1
+ 20. Parameter Settings for User Entity Instance: ADC_AND_LCD:inst2
+ 21. Parameter Settings for User Entity Instance: SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C
+ 22. Parameter Settings for Inferred Entity Instance: ADC_AND_LCD:inst2|lpm_mult:Mult0
+ 23. Parameter Settings for Inferred Entity Instance: ADC_AND_LCD:inst2|lpm_divide:Div0
+ 24. lpm_mult Parameter Settings by Entity Instance
+ 25. Port Connectivity Checks: "SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C"
+ 26. Port Connectivity Checks: "SINGLE_SHOT:inst|ADS1115:U_ADS1115"
+ 27. Post-Synthesis Netlist Statistics for Top Partition
+ 28. Elapsed Time Per Partition
+ 29. Analysis & Synthesis Messages
 
 
 
@@ -49,16 +60,16 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Feb 08 13:25:42 2026       ;
+; Analysis & Synthesis Status        ; Successful - Sun Feb 08 17:35:02 2026       ;
 ; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; ADC_AND_LCD                                 ;
-; Top-level Entity Name              ; ADC_AND_LCD                                 ;
+; Top-level Entity Name              ; LCD_OUT                                     ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 923                                         ;
-;     Total combinational functions  ; 846                                         ;
-;     Dedicated logic registers      ; 144                                         ;
-; Total registers                    ; 144                                         ;
-; Total pins                         ; 147                                         ;
+; Total logic elements               ; 1,217                                       ;
+;     Total combinational functions  ; 1,148                                       ;
+;     Dedicated logic registers      ; 229                                         ;
+; Total registers                    ; 229                                         ;
+; Total pins                         ; 9                                           ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -74,7 +85,7 @@ refer to the applicable agreement for further details.
 ; Option                                                                     ; Setting            ; Default Value      ;
 +----------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                     ; 10M08SCE144C8G     ;                    ;
-; Top-level entity name                                                      ; ADC_AND_LCD        ; ADC_AND_LCD        ;
+; Top-level entity name                                                      ; LCD_OUT            ; ADC_AND_LCD        ;
 ; Family name                                                                ; MAX 10             ; Cyclone V          ;
 ; Use smart compilation                                                      ; Off                ; Off                ;
 ; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
@@ -173,47 +184,54 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                        ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                    ; Library ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------+---------+
-; ADC_AND_LCD.vhd                  ; yes             ; User VHDL File               ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd        ;         ;
-; lpm_mult.tdf                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_mult.tdf                             ;         ;
-; aglobal171.inc                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/aglobal171.inc                           ;         ;
-; lpm_add_sub.inc                  ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_add_sub.inc                          ;         ;
-; multcore.inc                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/multcore.inc                             ;         ;
-; bypassff.inc                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/bypassff.inc                             ;         ;
-; altshift.inc                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/altshift.inc                             ;         ;
-; multcore.tdf                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/multcore.tdf                             ;         ;
-; csa_add.inc                      ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/csa_add.inc                              ;         ;
-; mpar_add.inc                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/mpar_add.inc                             ;         ;
-; muleabz.inc                      ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/muleabz.inc                              ;         ;
-; mul_lfrg.inc                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/mul_lfrg.inc                             ;         ;
-; mul_boothc.inc                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/mul_boothc.inc                           ;         ;
-; alt_ded_mult.inc                 ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/alt_ded_mult.inc                         ;         ;
-; alt_ded_mult_y.inc               ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/alt_ded_mult_y.inc                       ;         ;
-; dffpipe.inc                      ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/dffpipe.inc                              ;         ;
-; mpar_add.tdf                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/mpar_add.tdf                             ;         ;
-; lpm_add_sub.tdf                  ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_add_sub.tdf                          ;         ;
-; addcore.inc                      ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/addcore.inc                              ;         ;
-; look_add.inc                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/look_add.inc                             ;         ;
-; alt_stratix_add_sub.inc          ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/alt_stratix_add_sub.inc                  ;         ;
-; db/add_sub_6vg.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/add_sub_6vg.tdf     ;         ;
-; db/add_sub_ckg.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/add_sub_ckg.tdf     ;         ;
-; db/add_sub_1vg.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/add_sub_1vg.tdf     ;         ;
-; altshift.tdf                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/altshift.tdf                             ;         ;
-; lpm_divide.tdf                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_divide.tdf                           ;         ;
-; abs_divider.inc                  ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/abs_divider.inc                          ;         ;
-; sign_div_unsign.inc              ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/sign_div_unsign.inc                      ;         ;
-; db/lpm_divide_0do.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/lpm_divide_0do.tdf  ;         ;
-; db/abs_divider_5dg.tdf           ; yes             ; Auto-Generated Megafunction  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/abs_divider_5dg.tdf ;         ;
-; db/alt_u_div_uke.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/alt_u_div_uke.tdf   ;         ;
-; db/add_sub_t3c.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/add_sub_t3c.tdf     ;         ;
-; db/add_sub_u3c.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/add_sub_u3c.tdf     ;         ;
-; db/lpm_abs_9b9.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/lpm_abs_9b9.tdf     ;         ;
-; db/lpm_abs_8b9.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/lpm_abs_8b9.tdf     ;         ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------+---------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                              ;
++----------------------------------+-----------------+------------------------------------+-------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                          ; File Name with Absolute Path                                                                    ; Library ;
++----------------------------------+-----------------+------------------------------------+-------------------------------------------------------------------------------------------------+---------+
+; TIMER.vhd                        ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/TIMER.vhd              ;         ;
+; SINGLE_SHOT.vhd                  ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/SINGLE_SHOT.vhd        ;         ;
+; LCD_DISPLAY.vhd                  ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/LCD_DISPLAY.vhd        ;         ;
+; LCD_CONTROL.vhd                  ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/LCD_CONTROL.vhd        ;         ;
+; I2C.vhd                          ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/I2C.vhd                ;         ;
+; ADS1115.vhd                      ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADS1115.vhd            ;         ;
+; ADC_AND_LCD.vhd                  ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd        ;         ;
+; LCD_OUT.bdf                      ; yes             ; User Block Diagram/Schematic File  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/LCD_OUT.bdf            ;         ;
+; lpm_mult.tdf                     ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_mult.tdf                             ;         ;
+; aglobal171.inc                   ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/aglobal171.inc                           ;         ;
+; lpm_add_sub.inc                  ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_add_sub.inc                          ;         ;
+; multcore.inc                     ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/multcore.inc                             ;         ;
+; bypassff.inc                     ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/bypassff.inc                             ;         ;
+; altshift.inc                     ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/altshift.inc                             ;         ;
+; multcore.tdf                     ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/multcore.tdf                             ;         ;
+; csa_add.inc                      ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/csa_add.inc                              ;         ;
+; mpar_add.inc                     ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/mpar_add.inc                             ;         ;
+; muleabz.inc                      ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/muleabz.inc                              ;         ;
+; mul_lfrg.inc                     ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/mul_lfrg.inc                             ;         ;
+; mul_boothc.inc                   ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/mul_boothc.inc                           ;         ;
+; alt_ded_mult.inc                 ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/alt_ded_mult.inc                         ;         ;
+; alt_ded_mult_y.inc               ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/alt_ded_mult_y.inc                       ;         ;
+; dffpipe.inc                      ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/dffpipe.inc                              ;         ;
+; mpar_add.tdf                     ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/mpar_add.tdf                             ;         ;
+; lpm_add_sub.tdf                  ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_add_sub.tdf                          ;         ;
+; addcore.inc                      ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/addcore.inc                              ;         ;
+; look_add.inc                     ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/look_add.inc                             ;         ;
+; alt_stratix_add_sub.inc          ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/alt_stratix_add_sub.inc                  ;         ;
+; db/add_sub_6vg.tdf               ; yes             ; Auto-Generated Megafunction        ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/add_sub_6vg.tdf     ;         ;
+; db/add_sub_ckg.tdf               ; yes             ; Auto-Generated Megafunction        ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/add_sub_ckg.tdf     ;         ;
+; db/add_sub_1vg.tdf               ; yes             ; Auto-Generated Megafunction        ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/add_sub_1vg.tdf     ;         ;
+; altshift.tdf                     ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/altshift.tdf                             ;         ;
+; lpm_divide.tdf                   ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_divide.tdf                           ;         ;
+; abs_divider.inc                  ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/abs_divider.inc                          ;         ;
+; sign_div_unsign.inc              ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/sign_div_unsign.inc                      ;         ;
+; db/lpm_divide_5do.tdf            ; yes             ; Auto-Generated Megafunction        ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/lpm_divide_5do.tdf  ;         ;
+; db/abs_divider_adg.tdf           ; yes             ; Auto-Generated Megafunction        ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/abs_divider_adg.tdf ;         ;
+; db/alt_u_div_8le.tdf             ; yes             ; Auto-Generated Megafunction        ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/alt_u_div_8le.tdf   ;         ;
+; db/add_sub_t3c.tdf               ; yes             ; Auto-Generated Megafunction        ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/add_sub_t3c.tdf     ;         ;
+; db/add_sub_u3c.tdf               ; yes             ; Auto-Generated Megafunction        ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/add_sub_u3c.tdf     ;         ;
+; db/lpm_abs_9b9.tdf               ; yes             ; Auto-Generated Megafunction        ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/lpm_abs_9b9.tdf     ;         ;
+; db/lpm_abs_db9.tdf               ; yes             ; Auto-Generated Megafunction        ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/lpm_abs_db9.tdf     ;         ;
++----------------------------------+-----------------+------------------------------------+-------------------------------------------------------------------------------------------------+---------+
 
 
 +---------------------------------------------------------+
@@ -221,61 +239,127 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 923       ;
+; Estimated Total logic elements              ; 1,217     ;
 ;                                             ;           ;
-; Total combinational functions               ; 846       ;
+; Total combinational functions               ; 1148      ;
 ; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 264       ;
-;     -- 3 input functions                    ; 268       ;
-;     -- <=2 input functions                  ; 314       ;
+;     -- 4 input functions                    ; 443       ;
+;     -- 3 input functions                    ; 316       ;
+;     -- <=2 input functions                  ; 389       ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 606       ;
-;     -- arithmetic mode                      ; 240       ;
+;     -- normal mode                          ; 849       ;
+;     -- arithmetic mode                      ; 299       ;
 ;                                             ;           ;
-; Total registers                             ; 144       ;
-;     -- Dedicated logic registers            ; 144       ;
+; Total registers                             ; 229       ;
+;     -- Dedicated logic registers            ; 229       ;
 ;     -- I/O registers                        ; 0         ;
 ;                                             ;           ;
-; I/O pins                                    ; 147       ;
+; I/O pins                                    ; 9         ;
 ;                                             ;           ;
 ; Embedded Multiplier 9-bit elements          ; 0         ;
 ;                                             ;           ;
 ; Maximum fan-out node                        ; CLK~input ;
-; Maximum fan-out                             ; 144       ;
-; Total fan-out                               ; 3152      ;
-; Average fan-out                             ; 2.45      ;
+; Maximum fan-out                             ; 229       ;
+; Total fan-out                               ; 4172      ;
+; Average fan-out                             ; 2.99      ;
 +---------------------------------------------+-----------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                        ;
-+------------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
-; Compilation Hierarchy Node                     ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                                                                                 ; Entity Name     ; Library Name ;
-+------------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
-; |ADC_AND_LCD                                   ; 846 (67)            ; 144 (144)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 147  ; 0            ; 0          ; |ADC_AND_LCD                                                                                                                        ; ADC_AND_LCD     ; work         ;
-;    |lpm_divide:Div0|                           ; 676 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADC_AND_LCD|lpm_divide:Div0                                                                                                        ; lpm_divide      ; work         ;
-;       |lpm_divide_0do:auto_generated|          ; 676 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADC_AND_LCD|lpm_divide:Div0|lpm_divide_0do:auto_generated                                                                          ; lpm_divide_0do  ; work         ;
-;          |abs_divider_5dg:divider|             ; 676 (26)            ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADC_AND_LCD|lpm_divide:Div0|lpm_divide_0do:auto_generated|abs_divider_5dg:divider                                                  ; abs_divider_5dg ; work         ;
-;             |alt_u_div_uke:divider|            ; 611 (611)           ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADC_AND_LCD|lpm_divide:Div0|lpm_divide_0do:auto_generated|abs_divider_5dg:divider|alt_u_div_uke:divider                            ; alt_u_div_uke   ; work         ;
-;             |lpm_abs_8b9:my_abs_num|           ; 39 (39)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADC_AND_LCD|lpm_divide:Div0|lpm_divide_0do:auto_generated|abs_divider_5dg:divider|lpm_abs_8b9:my_abs_num                           ; lpm_abs_8b9     ; work         ;
-;    |lpm_mult:Mult0|                            ; 103 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADC_AND_LCD|lpm_mult:Mult0                                                                                                         ; lpm_mult        ; work         ;
-;       |multcore:mult_core|                     ; 103 (52)            ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADC_AND_LCD|lpm_mult:Mult0|multcore:mult_core                                                                                      ; multcore        ; work         ;
-;          |mpar_add:padder|                     ; 51 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADC_AND_LCD|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder                                                                      ; mpar_add        ; work         ;
-;             |lpm_add_sub:adder[0]|             ; 16 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADC_AND_LCD|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]                                                 ; lpm_add_sub     ; work         ;
-;                |add_sub_ckg:auto_generated|    ; 16 (16)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADC_AND_LCD|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]|add_sub_ckg:auto_generated                      ; add_sub_ckg     ; work         ;
-;             |lpm_add_sub:adder[1]|             ; 15 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADC_AND_LCD|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[1]                                                 ; lpm_add_sub     ; work         ;
-;                |add_sub_6vg:auto_generated|    ; 15 (15)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADC_AND_LCD|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[1]|add_sub_6vg:auto_generated                      ; add_sub_6vg     ; work         ;
-;             |mpar_add:sub_par_add|             ; 20 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADC_AND_LCD|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add                                                 ; mpar_add        ; work         ;
-;                |lpm_add_sub:adder[0]|          ; 20 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADC_AND_LCD|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add|lpm_add_sub:adder[0]                            ; lpm_add_sub     ; work         ;
-;                   |add_sub_1vg:auto_generated| ; 20 (20)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADC_AND_LCD|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add|lpm_add_sub:adder[0]|add_sub_1vg:auto_generated ; add_sub_1vg     ; work         ;
-+------------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                                         ;
++---------------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
+; Compilation Hierarchy Node                        ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                                                                                               ; Entity Name     ; Library Name ;
++---------------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
+; |LCD_OUT                                          ; 1148 (0)            ; 229 (0)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 9    ; 0            ; 0          ; |LCD_OUT                                                                                                                                          ; LCD_OUT         ; work         ;
+;    |ADC_AND_LCD:inst2|                            ; 843 (56)            ; 70 (70)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_OUT|ADC_AND_LCD:inst2                                                                                                                        ; ADC_AND_LCD     ; work         ;
+;       |lpm_divide:Div0|                           ; 675 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_divide:Div0                                                                                                        ; lpm_divide      ; work         ;
+;          |lpm_divide_5do:auto_generated|          ; 675 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_divide:Div0|lpm_divide_5do:auto_generated                                                                          ; lpm_divide_5do  ; work         ;
+;             |abs_divider_adg:divider|             ; 675 (25)            ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_divide:Div0|lpm_divide_5do:auto_generated|abs_divider_adg:divider                                                  ; abs_divider_adg ; work         ;
+;                |alt_u_div_8le:divider|            ; 607 (607)           ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_divide:Div0|lpm_divide_5do:auto_generated|abs_divider_adg:divider|alt_u_div_8le:divider                            ; alt_u_div_8le   ; work         ;
+;                |lpm_abs_db9:my_abs_num|           ; 43 (43)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_divide:Div0|lpm_divide_5do:auto_generated|abs_divider_adg:divider|lpm_abs_db9:my_abs_num                           ; lpm_abs_db9     ; work         ;
+;       |lpm_mult:Mult0|                            ; 112 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_mult:Mult0                                                                                                         ; lpm_mult        ; work         ;
+;          |multcore:mult_core|                     ; 112 (61)            ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core                                                                                      ; multcore        ; work         ;
+;             |mpar_add:padder|                     ; 51 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder                                                                      ; mpar_add        ; work         ;
+;                |lpm_add_sub:adder[0]|             ; 16 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]                                                 ; lpm_add_sub     ; work         ;
+;                   |add_sub_ckg:auto_generated|    ; 16 (16)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]|add_sub_ckg:auto_generated                      ; add_sub_ckg     ; work         ;
+;                |lpm_add_sub:adder[1]|             ; 15 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[1]                                                 ; lpm_add_sub     ; work         ;
+;                   |add_sub_6vg:auto_generated|    ; 15 (15)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[1]|add_sub_6vg:auto_generated                      ; add_sub_6vg     ; work         ;
+;                |mpar_add:sub_par_add|             ; 20 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add                                                 ; mpar_add        ; work         ;
+;                   |lpm_add_sub:adder[0]|          ; 20 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add|lpm_add_sub:adder[0]                            ; lpm_add_sub     ; work         ;
+;                      |add_sub_1vg:auto_generated| ; 20 (20)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_OUT|ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add|lpm_add_sub:adder[0]|add_sub_1vg:auto_generated ; add_sub_1vg     ; work         ;
+;    |LCD_DISPLAY:inst1|                            ; 113 (85)            ; 40 (21)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_OUT|LCD_DISPLAY:inst1                                                                                                                        ; LCD_DISPLAY     ; work         ;
+;       |TIMER:U_TIMER|                             ; 28 (28)             ; 19 (19)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_OUT|LCD_DISPLAY:inst1|TIMER:U_TIMER                                                                                                          ; TIMER           ; work         ;
+;    |SINGLE_SHOT:inst|                             ; 192 (4)             ; 119 (4)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_OUT|SINGLE_SHOT:inst                                                                                                                         ; SINGLE_SHOT     ; work         ;
+;       |ADS1115:U_ADS1115|                         ; 188 (88)            ; 115 (66)                  ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_OUT|SINGLE_SHOT:inst|ADS1115:U_ADS1115                                                                                                       ; ADS1115         ; work         ;
+;          |I2C:U_I2C|                              ; 100 (100)           ; 49 (49)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |LCD_OUT|SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C                                                                                             ; I2C             ; work         ;
++---------------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
 Encoding Type:  One-Hot
++-----------------------------------------------------------------------+
+; State Machine - |LCD_OUT|SINGLE_SHOT:inst|STATE                       ;
++--------------------+----------------+--------------------+------------+
+; Name               ; STATE.WAIT_PIN ; STATE.SEND_COMMAND ; STATE.IDLE ;
++--------------------+----------------+--------------------+------------+
+; STATE.IDLE         ; 0              ; 0                  ; 0          ;
+; STATE.SEND_COMMAND ; 0              ; 1                  ; 1          ;
+; STATE.WAIT_PIN     ; 1              ; 0                  ; 1          ;
++--------------------+----------------+--------------------+------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |LCD_OUT|SINGLE_SHOT:inst|ADS1115:U_ADS1115|STATE_AFTER_WAIT                                                                                                                                            ;
++----------------------------------+--------------------------------+--------------------------------+----------------------------+----------------------------------+----------------------------+-----------------------+
+; Name                             ; STATE_AFTER_WAIT.WAIT_I2C_DONE ; STATE_AFTER_WAIT.WAIT_I2C_BUSY ; STATE_AFTER_WAIT.READ_DATA ; STATE_AFTER_WAIT.WAIT_CONVERSION ; STATE_AFTER_WAIT.CONFIGURE ; STATE_AFTER_WAIT.IDLE ;
++----------------------------------+--------------------------------+--------------------------------+----------------------------+----------------------------------+----------------------------+-----------------------+
+; STATE_AFTER_WAIT.IDLE            ; 0                              ; 0                              ; 0                          ; 0                                ; 0                          ; 0                     ;
+; STATE_AFTER_WAIT.CONFIGURE       ; 0                              ; 0                              ; 0                          ; 0                                ; 1                          ; 1                     ;
+; STATE_AFTER_WAIT.WAIT_CONVERSION ; 0                              ; 0                              ; 0                          ; 1                                ; 0                          ; 1                     ;
+; STATE_AFTER_WAIT.READ_DATA       ; 0                              ; 0                              ; 1                          ; 0                                ; 0                          ; 1                     ;
+; STATE_AFTER_WAIT.WAIT_I2C_BUSY   ; 0                              ; 1                              ; 0                          ; 0                                ; 0                          ; 1                     ;
+; STATE_AFTER_WAIT.WAIT_I2C_DONE   ; 1                              ; 0                              ; 0                          ; 0                                ; 0                          ; 1                     ;
++----------------------------------+--------------------------------+--------------------------------+----------------------------+----------------------------------+----------------------------+-----------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |LCD_OUT|SINGLE_SHOT:inst|ADS1115:U_ADS1115|STATE                                                                          ;
++-----------------------+---------------------+---------------------+-----------------+-----------------------+-----------------+------------+
+; Name                  ; STATE.WAIT_I2C_DONE ; STATE.WAIT_I2C_BUSY ; STATE.READ_DATA ; STATE.WAIT_CONVERSION ; STATE.CONFIGURE ; STATE.IDLE ;
++-----------------------+---------------------+---------------------+-----------------+-----------------------+-----------------+------------+
+; STATE.IDLE            ; 0                   ; 0                   ; 0               ; 0                     ; 0               ; 0          ;
+; STATE.CONFIGURE       ; 0                   ; 0                   ; 0               ; 0                     ; 1               ; 1          ;
+; STATE.WAIT_CONVERSION ; 0                   ; 0                   ; 0               ; 1                     ; 0               ; 1          ;
+; STATE.READ_DATA       ; 0                   ; 0                   ; 1               ; 0                     ; 0               ; 1          ;
+; STATE.WAIT_I2C_BUSY   ; 0                   ; 1                   ; 0               ; 0                     ; 0               ; 1          ;
+; STATE.WAIT_I2C_DONE   ; 1                   ; 0                   ; 0               ; 0                     ; 0               ; 1          ;
++-----------------------+---------------------+---------------------+-----------------+-----------------------+-----------------+------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |LCD_OUT|SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C|STATE                                                                      ;
++----------------+------------+----------------+----------+----------------+----------+----------------+---------------+-------------+-------------+
+; Name           ; STATE.STOP ; STATE.MSTR_ACK ; STATE.RD ; STATE.SLV_ACK2 ; STATE.WR ; STATE.SLV_ACK1 ; STATE.COMMAND ; STATE.START ; STATE.READY ;
++----------------+------------+----------------+----------+----------------+----------+----------------+---------------+-------------+-------------+
+; STATE.READY    ; 0          ; 0              ; 0        ; 0              ; 0        ; 0              ; 0             ; 0           ; 0           ;
+; STATE.START    ; 0          ; 0              ; 0        ; 0              ; 0        ; 0              ; 0             ; 1           ; 1           ;
+; STATE.COMMAND  ; 0          ; 0              ; 0        ; 0              ; 0        ; 0              ; 1             ; 0           ; 1           ;
+; STATE.SLV_ACK1 ; 0          ; 0              ; 0        ; 0              ; 0        ; 1              ; 0             ; 0           ; 1           ;
+; STATE.WR       ; 0          ; 0              ; 0        ; 0              ; 1        ; 0              ; 0             ; 0           ; 1           ;
+; STATE.SLV_ACK2 ; 0          ; 0              ; 0        ; 1              ; 0        ; 0              ; 0             ; 0           ; 1           ;
+; STATE.RD       ; 0          ; 0              ; 1        ; 0              ; 0        ; 0              ; 0             ; 0           ; 1           ;
+; STATE.MSTR_ACK ; 0          ; 1              ; 0        ; 0              ; 0        ; 0              ; 0             ; 0           ; 1           ;
+; STATE.STOP     ; 1          ; 0              ; 0        ; 0              ; 0        ; 0              ; 0             ; 0           ; 1           ;
++----------------+------------+----------------+----------+----------------+----------+----------------+---------------+-------------+-------------+
+
+
+Encoding Type:  One-Hot
 +------------------------------------------------------------------------------------------+
-; State Machine - |ADC_AND_LCD|STATE                                                       ;
+; State Machine - |LCD_OUT|ADC_AND_LCD:inst2|STATE                                         ;
 +----------------+------------+--------------+----------------+---------------+------------+
 ; Name           ; STATE.DONE ; STATE.FORMAT ; STATE.BCD_CONV ; STATE.CONVERT ; STATE.IDLE ;
 +----------------+------------+--------------+----------------+---------------+------------+
@@ -287,85 +371,121 @@ Encoding Type:  One-Hot
 +----------------+------------+--------------+----------------+---------------+------------+
 
 
-+----------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                               ;
-+-----------------------------------------+----------------------------------------+
-; Register name                           ; Reason for Removal                     ;
-+-----------------------------------------+----------------------------------------+
-; DATA_OUT[127]~reg0                      ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[125]~reg0                      ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[123]~reg0                      ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[120]~reg0                      ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[119]~reg0                      ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[116]~reg0                      ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[111]~reg0                      ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[108]~reg0                      ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[105]~reg0                      ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[104]~reg0                      ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[103]~reg0                      ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[99]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[97]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[96]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[95]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[94]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[90]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[88]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[87]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[86]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[84]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[83]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[82]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[81]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[80]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[79]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[78]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[71]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[70]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[63]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[62]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[55]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[54]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[47]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[46]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[44]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[43]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[42]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[41]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[40]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[39]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[36]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[33]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[31]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[29]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[27]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[24]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[23]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[22]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[20]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[19]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[18]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[17]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[16]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[15]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[14]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[12]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[11]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[10]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[9]~reg0                        ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[8]~reg0                        ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[7]~reg0                        ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[6]~reg0                        ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[4]~reg0                        ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[3]~reg0                        ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[2]~reg0                        ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[1]~reg0                        ; Stuck at GND due to stuck port data_in ;
-; DATA_OUT[0]~reg0                        ; Stuck at GND due to stuck port data_in ;
-; STEP_CNT[2..9,11..30]                   ; Merged with STEP_CNT[10]               ;
-; VOLTAGE_S[16..31]                       ; Merged with VOLTAGE_S[15]              ;
-; VOLTAGE_S[15]                           ; Stuck at GND due to stuck port data_in ;
-; STEP_CNT[10]                            ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 114 ;                                        ;
-+-----------------------------------------+----------------------------------------+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------+
+; State Machine - |LCD_OUT|LCD_DISPLAY:inst1|STATE                                              ;
++----------------+---------------+---------------+----------------+----------------+------------+
+; Name           ; STATE.WRITE_2 ; STATE.WRITE_1 ; STATE.CURSOR_2 ; STATE.CURSOR_1 ; STATE.INIT ;
++----------------+---------------+---------------+----------------+----------------+------------+
+; STATE.INIT     ; 0             ; 0             ; 0              ; 0              ; 0          ;
+; STATE.CURSOR_1 ; 0             ; 0             ; 0              ; 1              ; 1          ;
+; STATE.CURSOR_2 ; 0             ; 0             ; 1              ; 0              ; 1          ;
+; STATE.WRITE_1  ; 0             ; 1             ; 0              ; 0              ; 1          ;
+; STATE.WRITE_2  ; 1             ; 0             ; 0              ; 0              ; 1          ;
++----------------+---------------+---------------+----------------+----------------+------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                         ;
++----------------------------------------------------------------------+---------------------------------------------------------------------+
+; Register name                                                        ; Reason for Removal                                                  ;
++----------------------------------------------------------------------+---------------------------------------------------------------------+
+; ADC_AND_LCD:inst2|DATA_OUT[127]                                      ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[126]                                      ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[125]                                      ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[124]                                      ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[123]                                      ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[121,122]                                  ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[119,120]                                  ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[117,118]                                  ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[116]                                      ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[112..115]                                 ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[111]                                      ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[109,110]                                  ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[108]                                      ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[106,107]                                  ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[103..105]                                 ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[100..102]                                 ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[99]                                       ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[98]                                       ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[94..97]                                   ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[91..93]                                   ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[90]                                       ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[89]                                       ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[86..88]                                   ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[85]                                       ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[78..84]                                   ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[76,77]                                    ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[70,71]                                    ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[68,69]                                    ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[62,63]                                    ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[60,61]                                    ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[54,55]                                    ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[52,53]                                    ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[46,47]                                    ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[45]                                       ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[39..44]                                   ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[37,38]                                    ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[36]                                       ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[34,35]                                    ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[33]                                       ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[32]                                       ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[31]                                       ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[30]                                       ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[29]                                       ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[28]                                       ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[27]                                       ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[25,26]                                    ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[22..24]                                   ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[21]                                       ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[14..20]                                   ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[13]                                       ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[6..12]                                    ; Stuck at GND due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[5]                                        ; Stuck at VCC due to stuck port data_in                              ;
+; ADC_AND_LCD:inst2|DATA_OUT[0..4]                                     ; Stuck at GND due to stuck port data_in                              ;
+; LCD_DISPLAY:inst1|TIMER:U_TIMER|MAX_COUNT[12..14,17..31]             ; Stuck at GND due to stuck port data_in                              ;
+; LCD_DISPLAY:inst1|TIMER:U_TIMER|MAX_COUNT[7]                         ; Stuck at VCC due to stuck port data_in                              ;
+; LCD_DISPLAY:inst1|TIMER:U_TIMER|MAX_COUNT[0,1,3,4]                   ; Stuck at GND due to stuck port data_in                              ;
+; SINGLE_SHOT:inst|CONFIG_EN                                           ; Lost fanout                                                         ;
+; SINGLE_SHOT:inst|CONFIGURED                                          ; Lost fanout                                                         ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|CONFIGURED                        ; Lost fanout                                                         ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|MAX_WAIT[4..7,11,12,14,15,19..30] ; Stuck at GND due to stuck port data_in                              ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|CONFIG_REG[14,15]                 ; Stuck at VCC due to stuck port data_in                              ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|CONFIG_REG[9..13]                 ; Stuck at GND due to stuck port data_in                              ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|CONFIG_REG[7,8]                   ; Stuck at VCC due to stuck port data_in                              ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|CONFIG_REG[2..6]                  ; Stuck at GND due to stuck port data_in                              ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|CONFIG_REG[0,1]                   ; Stuck at VCC due to stuck port data_in                              ;
+; LCD_DISPLAY:inst1|TIMER:U_TIMER|MAX_COUNT[2,5,6,8..11,15]            ; Merged with LCD_DISPLAY:inst1|TIMER:U_TIMER|MAX_COUNT[16]           ;
+; LCD_DISPLAY:inst1|TIMER:U_TIMER|PREV_FAST_MODE                       ; Merged with LCD_DISPLAY:inst1|TIMER:U_TIMER|MAX_COUNT[16]           ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|MAX_WAIT[31]                      ; Merged with SINGLE_SHOT:inst|ADS1115:U_ADS1115|MAX_WAIT[0]          ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|MAX_WAIT[1..3,8,9,13,16..18]      ; Merged with SINGLE_SHOT:inst|ADS1115:U_ADS1115|MAX_WAIT[10]         ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C|ADDR_RW[7]              ; Merged with SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C|ADDR_RW[4] ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C|ADDR_RW[2,3,5,6]        ; Merged with SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C|ADDR_RW[1] ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|DATA_WR[2..4]                     ; Merged with SINGLE_SHOT:inst|ADS1115:U_ADS1115|DATA_WR[5]           ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|MAX_WAIT[0]                       ; Merged with SINGLE_SHOT:inst|ADS1115:U_ADS1115|MAX_WAIT[10]         ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C|DATA_TX[2..4]           ; Merged with SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C|DATA_TX[5] ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C|ADDR_RW[1]              ; Stuck at GND due to stuck port data_in                              ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|DATA_WR[5]                        ; Stuck at GND due to stuck port data_in                              ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C|DATA_TX[5]              ; Stuck at GND due to stuck port data_in                              ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C|ADDR_RW[4]              ; Stuck at VCC due to stuck port data_in                              ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|STATE_AFTER_WAIT.IDLE             ; Lost fanout                                                         ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|STATE_AFTER_WAIT.WAIT_CONVERSION  ; Lost fanout                                                         ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|STATE_AFTER_WAIT.WAIT_I2C_BUSY    ; Lost fanout                                                         ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|STATE_AFTER_WAIT.WAIT_I2C_DONE    ; Lost fanout                                                         ;
+; SINGLE_SHOT:inst|STATE.IDLE                                          ; Merged with SINGLE_SHOT:inst|DATA_VALID                             ;
+; Total Number of Removed Registers = 214                              ;                                                                     ;
++----------------------------------------------------------------------+---------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                           ;
++-------------------------------------------------+---------------------------+---------------------------------------------------------+
+; Register name                                   ; Reason for Removal        ; Registers Removed due to This Register                  ;
++-------------------------------------------------+---------------------------+---------------------------------------------------------+
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|MAX_WAIT[30] ; Stuck at GND              ; SINGLE_SHOT:inst|ADS1115:U_ADS1115|DATA_WR[5],          ;
+;                                                 ; due to stuck port data_in ; SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C|DATA_TX[5] ;
+; SINGLE_SHOT:inst|CONFIG_EN                      ; Lost Fanouts              ; SINGLE_SHOT:inst|CONFIGURED                             ;
++-------------------------------------------------+---------------------------+---------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -373,114 +493,195 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 144   ;
-; Number of registers using Synchronous Clear  ; 1     ;
-; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 112   ;
+; Total registers                              ; 229   ;
+; Number of registers using Synchronous Clear  ; 53    ;
+; Number of registers using Synchronous Load   ; 14    ;
+; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 136   ;
+; Number of registers using Clock Enable       ; 160   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |ADC_AND_LCD|STEP_CNT[0]   ;
-; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |ADC_AND_LCD|SHIFT_REG[24] ;
-; 5:1                ; 12 bits   ; 36 LEs        ; 12 LEs               ; 24 LEs                 ; Yes        ; |ADC_AND_LCD|SHIFT_REG[5]  ;
-; 7:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; No         ; |ADC_AND_LCD|Selector34    ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
++-------------------------------------------------------------------+
+; Inverted Register Statistics                                      ;
++---------------------------------------------------------+---------+
+; Inverted Register                                       ; Fan out ;
++---------------------------------------------------------+---------+
+; LCD_DISPLAY:inst1|COUNT_2[0]                            ; 19      ;
+; LCD_DISPLAY:inst1|TIMER:U_TIMER|MAX_COUNT[16]           ; 4       ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C|SDA_INT    ; 2       ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C|BIT_CNT[2] ; 20      ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C|BIT_CNT[0] ; 21      ;
+; SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C|BIT_CNT[1] ; 18      ;
+; SINGLE_SHOT:inst|DATA_VALID                             ; 4       ;
+; Total number of inverted registers = 7                  ;         ;
++---------------------------------------------------------+---------+
 
 
-+-----------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: Top-level Entity: |ADC_AND_LCD ;
-+----------------+-------+----------------------------------------------------+
-; Parameter Name ; Value ; Type                                               ;
-+----------------+-------+----------------------------------------------------+
-; LCD_CHARS      ; 16    ; Signed Integer                                     ;
-+----------------+-------+----------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
+; 3:1                ; 6 bits    ; 12 LEs        ; 0 LEs                ; 12 LEs                 ; Yes        ; |LCD_OUT|SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C|DATA_TX[0] ;
+; 3:1                ; 17 bits   ; 34 LEs        ; 17 LEs               ; 17 LEs                 ; Yes        ; |LCD_OUT|LCD_DISPLAY:inst1|TIMER:U_TIMER|COUNT[6]                ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |LCD_OUT|LCD_DISPLAY:inst1|COUNT_2[4]                            ;
+; 4:1                ; 12 bits   ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |LCD_OUT|ADC_AND_LCD:inst2|SHIFT_REG[4]                          ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 32 LEs               ; 64 LEs                 ; Yes        ; |LCD_OUT|SINGLE_SHOT:inst|ADS1115:U_ADS1115|WAIT_COUNT[10]       ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |LCD_OUT|SINGLE_SHOT:inst|ADS1115:U_ADS1115|DATA_WR[5]           ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 2 LEs                ; 6 LEs                  ; Yes        ; |LCD_OUT|SINGLE_SHOT:inst|ADS1115:U_ADS1115|BYTE_COUNT[1]        ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |LCD_OUT|SINGLE_SHOT:inst|ADS1115:U_ADS1115|DATA_WR[6]           ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |LCD_OUT|LCD_DISPLAY:inst1|COUNT_1[0]                            ;
+; 22:1               ; 2 bits    ; 28 LEs        ; 16 LEs               ; 12 LEs                 ; Yes        ; |LCD_OUT|LCD_DISPLAY:inst1|LCD_DATA[0]                           ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |LCD_OUT|SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C|BIT_CNT[2] ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |LCD_OUT|ADC_AND_LCD:inst2|SHIFT_REG                             ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |LCD_OUT|ADC_AND_LCD:inst2|SHIFT_REG                             ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |LCD_OUT|ADC_AND_LCD:inst2|SHIFT_REG                             ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |LCD_OUT|ADC_AND_LCD:inst2|SHIFT_REG                             ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; No         ; |LCD_OUT|LCD_DISPLAY:inst1|STATE                                 ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; No         ; |LCD_OUT|LCD_DISPLAY:inst1|STATE                                 ;
+; 11:1               ; 2 bits    ; 14 LEs        ; 8 LEs                ; 6 LEs                  ; No         ; |LCD_OUT|SINGLE_SHOT:inst|ADS1115:U_ADS1115|Selector8            ;
+; 11:1               ; 2 bits    ; 14 LEs        ; 8 LEs                ; 6 LEs                  ; No         ; |LCD_OUT|SINGLE_SHOT:inst|ADS1115:U_ADS1115|Selector5            ;
+; 11:1               ; 2 bits    ; 14 LEs        ; 6 LEs                ; 8 LEs                  ; No         ; |LCD_OUT|SINGLE_SHOT:inst|ADS1115:U_ADS1115|Selector6            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
+
+
++----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: LCD_DISPLAY:inst1 ;
++----------------+-------+---------------------------------------+
+; Parameter Name ; Value ; Type                                  ;
++----------------+-------+---------------------------------------+
+; lcd_chars      ; 16    ; Signed Integer                        ;
++----------------+-------+---------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+--------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: lpm_mult:Mult0                ;
-+------------------------------------------------+---------+---------------------+
-; Parameter Name                                 ; Value   ; Type                ;
-+------------------------------------------------+---------+---------------------+
-; AUTO_CARRY_CHAINS                              ; ON      ; AUTO_CARRY          ;
-; IGNORE_CARRY_BUFFERS                           ; OFF     ; IGNORE_CARRY        ;
-; AUTO_CASCADE_CHAINS                            ; ON      ; AUTO_CASCADE        ;
-; IGNORE_CASCADE_BUFFERS                         ; OFF     ; IGNORE_CASCADE      ;
-; LPM_WIDTHA                                     ; 16      ; Untyped             ;
-; LPM_WIDTHB                                     ; 12      ; Untyped             ;
-; LPM_WIDTHP                                     ; 28      ; Untyped             ;
-; LPM_WIDTHR                                     ; 28      ; Untyped             ;
-; LPM_WIDTHS                                     ; 1       ; Untyped             ;
-; LPM_REPRESENTATION                             ; SIGNED  ; Untyped             ;
-; LPM_PIPELINE                                   ; 0       ; Untyped             ;
-; LATENCY                                        ; 0       ; Untyped             ;
-; INPUT_A_IS_CONSTANT                            ; NO      ; Untyped             ;
-; INPUT_B_IS_CONSTANT                            ; YES     ; Untyped             ;
-; USE_EAB                                        ; OFF     ; Untyped             ;
-; MAXIMIZE_SPEED                                 ; 5       ; Untyped             ;
-; DEVICE_FAMILY                                  ; MAX 10  ; Untyped             ;
-; CARRY_CHAIN                                    ; MANUAL  ; Untyped             ;
-; APEX20K_TECHNOLOGY_MAPPER                      ; LUT     ; TECH_MAPPER_APEX20K ;
-; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO    ; Untyped             ;
-; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0       ; Untyped             ;
-; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0       ; Untyped             ;
-; CBXI_PARAMETER                                 ; NOTHING ; Untyped             ;
-; INPUT_A_FIXED_VALUE                            ; Bx      ; Untyped             ;
-; INPUT_B_FIXED_VALUE                            ; Bx      ; Untyped             ;
-; USE_AHDL_IMPLEMENTATION                        ; OFF     ; Untyped             ;
-+------------------------------------------------+---------+---------------------+
++----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ADC_AND_LCD:inst2 ;
++----------------+-------+---------------------------------------+
+; Parameter Name ; Value ; Type                                  ;
++----------------+-------+---------------------------------------+
+; LCD_CHARS      ; 16    ; Signed Integer                        ;
++----------------+-------+---------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: lpm_divide:Div0 ;
-+------------------------+----------------+------------------------+
-; Parameter Name         ; Value          ; Type                   ;
-+------------------------+----------------+------------------------+
-; LPM_WIDTHN             ; 32             ; Untyped                ;
-; LPM_WIDTHD             ; 15             ; Untyped                ;
-; LPM_NREPRESENTATION    ; SIGNED         ; Untyped                ;
-; LPM_DREPRESENTATION    ; SIGNED         ; Untyped                ;
-; LPM_PIPELINE           ; 0              ; Untyped                ;
-; LPM_REMAINDERPOSITIVE  ; FALSE          ; Untyped                ;
-; MAXIMIZE_SPEED         ; 5              ; Untyped                ;
-; CBXI_PARAMETER         ; lpm_divide_0do ; Untyped                ;
-; CARRY_CHAIN            ; MANUAL         ; Untyped                ;
-; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                ;
-; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY             ;
-; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY           ;
-; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE           ;
-; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE         ;
-+------------------------+----------------+------------------------+
++-------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C ;
++----------------+----------+---------------------------------------------------------------+
+; Parameter Name ; Value    ; Type                                                          ;
++----------------+----------+---------------------------------------------------------------+
+; clk_freq_hz    ; 50000000 ; Signed Integer                                                ;
+; i2c_freq_hz    ; 100000   ; Signed Integer                                                ;
++----------------+----------+---------------------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+--------------------------------------------------------+
-; lpm_mult Parameter Settings by Entity Instance         ;
-+---------------------------------------+----------------+
-; Name                                  ; Value          ;
-+---------------------------------------+----------------+
-; Number of entity instances            ; 1              ;
-; Entity Instance                       ; lpm_mult:Mult0 ;
-;     -- LPM_WIDTHA                     ; 16             ;
-;     -- LPM_WIDTHB                     ; 12             ;
-;     -- LPM_WIDTHP                     ; 28             ;
-;     -- LPM_REPRESENTATION             ; SIGNED         ;
-;     -- INPUT_A_IS_CONSTANT            ; NO             ;
-;     -- INPUT_B_IS_CONSTANT            ; YES            ;
-;     -- USE_EAB                        ; OFF            ;
-;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO           ;
-;     -- INPUT_A_FIXED_VALUE            ; Bx             ;
-;     -- INPUT_B_FIXED_VALUE            ; Bx             ;
-+---------------------------------------+----------------+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: ADC_AND_LCD:inst2|lpm_mult:Mult0 ;
++------------------------------------------------+---------+------------------------+
+; Parameter Name                                 ; Value   ; Type                   ;
++------------------------------------------------+---------+------------------------+
+; AUTO_CARRY_CHAINS                              ; ON      ; AUTO_CARRY             ;
+; IGNORE_CARRY_BUFFERS                           ; OFF     ; IGNORE_CARRY           ;
+; AUTO_CASCADE_CHAINS                            ; ON      ; AUTO_CASCADE           ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF     ; IGNORE_CASCADE         ;
+; LPM_WIDTHA                                     ; 16      ; Untyped                ;
+; LPM_WIDTHB                                     ; 12      ; Untyped                ;
+; LPM_WIDTHP                                     ; 28      ; Untyped                ;
+; LPM_WIDTHR                                     ; 28      ; Untyped                ;
+; LPM_WIDTHS                                     ; 1       ; Untyped                ;
+; LPM_REPRESENTATION                             ; SIGNED  ; Untyped                ;
+; LPM_PIPELINE                                   ; 0       ; Untyped                ;
+; LATENCY                                        ; 0       ; Untyped                ;
+; INPUT_A_IS_CONSTANT                            ; NO      ; Untyped                ;
+; INPUT_B_IS_CONSTANT                            ; YES     ; Untyped                ;
+; USE_EAB                                        ; OFF     ; Untyped                ;
+; MAXIMIZE_SPEED                                 ; 5       ; Untyped                ;
+; DEVICE_FAMILY                                  ; MAX 10  ; Untyped                ;
+; CARRY_CHAIN                                    ; MANUAL  ; Untyped                ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT     ; TECH_MAPPER_APEX20K    ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO    ; Untyped                ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0       ; Untyped                ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0       ; Untyped                ;
+; CBXI_PARAMETER                                 ; NOTHING ; Untyped                ;
+; INPUT_A_FIXED_VALUE                            ; Bx      ; Untyped                ;
+; INPUT_B_FIXED_VALUE                            ; Bx      ; Untyped                ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF     ; Untyped                ;
++------------------------------------------------+---------+------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: ADC_AND_LCD:inst2|lpm_divide:Div0 ;
++------------------------+----------------+------------------------------------------+
+; Parameter Name         ; Value          ; Type                                     ;
++------------------------+----------------+------------------------------------------+
+; LPM_WIDTHN             ; 28             ; Untyped                                  ;
+; LPM_WIDTHD             ; 15             ; Untyped                                  ;
+; LPM_NREPRESENTATION    ; SIGNED         ; Untyped                                  ;
+; LPM_DREPRESENTATION    ; SIGNED         ; Untyped                                  ;
+; LPM_PIPELINE           ; 0              ; Untyped                                  ;
+; LPM_REMAINDERPOSITIVE  ; FALSE          ; Untyped                                  ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                  ;
+; CBXI_PARAMETER         ; lpm_divide_5do ; Untyped                                  ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                  ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                  ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                               ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                             ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                             ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                           ;
++------------------------+----------------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------+
+; lpm_mult Parameter Settings by Entity Instance                           ;
++---------------------------------------+----------------------------------+
+; Name                                  ; Value                            ;
++---------------------------------------+----------------------------------+
+; Number of entity instances            ; 1                                ;
+; Entity Instance                       ; ADC_AND_LCD:inst2|lpm_mult:Mult0 ;
+;     -- LPM_WIDTHA                     ; 16                               ;
+;     -- LPM_WIDTHB                     ; 12                               ;
+;     -- LPM_WIDTHP                     ; 28                               ;
+;     -- LPM_REPRESENTATION             ; SIGNED                           ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                               ;
+;     -- INPUT_B_IS_CONSTANT            ; YES                              ;
+;     -- USE_EAB                        ; OFF                              ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                             ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                               ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                               ;
++---------------------------------------+----------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C"                                             ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port       ; Type   ; Severity ; Details                                                                             ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+; addr[5..4] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; addr[2..0] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; addr[6]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; addr[3]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; ack_err    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "SINGLE_SHOT:inst|ADS1115:U_ADS1115"                                                            ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; channel[1..0]   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; channel[2]      ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; pga             ; Input  ; Info     ; Stuck at GND                                                                        ;
+; data_rate[1..0] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; data_rate[2]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; continuous      ; Input  ; Info     ; Stuck at GND                                                                        ;
+; busy            ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -488,27 +689,28 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 147                         ;
-; cycloneiii_ff         ; 144                         ;
-;     CLR               ; 6                           ;
-;     ENA               ; 29                          ;
-;     ENA CLR           ; 106                         ;
-;     ENA SCLR          ; 1                           ;
-;     plain             ; 2                           ;
-; cycloneiii_lcell_comb ; 849                         ;
-;     arith             ; 240                         ;
-;         1 data inputs ; 2                           ;
-;         2 data inputs ; 30                          ;
-;         3 data inputs ; 208                         ;
-;     normal            ; 609                         ;
-;         0 data inputs ; 18                          ;
-;         1 data inputs ; 4                           ;
-;         2 data inputs ; 263                         ;
-;         3 data inputs ; 60                          ;
-;         4 data inputs ; 264                         ;
+; boundary_port         ; 9                           ;
+; cycloneiii_ff         ; 229                         ;
+;     ENA               ; 112                         ;
+;     ENA SCLR          ; 36                          ;
+;     ENA SLD           ; 12                          ;
+;     SCLR              ; 17                          ;
+;     SLD               ; 2                           ;
+;     plain             ; 50                          ;
+; cycloneiii_io_obuf    ; 2                           ;
+; cycloneiii_lcell_comb ; 1148                        ;
+;     arith             ; 299                         ;
+;         2 data inputs ; 89                          ;
+;         3 data inputs ; 210                         ;
+;     normal            ; 849                         ;
+;         0 data inputs ; 17                          ;
+;         1 data inputs ; 10                          ;
+;         2 data inputs ; 273                         ;
+;         3 data inputs ; 106                         ;
+;         4 data inputs ; 443                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 64.70                       ;
-; Average LUT depth     ; 52.38                       ;
+; Max LUT depth         ; 64.60                       ;
+; Average LUT depth     ; 40.56                       ;
 +-----------------------+-----------------------------+
 
 
@@ -517,7 +719,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:06     ;
+; Top            ; 00:00:05     ;
 +----------------+--------------+
 
 
@@ -527,7 +729,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Sun Feb 08 13:25:24 2026
+    Info: Processing started: Sun Feb 08 17:34:44 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ADC_AND_LCD -c ADC_AND_LCD
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -535,7 +737,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file timer.v
     Info (12022): Found design unit 1: TIMER-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/TIMER.vhd Line: 14
     Info (12023): Found entity 1: TIMER File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/TIMER.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file single_shot.vhd
-    Info (12022): Found design unit 1: SINGLE_SHOT-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/SINGLE_SHOT.vhd Line: 15
+    Info (12022): Found design unit 1: SINGLE_SHOT-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/SINGLE_SHOT.vhd Line: 16
     Info (12023): Found entity 1: SINGLE_SHOT File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/SINGLE_SHOT.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file lcd_display.vhd
     Info (12022): Found design unit 1: LCD_DISPLAY-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/LCD_DISPLAY.vhd Line: 21
@@ -554,12 +756,24 @@ Info (12021): Found 2 design units, including 1 entities, in source file adc_and
     Info (12023): Found entity 1: ADC_AND_LCD File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 5
 Info (12021): Found 1 design units, including 1 entities, in source file lcd_out.bdf
     Info (12023): Found entity 1: LCD_OUT
-Info (12127): Elaborating entity "ADC_AND_LCD" for the top level hierarchy
+Info (12127): Elaborating entity "LCD_OUT" for the top level hierarchy
+Info (12128): Elaborating entity "LCD_DISPLAY" for hierarchy "LCD_DISPLAY:inst1"
+Info (12128): Elaborating entity "TIMER" for hierarchy "LCD_DISPLAY:inst1|TIMER:U_TIMER" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/LCD_DISPLAY.vhd Line: 66
+Info (12128): Elaborating entity "ADC_AND_LCD" for hierarchy "ADC_AND_LCD:inst2"
+Info (12128): Elaborating entity "SINGLE_SHOT" for hierarchy "SINGLE_SHOT:inst"
+Warning (10540): VHDL Signal Declaration warning at SINGLE_SHOT.vhd(48): used explicit default value for signal "CHANNEL" because signal was never assigned a value File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/SINGLE_SHOT.vhd Line: 48
+Warning (10540): VHDL Signal Declaration warning at SINGLE_SHOT.vhd(49): used explicit default value for signal "PGA" because signal was never assigned a value File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/SINGLE_SHOT.vhd Line: 49
+Warning (10540): VHDL Signal Declaration warning at SINGLE_SHOT.vhd(50): used explicit default value for signal "DATA_RATE" because signal was never assigned a value File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/SINGLE_SHOT.vhd Line: 50
+Warning (10540): VHDL Signal Declaration warning at SINGLE_SHOT.vhd(51): used explicit default value for signal "CONTINUOUS" because signal was never assigned a value File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/SINGLE_SHOT.vhd Line: 51
+Warning (10036): Verilog HDL or VHDL warning at SINGLE_SHOT.vhd(54): object "BUSY" assigned a value but never read File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/SINGLE_SHOT.vhd Line: 54
+Info (12128): Elaborating entity "ADS1115" for hierarchy "SINGLE_SHOT:inst|ADS1115:U_ADS1115" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/SINGLE_SHOT.vhd Line: 59
+Warning (10036): Verilog HDL or VHDL warning at ADS1115.vhd(102): object "ACK_ERR" assigned a value but never read File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADS1115.vhd Line: 102
+Info (12128): Elaborating entity "I2C" for hierarchy "SINGLE_SHOT:inst|ADS1115:U_ADS1115|I2C:U_I2C" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADS1115.vhd Line: 118
 Info (278001): Inferred 2 megafunctions from design logic
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "Mult0" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 70
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div0" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 70
-Info (12130): Elaborated megafunction instantiation "lpm_mult:Mult0" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 70
-Info (12133): Instantiated megafunction "lpm_mult:Mult0" with the following parameter: File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 70
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "ADC_AND_LCD:inst2|Mult0" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 67
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "ADC_AND_LCD:inst2|Div0" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 67
+Info (12130): Elaborated megafunction instantiation "ADC_AND_LCD:inst2|lpm_mult:Mult0" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 67
+Info (12133): Instantiated megafunction "ADC_AND_LCD:inst2|lpm_mult:Mult0" with the following parameter: File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 67
     Info (12134): Parameter "LPM_WIDTHA" = "16"
     Info (12134): Parameter "LPM_WIDTHB" = "12"
     Info (12134): Parameter "LPM_WIDTHP" = "28"
@@ -569,125 +783,55 @@ Info (12133): Instantiated megafunction "lpm_mult:Mult0" with the following para
     Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
     Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "YES"
     Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
-Info (12131): Elaborated megafunction instantiation "lpm_mult:Mult0|multcore:mult_core", which is child of megafunction instantiation "lpm_mult:Mult0" File: c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_mult.tdf Line: 308
-Info (12131): Elaborated megafunction instantiation "lpm_mult:Mult0|multcore:mult_core|mpar_add:padder", which is child of megafunction instantiation "lpm_mult:Mult0" File: c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/multcore.tdf Line: 228
-Info (12131): Elaborated megafunction instantiation "lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[1]", which is child of megafunction instantiation "lpm_mult:Mult0" File: c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/mpar_add.tdf Line: 115
+Info (12131): Elaborated megafunction instantiation "ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core", which is child of megafunction instantiation "ADC_AND_LCD:inst2|lpm_mult:Mult0" File: c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_mult.tdf Line: 308
+Info (12131): Elaborated megafunction instantiation "ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder", which is child of megafunction instantiation "ADC_AND_LCD:inst2|lpm_mult:Mult0" File: c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/multcore.tdf Line: 228
+Info (12131): Elaborated megafunction instantiation "ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[1]", which is child of megafunction instantiation "ADC_AND_LCD:inst2|lpm_mult:Mult0" File: c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/mpar_add.tdf Line: 115
 Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_6vg.tdf
     Info (12023): Found entity 1: add_sub_6vg File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/add_sub_6vg.tdf Line: 22
-Info (12131): Elaborated megafunction instantiation "lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]", which is child of megafunction instantiation "lpm_mult:Mult0" File: c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/mpar_add.tdf Line: 115
+Info (12131): Elaborated megafunction instantiation "ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]", which is child of megafunction instantiation "ADC_AND_LCD:inst2|lpm_mult:Mult0" File: c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/mpar_add.tdf Line: 115
 Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_ckg.tdf
     Info (12023): Found entity 1: add_sub_ckg File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/add_sub_ckg.tdf Line: 22
-Info (12131): Elaborated megafunction instantiation "lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add", which is child of megafunction instantiation "lpm_mult:Mult0" File: c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/mpar_add.tdf Line: 138
-Info (12131): Elaborated megafunction instantiation "lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add|lpm_add_sub:adder[0]", which is child of megafunction instantiation "lpm_mult:Mult0" File: c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/mpar_add.tdf Line: 115
+Info (12131): Elaborated megafunction instantiation "ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add", which is child of megafunction instantiation "ADC_AND_LCD:inst2|lpm_mult:Mult0" File: c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/mpar_add.tdf Line: 138
+Info (12131): Elaborated megafunction instantiation "ADC_AND_LCD:inst2|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add|lpm_add_sub:adder[0]", which is child of megafunction instantiation "ADC_AND_LCD:inst2|lpm_mult:Mult0" File: c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/mpar_add.tdf Line: 115
 Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_1vg.tdf
     Info (12023): Found entity 1: add_sub_1vg File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/add_sub_1vg.tdf Line: 22
-Info (12131): Elaborated megafunction instantiation "lpm_mult:Mult0|altshift:external_latency_ffs", which is child of megafunction instantiation "lpm_mult:Mult0" File: c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_mult.tdf Line: 351
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Div0" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 70
-Info (12133): Instantiated megafunction "lpm_divide:Div0" with the following parameter: File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 70
-    Info (12134): Parameter "LPM_WIDTHN" = "32"
+Info (12131): Elaborated megafunction instantiation "ADC_AND_LCD:inst2|lpm_mult:Mult0|altshift:external_latency_ffs", which is child of megafunction instantiation "ADC_AND_LCD:inst2|lpm_mult:Mult0" File: c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/lpm_mult.tdf Line: 351
+Info (12130): Elaborated megafunction instantiation "ADC_AND_LCD:inst2|lpm_divide:Div0" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 67
+Info (12133): Instantiated megafunction "ADC_AND_LCD:inst2|lpm_divide:Div0" with the following parameter: File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 67
+    Info (12134): Parameter "LPM_WIDTHN" = "28"
     Info (12134): Parameter "LPM_WIDTHD" = "15"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
     Info (12134): Parameter "LPM_DREPRESENTATION" = "SIGNED"
     Info (12134): Parameter "LPM_HINT" = "LPM_REMAINDERPOSITIVE=FALSE"
-Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_0do.tdf
-    Info (12023): Found entity 1: lpm_divide_0do File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/lpm_divide_0do.tdf Line: 24
-Info (12021): Found 1 design units, including 1 entities, in source file db/abs_divider_5dg.tdf
-    Info (12023): Found entity 1: abs_divider_5dg File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/abs_divider_5dg.tdf Line: 28
-Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_uke.tdf
-    Info (12023): Found entity 1: alt_u_div_uke File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/alt_u_div_uke.tdf Line: 26
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_5do.tdf
+    Info (12023): Found entity 1: lpm_divide_5do File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/lpm_divide_5do.tdf Line: 24
+Info (12021): Found 1 design units, including 1 entities, in source file db/abs_divider_adg.tdf
+    Info (12023): Found entity 1: abs_divider_adg File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/abs_divider_adg.tdf Line: 28
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_8le.tdf
+    Info (12023): Found entity 1: alt_u_div_8le File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/alt_u_div_8le.tdf Line: 26
 Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_t3c.tdf
     Info (12023): Found entity 1: add_sub_t3c File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/add_sub_t3c.tdf Line: 22
 Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_u3c.tdf
     Info (12023): Found entity 1: add_sub_u3c File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/add_sub_u3c.tdf Line: 22
 Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_9b9.tdf
     Info (12023): Found entity 1: lpm_abs_9b9 File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/lpm_abs_9b9.tdf Line: 24
-Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_8b9.tdf
-    Info (12023): Found entity 1: lpm_abs_8b9 File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/lpm_abs_8b9.tdf Line: 24
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_db9.tdf
+    Info (12023): Found entity 1: lpm_abs_db9 File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/lpm_abs_db9.tdf Line: 24
 Info (13014): Ignored 27 buffer(s)
     Info (13016): Ignored 27 CARRY_SUM buffer(s)
-Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "DATA_OUT[0]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[1]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[2]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[3]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[4]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[6]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[7]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[8]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[9]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[10]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[11]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[12]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[14]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[15]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[16]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[17]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[18]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[19]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[20]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[22]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[23]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[24]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[27]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[29]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[31]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[33]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[36]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[39]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[40]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[41]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[42]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[43]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[44]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[46]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[47]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[54]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[55]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[62]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[63]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[70]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[71]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[78]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[79]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[80]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[81]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[82]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[83]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[84]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[86]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[87]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[88]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[90]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[94]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[95]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[96]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[97]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[99]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[103]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[104]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[105]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[108]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[111]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[116]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[119]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[120]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[123]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[125]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
-    Warning (13410): Pin "DATA_OUT[127]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/ADC_AND_LCD.vhd Line: 46
 Info (286030): Timing-Driven Synthesis is running
-Info (17016): Found the following redundant logic cells in design
-    Info (17048): Logic cell "lpm_divide:Div0|lpm_divide_0do:auto_generated|abs_divider_5dg:divider|alt_u_div_uke:divider|add_sub_17_result_int[2]~26" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/alt_u_div_uke.tdf Line: 71
-    Info (17048): Logic cell "lpm_divide:Div0|lpm_divide_0do:auto_generated|abs_divider_5dg:divider|alt_u_div_uke:divider|add_sub_17_result_int[1]~28" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADC_AND_LCD/db/alt_u_div_uke.tdf Line: 71
+Info (17049): 7 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 1073 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 19 input pins
-    Info (21059): Implemented 128 output pins
-    Info (21061): Implemented 926 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 70 warnings
-    Info: Peak virtual memory: 4831 megabytes
-    Info: Processing ended: Sun Feb 08 13:25:42 2026
+Info (21057): Implemented 1235 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 1 input pins
+    Info (21059): Implemented 6 output pins
+    Info (21060): Implemented 2 bidirectional pins
+    Info (21061): Implemented 1226 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 7 warnings
+    Info: Peak virtual memory: 4830 megabytes
+    Info: Processing ended: Sun Feb 08 17:35:02 2026
     Info: Elapsed time: 00:00:18
-    Info: Total CPU time (on all processors): 00:00:29
+    Info: Total CPU time (on all processors): 00:00:34
 
 

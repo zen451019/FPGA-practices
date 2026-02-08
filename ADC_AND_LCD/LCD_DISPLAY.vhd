@@ -73,7 +73,7 @@ BEGIN
 
     PROCESS (CLK, RST) -- goblal clock
     BEGIN
-        IF RST = '1' THEN
+        IF RST = '0' THEN
             COUNT_1 <= 0;
             FLAG <= '0';
             STATE <= INIT;

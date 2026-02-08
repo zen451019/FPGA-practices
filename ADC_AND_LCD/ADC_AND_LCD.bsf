@@ -20,8 +20,8 @@ refer to the applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 232 128)
-	(text "SINGLE_SHOT" (rect 5 0 72 12)(font "Arial" ))
+	(rect 16 16 304 128)
+	(text "ADC_AND_LCD" (rect 5 0 81 12)(font "Arial" ))
 	(text "inst" (rect 8 96 20 108)(font "Arial" ))
 	(port
 		(pt 0 32)
@@ -38,34 +38,33 @@ refer to the applicable agreement for further details.
 		(line (pt 0 48)(pt 16 48)(line_width 1))
 	)
 	(port
-		(pt 216 32)
-		(output)
+		(pt 0 64)
+		(input)
 		(text "DATA_VALID" (rect 0 0 67 12)(font "Arial" ))
-		(text "DATA_VALID" (rect 128 27 195 39)(font "Arial" ))
-		(line (pt 216 32)(pt 200 32)(line_width 1))
+		(text "DATA_VALID" (rect 21 59 88 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 1))
 	)
 	(port
-		(pt 216 48)
+		(pt 0 80)
+		(input)
+		(text "DATA_IN[15..0]" (rect 0 0 68 12)(font "Arial" ))
+		(text "DATA_IN[15..0]" (rect 21 75 89 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 3))
+	)
+	(port
+		(pt 288 32)
 		(output)
-		(text "DATA_OUT[15..0]" (rect 0 0 79 12)(font "Arial" ))
-		(text "DATA_OUT[15..0]" (rect 116 43 195 55)(font "Arial" ))
-		(line (pt 216 48)(pt 200 48)(line_width 3))
+		(text "DATA_OUT[8*lcd_chars-1..0]" (rect 0 0 120 12)(font "Arial" ))
+		(text "DATA_OUT[8*lcd_chars-1..0]" (rect 147 27 267 39)(font "Arial" ))
+		(line (pt 288 32)(pt 272 32)(line_width 3))
 	)
-	(port
-		(pt 216 64)
-		(bidir)
-		(text "SDA" (rect 0 0 21 12)(font "Arial" ))
-		(text "SDA" (rect 174 59 195 71)(font "Arial" ))
-		(line (pt 216 64)(pt 200 64)(line_width 1))
-	)
-	(port
-		(pt 216 80)
-		(bidir)
-		(text "SCL" (rect 0 0 18 12)(font "Arial" ))
-		(text "SCL" (rect 177 75 195 87)(font "Arial" ))
-		(line (pt 216 80)(pt 200 80)(line_width 1))
-	)
+	(parameter
+		"LCD_CHARS"
+		"16"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
-		(rectangle (rect 16 16 200 96)(line_width 1))
+		(rectangle (rect 16 16 272 96)(line_width 1))
 	)
+	(annotation_block (parameter)(rect 304 -64 404 16))
 )
