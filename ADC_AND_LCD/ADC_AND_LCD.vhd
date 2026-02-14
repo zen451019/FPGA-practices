@@ -24,7 +24,7 @@ ARCHITECTURE COMP OF ADC_AND_LCD IS
     SIGNAL SHIFT_REG : STD_LOGIC_VECTOR(28 DOWNTO 0) := (OTHERS => '0');
     SIGNAL SHIFT_COUNT : INTEGER RANGE 0 TO 13 := 0;
 
-    -- Funci�n Double Dabble
+    -- Funciï¿½n Double Dabble
     FUNCTION ADD3_IF_GE5(DIGIT : STD_LOGIC_VECTOR(3 DOWNTO 0))
         RETURN STD_LOGIC_VECTOR IS
     BEGIN
@@ -77,13 +77,13 @@ BEGIN
                         -- ? Usar variable temporal para evitar conflictos
                         TEMP_SHIFT := SHIFT_REG;
                         
-                        -- Aplicar ADD3 a cada d�gito
+                        -- Aplicar ADD3 a cada dï¿½gito
                         TEMP_SHIFT(28 DOWNTO 25) := ADD3_IF_GE5(TEMP_SHIFT(28 DOWNTO 25));
                         TEMP_SHIFT(24 DOWNTO 21) := ADD3_IF_GE5(TEMP_SHIFT(24 DOWNTO 21));
                         TEMP_SHIFT(20 DOWNTO 17) := ADD3_IF_GE5(TEMP_SHIFT(20 DOWNTO 17));
                         TEMP_SHIFT(16 DOWNTO 13) := ADD3_IF_GE5(TEMP_SHIFT(16 DOWNTO 13));
                         
-                        -- Ahora s� hacer shift
+                        -- Ahora sï¿½ hacer shift
                         SHIFT_REG <= TEMP_SHIFT(27 DOWNTO 0) & '0';
                         SHIFT_COUNT <= SHIFT_COUNT + 1;
                     ELSE
