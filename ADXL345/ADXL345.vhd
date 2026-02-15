@@ -1,6 +1,7 @@
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.NUMERIC_STD.ALL;
+
 ENTITY ADXL345 IS
     GENERIC (
         SLAVE : INTEGER := 1;
@@ -19,11 +20,11 @@ ENTITY ADXL345 IS
         CLK_DIVI : IN INTEGER;
         CS_SELECT : IN INTEGER;
 
-        R_W : IN STD_LOGIC; -- Read/Write control signal
-        REG_ADDR : IN STD_LOGIC_VECTOR(7 DOWNTO 0); -- Register address
-        N : IN INTEGER; -- Number of bytes to read/write
-        DATA : IN STD_LOGIC_VECTOR(7 DOWNTO 0); -- Data to write (for write operations)
-        START_S : IN STD_LOGIC; -- Signal to start the operation
+        R_W : IN STD_LOGIC;
+        REG_ADDR : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+        N : IN INTEGER;
+        DATA : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+        START_S : IN STD_LOGIC;
 
         RX_DATA : OUT STD_LOGIC_VECTOR(SLAVE_DATA_BITS - 1 DOWNTO 0);
         RX_VALID : OUT STD_LOGIC := '0';
@@ -34,7 +35,7 @@ END ENTITY;
 
 ARCHITECTURE COMP OF ADXL345 IS
 
-    TYPE MACHINE IS (IDLE, START, SEND_CMD, WAIT_SPI);
+    TYPE MACHINE IS (IDLE, START, WAIT_SPI_RISE, WAIT_SPI_LOW);
     SIGNAL STATE : MACHINE := IDLE;
 
     COMPONENT SPI
@@ -63,32 +64,35 @@ ARCHITECTURE COMP OF ADXL345 IS
             DATA_RD : OUT STD_LOGIC_VECTOR(SLAVE_DATA_BITS - 1 DOWNTO 0);
 
             A_CON : IN STD_LOGIC
-
         );
     END COMPONENT;
 
     SIGNAL SPI_BUSY : STD_LOGIC;
-
     SIGNAL SPI_EN : STD_LOGIC := '0';
+    SIGNAL SPI_FIRE : STD_LOGIC := '0';
 
-    CONSTANT DUMMY_BYTE : STD_LOGIC_VECTOR(SLAVE_DATA_BITS - 1 DOWNTO 0) := (OTHERS => '1');
-
-    SIGNAL SPI_DATA_WR : STD_LOGIC_VECTOR(SLAVE_DATA_BITS - 1 DOWNTO 0) := (OTHERS => '0');
-    SIGNAL SPI_DATA_RD : STD_LOGIC_VECTOR(SLAVE_DATA_BITS - 1 DOWNTO 0);
-
+    CONSTANT DUMMY_BYTE : STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '1');
+    SIGNAL SPI_DATA_WR : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    SIGNAL SPI_DATA_RD : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL SPI_A_CON : STD_LOGIC := '0';
 
     SIGNAL BYTE_COUNT : INTEGER := 0;
 
-    SIGNAL PREV_START_S : STD_LOGIC := '0';
-    
+    SIGNAL R_W_REG : STD_LOGIC;
+    SIGNAL REG_ADDR_REG : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    SIGNAL DATA_REG : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    SIGNAL N_REG : INTEGER;
+
+    SIGNAL START_SYNC_0 : STD_LOGIC := '0';
+    SIGNAL START_SYNC_1 : STD_LOGIC := '0';
+    SIGNAL START_PREV   : STD_LOGIC := '0';
+    SIGNAL START_PULSE  : STD_LOGIC := '0';
+
 BEGIN
 
+    SPI_EN <= SPI_FIRE;
+
     SPI_INST : SPI
-    GENERIC MAP(
-        SLAVE => SLAVE,
-        SLAVE_DATA_BITS => SLAVE_DATA_BITS
-    )
     PORT MAP(
         CLK => CLK,
         RESET => RESET,
@@ -96,28 +100,23 @@ BEGIN
         MISO => MISO,
         CS => CS,
         SCLK => SCLK,
-
         BUSY => SPI_BUSY,
         CLK_DIVI => CLK_DIVI,
         CS_SELECT => CS_SELECT,
-
         EN => SPI_EN,
-
         CPOL => CPOL,
         CPHA => CPHA,
-
         DATA_WR => SPI_DATA_WR,
         DATA_RD => SPI_DATA_RD,
-
         A_CON => SPI_A_CON
-
     );
 
-    PROCESS (CLK, RESET)
+    PROCESS(CLK, RESET)
     BEGIN
         IF RESET = '1' THEN
+
             STATE <= IDLE;
-            SPI_EN <= '0';
+            SPI_FIRE <= '0';
             RX_DATA <= (OTHERS => '0');
             RX_VALID <= '0';
             BUSY <= '0';
@@ -125,79 +124,85 @@ BEGIN
             BYTE_COUNT <= 0;
 
         ELSIF RISING_EDGE(CLK) THEN
-        PREV_START_S <= START_S; -- Capturar el valor anterior de START_S
+
+            -- Pulso de un solo ciclo SIEMPRE
+            SPI_FIRE <= '0';
+            RX_VALID <= '0';
+
+            -- Sincronizador de START
+            START_SYNC_0 <= START_S;
+            START_SYNC_1 <= START_SYNC_0;
+            START_PREV   <= START_SYNC_1;
+            START_PULSE  <= START_SYNC_1 AND NOT START_PREV;
+
             CASE STATE IS
+
                 WHEN IDLE =>
-                    DONE <= '0';
                     BUSY <= '0';
+                    DONE <= '0';
                     BYTE_COUNT <= 0;
-                    RX_VALID <= '0';
-                    IF START_S = '1' AND PREV_START_S = '0' THEN
-                        STATE <= START;
+
+                    IF START_PULSE = '1' THEN
+                        R_W_REG <= R_W;
+                        REG_ADDR_REG <= REG_ADDR;
+                        DATA_REG <= DATA;
+                        N_REG <= N;
                         BUSY <= '1';
+                        STATE <= START;
                     END IF;
 
                 WHEN START =>
-                    BUSY <= '1';
                     IF SPI_BUSY = '0' THEN
-                        IF BYTE_COUNT < (N + 1) THEN
-                            -- Configurar A_CON
-                            IF BYTE_COUNT < N THEN
+
+                        IF BYTE_COUNT < (N_REG + 1) THEN
+
+                            IF BYTE_COUNT < N_REG THEN
                                 SPI_A_CON <= '1';
-                            ELSE 
+                            ELSE
                                 SPI_A_CON <= '0';
                             END IF;
-                            
+
                             IF BYTE_COUNT = 0 THEN
-                                SPI_DATA_WR <= REG_ADDR;
-                                SPI_EN <= '1';
-                                STATE <= SEND_CMD;
+                                SPI_DATA_WR <= REG_ADDR_REG;
                             ELSE
-                                IF R_W = '1' THEN
+                                IF R_W_REG = '1' THEN
                                     SPI_DATA_WR <= DUMMY_BYTE;
-                                    SPI_EN <= '1';
-                                    STATE <= SEND_CMD;
                                 ELSE
-                                    SPI_DATA_WR <= DATA;
-                                    SPI_EN <= '1';
-                                    STATE <= SEND_CMD;
+                                    SPI_DATA_WR <= DATA_REG;
                                 END IF;
                             END IF;
+
+                            SPI_FIRE <= '1';  -- PULSO EXACTO DE 1 CICLO
+                            STATE <= WAIT_SPI_RISE;
+
                         ELSE
-                            STATE <= IDLE;
                             DONE <= '1';
+                            STATE <= IDLE;
                         END IF;
+
                     END IF;
-                
-                    WHEN SEND_CMD =>
-                        SPI_EN <= '0';
-                        IF SPI_BUSY = '1' THEN
-                            STATE <= WAIT_SPI;
+
+                WHEN WAIT_SPI_RISE =>
+                    IF SPI_BUSY = '1' THEN
+                        STATE <= WAIT_SPI_LOW;
+                    END IF;
+
+                WHEN WAIT_SPI_LOW =>
+                    IF SPI_BUSY = '0' THEN
+
+                        IF R_W_REG = '1' AND BYTE_COUNT > 0 THEN
+                            RX_DATA <= SPI_DATA_RD;
+                            RX_VALID <= '1';
                         END IF;
 
-                    WHEN WAIT_SPI =>
-                        RX_VALID <= '0';
-                        IF SPI_BUSY = '0' THEN
-                            IF R_W = '1' AND BYTE_COUNT > 0 THEN
-                                RX_DATA <= SPI_DATA_RD;
-                                RX_VALID <= '1';
-                            END IF;
-                            BYTE_COUNT <= BYTE_COUNT + 1;
-                            STATE <= START;
-                        END IF;
+                        BYTE_COUNT <= BYTE_COUNT + 1;
+                        STATE <= START;
 
-                    WHEN OTHERS =>
-                        STATE <= IDLE;
-                END CASE;
-            END IF;
-        END PROCESS;
+                    END IF;
+
+            END CASE;
+
+        END IF;
+    END PROCESS;
 
 END ARCHITECTURE;
-
--- ========================================
--- IMPORTANTE: Restricciones de uso
--- ========================================
--- • LECTURA (R_W='1'): N puede ser cualquier valor (1, 2, 6, etc.)
--- • ESCRITURA (R_W='0'): N DEBE ser siempre 1
--- • No se soportan escrituras múltiples por diseño
--- ========================================
