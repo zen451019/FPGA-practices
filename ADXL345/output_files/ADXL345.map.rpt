@@ -1,5 +1,5 @@
 Analysis & Synthesis report for ADXL345
-Sat Feb 14 16:21:17 2026
+Sat Feb 14 19:24:59 2026
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -15,16 +15,14 @@ Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
   7. Analysis & Synthesis Resource Utilization by Entity
   8. State Machine - |ADXL345|STATE
   9. Registers Removed During Synthesis
- 10. Removed Registers Triggering Further Register Optimizations
- 11. General Register Statistics
- 12. Inverted Register Statistics
- 13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Parameter Settings for User Entity Instance: Top-level Entity: |ADXL345
- 15. Parameter Settings for User Entity Instance: SPI:SPI_INST
- 16. Port Connectivity Checks: "SPI:SPI_INST"
- 17. Post-Synthesis Netlist Statistics for Top Partition
- 18. Elapsed Time Per Partition
- 19. Analysis & Synthesis Messages
+ 10. General Register Statistics
+ 11. Inverted Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Parameter Settings for User Entity Instance: Top-level Entity: |ADXL345
+ 14. Parameter Settings for User Entity Instance: SPI:SPI_INST
+ 15. Post-Synthesis Netlist Statistics for Top Partition
+ 16. Elapsed Time Per Partition
+ 17. Analysis & Synthesis Messages
 
 
 
@@ -50,16 +48,16 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Feb 14 16:21:17 2026       ;
+; Analysis & Synthesis Status        ; Successful - Sat Feb 14 19:24:59 2026       ;
 ; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; ADXL345                                     ;
 ; Top-level Entity Name              ; ADXL345                                     ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 194                                         ;
-;     Total combinational functions  ; 176                                         ;
-;     Dedicated logic registers      ; 109                                         ;
-; Total registers                    ; 109                                         ;
-; Total pins                         ; 7                                           ;
+; Total logic elements               ; 400                                         ;
+;     Total combinational functions  ; 344                                         ;
+;     Dedicated logic registers      ; 161                                         ;
+; Total registers                    ; 161                                         ;
+; Total pins                         ; 133                                         ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -187,30 +185,30 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 194       ;
+; Estimated Total logic elements              ; 400       ;
 ;                                             ;           ;
-; Total combinational functions               ; 176       ;
+; Total combinational functions               ; 344       ;
 ; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 48        ;
-;     -- 3 input functions                    ; 31        ;
-;     -- <=2 input functions                  ; 97        ;
+;     -- 4 input functions                    ; 140       ;
+;     -- 3 input functions                    ; 90        ;
+;     -- <=2 input functions                  ; 114       ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 110       ;
-;     -- arithmetic mode                      ; 66        ;
+;     -- normal mode                          ; 186       ;
+;     -- arithmetic mode                      ; 158       ;
 ;                                             ;           ;
-; Total registers                             ; 109       ;
-;     -- Dedicated logic registers            ; 109       ;
+; Total registers                             ; 161       ;
+;     -- Dedicated logic registers            ; 161       ;
 ;     -- I/O registers                        ; 0         ;
 ;                                             ;           ;
-; I/O pins                                    ; 7         ;
+; I/O pins                                    ; 133       ;
 ;                                             ;           ;
 ; Embedded Multiplier 9-bit elements          ; 0         ;
 ;                                             ;           ;
 ; Maximum fan-out node                        ; CLK~input ;
-; Maximum fan-out                             ; 109       ;
-; Total fan-out                               ; 861       ;
-; Average fan-out                             ; 2.88      ;
+; Maximum fan-out                             ; 161       ;
+; Total fan-out                               ; 1711      ;
+; Average fan-out                             ; 2.22      ;
 +---------------------------------------------+-----------+
 
 
@@ -219,54 +217,33 @@ refer to the applicable agreement for further details.
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-----------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name   ; Entity Name ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-----------------------+-------------+--------------+
-; |ADXL345                   ; 176 (67)            ; 109 (41)                  ; 0           ; 0          ; 0            ; 0       ; 0         ; 7    ; 0            ; 0          ; |ADXL345              ; ADXL345     ; work         ;
-;    |SPI:SPI_INST|          ; 109 (109)           ; 68 (68)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADXL345|SPI:SPI_INST ; SPI         ; work         ;
+; |ADXL345                   ; 344 (198)           ; 161 (57)                  ; 0           ; 0          ; 0            ; 0       ; 0         ; 133  ; 0            ; 0          ; |ADXL345              ; ADXL345     ; work         ;
+;    |SPI:SPI_INST|          ; 146 (146)           ; 104 (104)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADXL345|SPI:SPI_INST ; SPI         ; work         ;
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-----------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
 Encoding Type:  One-Hot
-+-------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |ADXL345|STATE                                                                                          ;
-+------------------+-----------------+------------------+-----------------+----------------+-----------------+------------+
-; Name             ; STATE.WAIT_BUSY ; STATE.WAIT_STATE ; STATE.READ_DATA ; STATE.SEND_REG ; STATE.CONFIGURE ; STATE.IDLE ;
-+------------------+-----------------+------------------+-----------------+----------------+-----------------+------------+
-; STATE.IDLE       ; 0               ; 0                ; 0               ; 0              ; 0               ; 0          ;
-; STATE.CONFIGURE  ; 0               ; 0                ; 0               ; 0              ; 1               ; 1          ;
-; STATE.SEND_REG   ; 0               ; 0                ; 0               ; 1              ; 0               ; 1          ;
-; STATE.READ_DATA  ; 0               ; 0                ; 1               ; 0              ; 0               ; 1          ;
-; STATE.WAIT_STATE ; 0               ; 1                ; 0               ; 0              ; 0               ; 1          ;
-; STATE.WAIT_BUSY  ; 1               ; 0                ; 0               ; 0              ; 0               ; 1          ;
-+------------------+-----------------+------------------+-----------------+----------------+-----------------+------------+
++-----------------------------------------------------------------------------+
+; State Machine - |ADXL345|STATE                                              ;
++----------------+----------------+----------------+-------------+------------+
+; Name           ; STATE.WAIT_SPI ; STATE.SEND_CMD ; STATE.START ; STATE.IDLE ;
++----------------+----------------+----------------+-------------+------------+
+; STATE.IDLE     ; 0              ; 0              ; 0           ; 0          ;
+; STATE.START    ; 0              ; 0              ; 1           ; 1          ;
+; STATE.SEND_CMD ; 0              ; 1              ; 0           ; 1          ;
+; STATE.WAIT_SPI ; 1              ; 0              ; 0           ; 1          ;
++----------------+----------------+----------------+-------------+------------+
 
 
-+------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                   ;
-+-------------------------------------------------------------+----------------------------------------+
-; Register name                                               ; Reason for Removal                     ;
-+-------------------------------------------------------------+----------------------------------------+
-; SPI:SPI_INST|BIT_COUNT[0..3]                                ; Stuck at GND due to stuck port data_in ;
-; SPI:SPI_INST|CLK_COUNT[1..5,7,10,12,13,15..17,20,21,23..30] ; Stuck at GND due to stuck port data_in ;
-; SPI:SPI_INST|CLK_COUNT[31]                                  ; Merged with SPI:SPI_INST|CLK_COUNT[0]  ;
-; SPI:SPI_INST|S_SLAVE[0]                                     ; Merged with SPI:SPI_INST|CLK_COUNT[0]  ;
-; SPI:SPI_INST|CLK_COUNT[6,8,9,11,14,18,19,22]                ; Merged with SPI:SPI_INST|BIT_COUNT[4]  ;
-; SPI_DATA_WR[1..6]                                           ; Merged with SPI_DATA_WR[0]             ;
-; SPI:SPI_INST|FLAG                                           ; Stuck at GND due to stuck port data_in ;
-; SPI:SPI_INST|BUSY                                           ; Merged with SPI:SPI_INST|STATE         ;
-; SPI:SPI_INST|CLK_COUNT[0]                                   ; Merged with SPI:SPI_INST|BIT_COUNT[4]  ;
-; STATE.SEND_REG                                              ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 46                      ;                                        ;
-+-------------------------------------------------------------+----------------------------------------+
-
-
-+-------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                     ;
-+----------------------------+---------------------------+----------------------------------------+
-; Register name              ; Reason for Removal        ; Registers Removed due to This Register ;
-+----------------------------+---------------------------+----------------------------------------+
-; SPI:SPI_INST|CLK_COUNT[30] ; Stuck at GND              ; SPI:SPI_INST|FLAG                      ;
-;                            ; due to stuck port data_in ;                                        ;
-+----------------------------+---------------------------+----------------------------------------+
++-------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                            ;
++---------------------------------------+---------------------------------------+
+; Register name                         ; Reason for Removal                    ;
++---------------------------------------+---------------------------------------+
+; SPI:SPI_INST|BIT_COUNT[1..3]          ; Merged with SPI:SPI_INST|BIT_COUNT[0] ;
+; Total Number of Removed Registers = 3 ;                                       ;
++---------------------------------------+---------------------------------------+
 
 
 +------------------------------------------------------+
@@ -274,12 +251,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 109   ;
-; Number of registers using Synchronous Clear  ; 37    ;
-; Number of registers using Synchronous Load   ; 2     ;
-; Number of registers using Asynchronous Clear ; 18    ;
+; Total registers                              ; 161   ;
+; Number of registers using Synchronous Clear  ; 3     ;
+; Number of registers using Synchronous Load   ; 5     ;
+; Number of registers using Asynchronous Clear ; 60    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 98    ;
+; Number of registers using Clock Enable       ; 118   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -290,9 +267,12 @@ Encoding Type:  One-Hot
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
 ; SPI:SPI_INST|CS[0]                     ; 4       ;
+; SPI:SPI_INST|CLK_COUNT[0]              ; 1       ;
 ; SPI:SPI_INST|COUNT[0]                  ; 2       ;
+; SPI:SPI_INST|CLK_COUNT[31]             ; 1       ;
 ; SPI:SPI_INST|COUNT[31]                 ; 2       ;
-; Total number of inverted registers = 3 ;         ;
+; SPI:SPI_INST|S_SLAVE[0]                ; 1       ;
+; Total number of inverted registers = 6 ;         ;
 +----------------------------------------+---------+
 
 
@@ -301,23 +281,24 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output       ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
-; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |ADXL345|SPI:SPI_INST|TX_DATA[7] ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |ADXL345|SPI_DATA_WR[7]          ;
-; 4:1                ; 30 bits   ; 60 LEs        ; 60 LEs               ; 0 LEs                  ; Yes        ; |ADXL345|SPI:SPI_INST|COUNT[15]  ;
-; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |ADXL345|SPI:SPI_INST|COUNT_T[2] ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |ADXL345|SPI:SPI_INST|COUNT[31]  ;
-; 9:1                ; 4 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; No         ; |ADXL345|Selector0               ;
-; 11:1               ; 2 bits    ; 14 LEs        ; 8 LEs                ; 6 LEs                  ; No         ; |ADXL345|Selector1               ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |ADXL345|SPI_DATA_WR[0]          ;
+; 4:1                ; 30 bits   ; 60 LEs        ; 60 LEs               ; 0 LEs                  ; Yes        ; |ADXL345|SPI:SPI_INST|COUNT[29]  ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |ADXL345|SPI:SPI_INST|COUNT_T[1] ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |ADXL345|SPI:SPI_INST|COUNT_T[0] ;
+; 5:1                ; 7 bits    ; 21 LEs        ; 7 LEs                ; 14 LEs                 ; Yes        ; |ADXL345|SPI:SPI_INST|TX_DATA[5] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |ADXL345|SPI:SPI_INST|COUNT[0]   ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; No         ; |ADXL345|Selector37              ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
 
 
 +-------------------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: Top-level Entity: |ADXL345 ;
-+----------------+----------+---------------------------------------------+
-; Parameter Name ; Value    ; Type                                        ;
-+----------------+----------+---------------------------------------------+
-; CLK_FREQ       ; 50000000 ; Signed Integer                              ;
-+----------------+----------+---------------------------------------------+
++-----------------+-------+-----------------------------------------------+
+; Parameter Name  ; Value ; Type                                          ;
++-----------------+-------+-----------------------------------------------+
+; SLAVE           ; 1     ; Signed Integer                                ;
+; SLAVE_DATA_BITS ; 8     ; Signed Integer                                ;
++-----------------+-------+-----------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -332,57 +313,32 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+----------------------------------------------------+
-; Port Connectivity Checks: "SPI:SPI_INST"           ;
-+------------------+-------+----------+--------------+
-; Port             ; Type  ; Severity ; Details      ;
-+------------------+-------+----------+--------------+
-; clk_divi[19..18] ; Input ; Info     ; Stuck at VCC ;
-; clk_divi[9..8]   ; Input ; Info     ; Stuck at VCC ;
-; clk_divi[31..23] ; Input ; Info     ; Stuck at GND ;
-; clk_divi[21..20] ; Input ; Info     ; Stuck at GND ;
-; clk_divi[17..15] ; Input ; Info     ; Stuck at GND ;
-; clk_divi[13..12] ; Input ; Info     ; Stuck at GND ;
-; clk_divi[5..0]   ; Input ; Info     ; Stuck at GND ;
-; clk_divi[22]     ; Input ; Info     ; Stuck at VCC ;
-; clk_divi[14]     ; Input ; Info     ; Stuck at VCC ;
-; clk_divi[11]     ; Input ; Info     ; Stuck at VCC ;
-; clk_divi[10]     ; Input ; Info     ; Stuck at GND ;
-; clk_divi[7]      ; Input ; Info     ; Stuck at GND ;
-; clk_divi[6]      ; Input ; Info     ; Stuck at VCC ;
-; cs_select        ; Input ; Info     ; Stuck at GND ;
-; cpol             ; Input ; Info     ; Stuck at VCC ;
-; cpha             ; Input ; Info     ; Stuck at VCC ;
-; a_con            ; Input ; Info     ; Stuck at GND ;
-+------------------+-------+----------+--------------+
-
-
 +-----------------------------------------------------+
 ; Post-Synthesis Netlist Statistics for Top Partition ;
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 7                           ;
-; cycloneiii_ff         ; 109                         ;
-;     CLR               ; 8                           ;
-;     CLR SLD           ; 1                           ;
-;     ENA               ; 51                          ;
-;     ENA CLR           ; 9                           ;
-;     ENA SCLR          ; 37                          ;
-;     ENA SLD           ; 1                           ;
-;     plain             ; 2                           ;
+; boundary_port         ; 133                         ;
+; cycloneiii_ff         ; 161                         ;
+;     CLR               ; 41                          ;
+;     CLR SLD           ; 2                           ;
+;     ENA               ; 95                          ;
+;     ENA CLR           ; 17                          ;
+;     ENA SCLR          ; 3                           ;
+;     ENA SLD           ; 3                           ;
 ; cycloneiii_io_obuf    ; 1                           ;
-; cycloneiii_lcell_comb ; 177                         ;
-;     arith             ; 66                          ;
-;         2 data inputs ; 66                          ;
-;     normal            ; 111                         ;
-;         1 data inputs ; 4                           ;
-;         2 data inputs ; 28                          ;
-;         3 data inputs ; 31                          ;
-;         4 data inputs ; 48                          ;
+; cycloneiii_lcell_comb ; 345                         ;
+;     arith             ; 158                         ;
+;         2 data inputs ; 94                          ;
+;         3 data inputs ; 64                          ;
+;     normal            ; 187                         ;
+;         1 data inputs ; 9                           ;
+;         2 data inputs ; 12                          ;
+;         3 data inputs ; 26                          ;
+;         4 data inputs ; 140                         ;
 ;                       ;                             ;
 ; Max LUT depth         ; 6.00                        ;
-; Average LUT depth     ; 3.77                        ;
+; Average LUT depth     ; 4.03                        ;
 +-----------------------+-----------------------------+
 
 
@@ -391,7 +347,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -401,7 +357,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Sat Feb 14 16:21:05 2026
+    Info: Processing started: Sat Feb 14 19:24:45 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ADXL345 -c ADXL345
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -409,25 +365,54 @@ Info (12021): Found 2 design units, including 1 entities, in source file spi.vhd
     Info (12022): Found design unit 1: SPI-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/SPI.vhd Line: 36
     Info (12023): Found entity 1: SPI File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/SPI.vhd Line: 6
 Info (12021): Found 2 design units, including 1 entities, in source file adxl345.vhd
-    Info (12022): Found design unit 1: ADXL345-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 21
+    Info (12022): Found design unit 1: ADXL345-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 35
     Info (12023): Found entity 1: ADXL345 File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 4
 Info (12127): Elaborating entity "ADXL345" for the top level hierarchy
-Warning (10540): VHDL Signal Declaration warning at ADXL345.vhd(58): used explicit default value for signal "SPI_CS_SELECT" because signal was never assigned a value File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 58
-Warning (10540): VHDL Signal Declaration warning at ADXL345.vhd(69): used explicit default value for signal "SPI_A_CON" because signal was never assigned a value File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 69
-Info (12128): Elaborating entity "SPI" for hierarchy "SPI:SPI_INST" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 74
+Info (12128): Elaborating entity "SPI" for hierarchy "SPI:SPI_INST" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 84
 Info (13000): Registers with preset signals will power-up high File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/SPI.vhd Line: 58
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 204 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 3 input pins
-    Info (21059): Implemented 4 output pins
-    Info (21061): Implemented 197 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 3 warnings
-    Info: Peak virtual memory: 4799 megabytes
-    Info: Processing ended: Sat Feb 14 16:21:17 2026
-    Info: Elapsed time: 00:00:12
+Warning (21074): Design contains 30 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "CS_SELECT[1]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[2]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[3]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[4]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[5]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[6]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[7]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[8]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[9]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[10]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[11]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[12]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[13]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[14]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[15]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[16]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[17]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[18]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[19]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[20]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[21]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[22]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[23]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[24]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[25]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[26]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[27]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[28]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[29]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+    Warning (15610): No output dependent on input pin "CS_SELECT[30]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 20
+Info (21057): Implemented 535 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 119 input pins
+    Info (21059): Implemented 14 output pins
+    Info (21061): Implemented 402 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 32 warnings
+    Info: Peak virtual memory: 4801 megabytes
+    Info: Processing ended: Sat Feb 14 19:24:59 2026
+    Info: Elapsed time: 00:00:14
     Info: Total CPU time (on all processors): 00:00:26
 
 
