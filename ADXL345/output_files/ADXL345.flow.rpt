@@ -1,5 +1,5 @@
 Flow report for ADXL345
-Sat Feb 14 19:24:59 2026
+Sun Feb 15 21:39:39 2026
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -40,18 +40,18 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Sat Feb 14 19:24:59 2026       ;
+; Flow Status                        ; Successful - Sun Feb 15 21:39:39 2026       ;
 ; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; ADXL345                                     ;
 ; Top-level Entity Name              ; ADXL345                                     ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M08SCE144C8G                              ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 400                                         ;
-;     Total combinational functions  ; 344                                         ;
-;     Dedicated logic registers      ; 161                                         ;
-; Total registers                    ; 161                                         ;
-; Total pins                         ; 133                                         ;
+; Total logic elements               ; 389                                         ;
+;     Total combinational functions  ; 297                                         ;
+;     Dedicated logic registers      ; 237                                         ;
+; Total registers                    ; 237                                         ;
+; Total pins                         ; 55                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -66,7 +66,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 02/14/2026 19:24:46 ;
+; Start date & time ; 02/15/2026 21:39:24 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; ADXL345             ;
 +-------------------+---------------------+
@@ -77,7 +77,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 88972150710489.177111508503480         ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 88972150710489.177120956422880         ; --            ; --          ; --         ;
 ; FLOW_ENABLE_POWER_ANALYZER          ; On                                     ; Off           ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
@@ -96,8 +96,8 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:14     ; 1.0                     ; 4801 MB             ; 00:00:26                           ;
-; Total                ; 00:00:14     ; --                      ; --                  ; 00:00:26                           ;
+; Analysis & Synthesis ; 00:00:15     ; 1.0                     ; 4799 MB             ; 00:00:34                           ;
+; Total                ; 00:00:15     ; --                      ; --                  ; 00:00:34                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
