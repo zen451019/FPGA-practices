@@ -1,5 +1,5 @@
 Analysis & Synthesis report for ADXL345
-Sun Feb 15 21:39:39 2026
+Fri Feb 20 19:07:27 2026
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -13,19 +13,22 @@ Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |ADXL345|STATE
-  9. State Machine - |ADXL345|SPI_DRIVER:SPI_DRIVER_INST|STATE
- 10. Registers Removed During Synthesis
- 11. Removed Registers Triggering Further Register Optimizations
- 12. General Register Statistics
- 13. Inverted Register Statistics
- 14. Multiplexer Restructuring Statistics (Restructuring Performed)
- 15. Parameter Settings for User Entity Instance: SPI_DRIVER:SPI_DRIVER_INST
- 16. Parameter Settings for User Entity Instance: SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST
- 17. Port Connectivity Checks: "SPI_DRIVER:SPI_DRIVER_INST"
- 18. Post-Synthesis Netlist Statistics for Top Partition
- 19. Elapsed Time Per Partition
- 20. Analysis & Synthesis Messages
+  8. State Machine - |ADXL345_and_LCD|LCD_DISPLAY:inst|STATE
+  9. State Machine - |ADXL345_and_LCD|ADXL345:inst1|STATE
+ 10. State Machine - |ADXL345_and_LCD|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|STATE
+ 11. Registers Removed During Synthesis
+ 12. Removed Registers Triggering Further Register Optimizations
+ 13. General Register Statistics
+ 14. Inverted Register Statistics
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 16. Parameter Settings for User Entity Instance: ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST
+ 17. Parameter Settings for User Entity Instance: ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST
+ 18. Parameter Settings for User Entity Instance: LCD_DISPLAY:inst
+ 19. Parameter Settings for User Entity Instance: ADXL_LCD_BRIDGE:inst3
+ 20. Port Connectivity Checks: "ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST"
+ 21. Post-Synthesis Netlist Statistics for Top Partition
+ 22. Elapsed Time Per Partition
+ 23. Analysis & Synthesis Messages
 
 
 
@@ -51,16 +54,16 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Feb 15 21:39:39 2026       ;
+; Analysis & Synthesis Status        ; Successful - Fri Feb 20 19:07:27 2026       ;
 ; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; ADXL345                                     ;
-; Top-level Entity Name              ; ADXL345                                     ;
+; Top-level Entity Name              ; ADXL345_and_LCD                             ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 389                                         ;
-;     Total combinational functions  ; 297                                         ;
-;     Dedicated logic registers      ; 237                                         ;
-; Total registers                    ; 237                                         ;
-; Total pins                         ; 55                                          ;
+; Total logic elements               ; 600                                         ;
+;     Total combinational functions  ; 502                                         ;
+;     Dedicated logic registers      ; 352                                         ;
+; Total registers                    ; 352                                         ;
+; Total pins                         ; 11                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -76,7 +79,7 @@ refer to the applicable agreement for further details.
 ; Option                                                                     ; Setting            ; Default Value      ;
 +----------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                     ; 10M08SCE144C8G     ;                    ;
-; Top-level entity name                                                      ; ADXL345            ; ADXL345            ;
+; Top-level entity name                                                      ; ADXL345_and_LCD    ; ADXL345            ;
 ; Family name                                                                ; MAX 10             ; Cyclone V          ;
 ; Use smart compilation                                                      ; Off                ; Off                ;
 ; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
@@ -169,19 +172,26 @@ refer to the applicable agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-4         ;   0.0%      ;
+;     Processor 2            ;   0.1%      ;
+;     Processor 3            ;   0.0%      ;
+;     Processor 4            ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                               ;
-+----------------------------------+-----------------+-----------------+-------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                        ; Library ;
-+----------------------------------+-----------------+-----------------+-------------------------------------------------------------------------------------+---------+
-; SPI.vhd                          ; yes             ; User VHDL File  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/SPI.vhd        ;         ;
-; ADXL345.vhd                      ; yes             ; User VHDL File  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd    ;         ;
-; SPI_DRIVER.vhd                   ; yes             ; User VHDL File  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/SPI_DRIVER.vhd ;         ;
-+----------------------------------+-----------------+-----------------+-------------------------------------------------------------------------------------+---------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                       ;
++----------------------------------+-----------------+------------------------------------+------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                          ; File Name with Absolute Path                                                             ; Library ;
++----------------------------------+-----------------+------------------------------------+------------------------------------------------------------------------------------------+---------+
+; ADXL345_and_LCD.bdf              ; yes             ; User Block Diagram/Schematic File  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345_and_LCD.bdf ;         ;
+; ADXL_LCD_BRIDGE.vhd              ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL_LCD_BRIDGE.vhd ;         ;
+; TIMER.vhd                        ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/TIMER.vhd           ;         ;
+; LCD_CONTROL.vhd                  ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/LCD_CONTROL.vhd     ;         ;
+; LCD_DISPLAY.vhd                  ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/LCD_DISPLAY.vhd     ;         ;
+; SPI.vhd                          ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/SPI.vhd             ;         ;
+; ADXL345.vhd                      ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd         ;         ;
+; SPI_DRIVER.vhd                   ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/SPI_DRIVER.vhd      ;         ;
++----------------------------------+-----------------+------------------------------------+------------------------------------------------------------------------------------------+---------+
 
 
 +---------------------------------------------------------+
@@ -189,48 +199,66 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 389       ;
+; Estimated Total logic elements              ; 600       ;
 ;                                             ;           ;
-; Total combinational functions               ; 297       ;
+; Total combinational functions               ; 502       ;
 ; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 123       ;
-;     -- 3 input functions                    ; 43        ;
-;     -- <=2 input functions                  ; 131       ;
+;     -- 4 input functions                    ; 249       ;
+;     -- 3 input functions                    ; 71        ;
+;     -- <=2 input functions                  ; 182       ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 212       ;
-;     -- arithmetic mode                      ; 85        ;
+;     -- normal mode                          ; 394       ;
+;     -- arithmetic mode                      ; 108       ;
 ;                                             ;           ;
-; Total registers                             ; 237       ;
-;     -- Dedicated logic registers            ; 237       ;
+; Total registers                             ; 352       ;
+;     -- Dedicated logic registers            ; 352       ;
 ;     -- I/O registers                        ; 0         ;
 ;                                             ;           ;
-; I/O pins                                    ; 55        ;
+; I/O pins                                    ; 11        ;
 ;                                             ;           ;
 ; Embedded Multiplier 9-bit elements          ; 0         ;
 ;                                             ;           ;
 ; Maximum fan-out node                        ; CLK~input ;
-; Maximum fan-out                             ; 237       ;
-; Total fan-out                               ; 1793      ;
-; Average fan-out                             ; 2.78      ;
+; Maximum fan-out                             ; 352       ;
+; Total fan-out                               ; 2587      ;
+; Average fan-out                             ; 2.95      ;
 +---------------------------------------------+-----------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                  ;
-+---------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+--------------------------------------------------+-------------+--------------+
-; Compilation Hierarchy Node      ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                              ; Entity Name ; Library Name ;
-+---------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+--------------------------------------------------+-------------+--------------+
-; |ADXL345                        ; 297 (70)            ; 237 (96)                  ; 0           ; 0          ; 0            ; 0       ; 0         ; 55   ; 0            ; 0          ; |ADXL345                                         ; ADXL345     ; work         ;
-;    |SPI_DRIVER:SPI_DRIVER_INST| ; 227 (108)           ; 141 (71)                  ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADXL345|SPI_DRIVER:SPI_DRIVER_INST              ; SPI_DRIVER  ; work         ;
-;       |SPI:SPI_INST|            ; 119 (119)           ; 70 (70)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADXL345|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST ; SPI         ; work         ;
-+---------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+--------------------------------------------------+-------------+--------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                               ;
++------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------------------------------------------------------+-----------------+--------------+
+; Compilation Hierarchy Node         ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                    ; Entity Name     ; Library Name ;
++------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------------------------------------------------------+-----------------+--------------+
+; |ADXL345_and_LCD                   ; 502 (0)             ; 352 (0)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 11   ; 0            ; 0          ; |ADXL345_and_LCD                                                       ; ADXL345_and_LCD ; work         ;
+;    |ADXL345:inst1|                 ; 287 (63)            ; 237 (96)                  ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADXL345_and_LCD|ADXL345:inst1                                         ; ADXL345         ; work         ;
+;       |SPI_DRIVER:SPI_DRIVER_INST| ; 224 (108)           ; 141 (71)                  ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADXL345_and_LCD|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST              ; SPI_DRIVER      ; work         ;
+;          |SPI:SPI_INST|            ; 116 (116)           ; 70 (70)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADXL345_and_LCD|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST ; SPI             ; work         ;
+;    |ADXL_LCD_BRIDGE:inst3|         ; 73 (73)             ; 75 (75)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADXL345_and_LCD|ADXL_LCD_BRIDGE:inst3                                 ; ADXL_LCD_BRIDGE ; work         ;
+;    |LCD_DISPLAY:inst|              ; 142 (114)           ; 40 (21)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADXL345_and_LCD|LCD_DISPLAY:inst                                      ; LCD_DISPLAY     ; work         ;
+;       |TIMER:U_TIMER|              ; 28 (28)             ; 19 (19)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |ADXL345_and_LCD|LCD_DISPLAY:inst|TIMER:U_TIMER                        ; TIMER           ; work         ;
++------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------------------------------------------------------+-----------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
 Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------+
+; State Machine - |ADXL345_and_LCD|LCD_DISPLAY:inst|STATE                                       ;
++----------------+---------------+---------------+----------------+----------------+------------+
+; Name           ; STATE.WRITE_2 ; STATE.WRITE_1 ; STATE.CURSOR_2 ; STATE.CURSOR_1 ; STATE.INIT ;
++----------------+---------------+---------------+----------------+----------------+------------+
+; STATE.INIT     ; 0             ; 0             ; 0              ; 0              ; 0          ;
+; STATE.CURSOR_1 ; 0             ; 0             ; 0              ; 1              ; 1          ;
+; STATE.CURSOR_2 ; 0             ; 0             ; 1              ; 0              ; 1          ;
+; STATE.WRITE_1  ; 0             ; 1             ; 0              ; 0              ; 1          ;
+; STATE.WRITE_2  ; 1             ; 0             ; 0              ; 0              ; 1          ;
++----------------+---------------+---------------+----------------+----------------+------------+
+
+
+Encoding Type:  One-Hot
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |ADXL345|STATE                                                                                                                                      ;
+; State Machine - |ADXL345_and_LCD|ADXL345:inst1|STATE                                                                                                                ;
 +----------------------+---------------+-----------------+------------------+-----------------+----------------------+------------+----------------------+------------+
 ; Name                 ; STATE.CAPTURE ; STATE.WAIT_READ ; STATE.START_READ ; STATE.WAIT_INIT ; STATE.WAIT_INIT_RISE ; STATE.INIT ; STATE.POWER_UP_DELAY ; STATE.IDLE ;
 +----------------------+---------------+-----------------+------------------+-----------------+----------------------+------------+----------------------+------------+
@@ -247,7 +275,7 @@ Encoding Type:  One-Hot
 
 Encoding Type:  One-Hot
 +-------------------------------------------------------------------------------------------+
-; State Machine - |ADXL345|SPI_DRIVER:SPI_DRIVER_INST|STATE                                 ;
+; State Machine - |ADXL345_and_LCD|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|STATE           ;
 +---------------------+--------------------+---------------------+-------------+------------+
 ; Name                ; STATE.WAIT_SPI_LOW ; STATE.WAIT_SPI_RISE ; STATE.START ; STATE.IDLE ;
 +---------------------+--------------------+---------------------+-------------+------------+
@@ -258,49 +286,75 @@ Encoding Type:  One-Hot
 +---------------------+--------------------+---------------------+-------------+------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                                                                        ;
-+----------------------------------------------------------------------------------------+------------------------------------------------------------------+
-; Register name                                                                          ; Reason for Removal                                               ;
-+----------------------------------------------------------------------------------------+------------------------------------------------------------------+
-; SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|BIT_COUNT[0..3]                                ; Stuck at GND due to stuck port data_in                           ;
-; SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|CLK_COUNT[1..5,7,10,12,13,15..17,20,21,23..30] ; Stuck at GND due to stuck port data_in                           ;
-; SPI_DRIVER:SPI_DRIVER_INST|N_REG[2]                                                    ; Merged with SPI_DRIVER:SPI_DRIVER_INST|N_REG[1]                  ;
-; SPI_DRIVER:SPI_DRIVER_INST|R_W_REG                                                     ; Merged with SPI_DRIVER:SPI_DRIVER_INST|N_REG[1]                  ;
-; SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|CLK_COUNT[31]                                  ; Merged with SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|CLK_COUNT[0] ;
-; SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|S_SLAVE[0]                                     ; Merged with SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|CLK_COUNT[0] ;
-; SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|CLK_COUNT[6,8,9,11,14,18,19,22]                ; Merged with SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|BIT_COUNT[4] ;
-; N[3..9,11..31]                                                                         ; Merged with N[10]                                                ;
-; N[2]                                                                                   ; Merged with N[1]                                                 ;
-; R_W                                                                                    ; Merged with N[1]                                                 ;
-; SPI_DRIVER:SPI_DRIVER_INST|SPI_DATA_WR[7]                                              ; Merged with SPI_DRIVER:SPI_DRIVER_INST|SPI_DATA_WR[6]            ;
-; SPI_DRIVER:SPI_DRIVER_INST|DATA_REG[4..7]                                              ; Merged with SPI_DRIVER:SPI_DRIVER_INST|DATA_REG[2]               ;
-; SPI_DRIVER:SPI_DRIVER_INST|REG_ADDR_REG[6,7]                                           ; Merged with SPI_DRIVER:SPI_DRIVER_INST|REG_ADDR_REG[1]           ;
-; DATA[4..7]                                                                             ; Merged with DATA[2]                                              ;
-; REG_ADDR[6,7]                                                                          ; Merged with REG_ADDR[1]                                          ;
-; SPI_DRIVER:SPI_DRIVER_INST|REG_ADDR_REG[3]                                             ; Merged with SPI_DRIVER:SPI_DRIVER_INST|REG_ADDR_REG[2]           ;
-; REG_ADDR[3]                                                                            ; Merged with REG_ADDR[2]                                          ;
-; SPI_DRIVER:SPI_DRIVER_INST|N_REG[3..9,11..30]                                          ; Merged with SPI_DRIVER:SPI_DRIVER_INST|N_REG[10]                 ;
-; DATA[2]                                                                                ; Stuck at GND due to stuck port data_in                           ;
-; SPI_DRIVER:SPI_DRIVER_INST|DATA_REG[2]                                                 ; Stuck at GND due to stuck port data_in                           ;
-; N[10]                                                                                  ; Stuck at GND due to stuck port data_in                           ;
-; SPI_DRIVER:SPI_DRIVER_INST|N_REG[10]                                                   ; Stuck at GND due to stuck port data_in                           ;
-; SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|CLK_COUNT[0]                                   ; Merged with SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|BIT_COUNT[4] ;
-; STATE.WAIT_INIT_RISE                                                                   ; Stuck at GND due to stuck port data_in                           ;
-; Total Number of Removed Registers = 116                                                ;                                                                  ;
-+----------------------------------------------------------------------------------------+------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                           ;
++----------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+; Register name                                                              ; Reason for Removal                                                              ;
++----------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+; LCD_DISPLAY:inst|TIMER:U_TIMER|MAX_COUNT[12..14,17..31]                    ; Stuck at GND due to stuck port data_in                                          ;
+; LCD_DISPLAY:inst|TIMER:U_TIMER|MAX_COUNT[7]                                ; Stuck at VCC due to stuck port data_in                                          ;
+; LCD_DISPLAY:inst|TIMER:U_TIMER|MAX_COUNT[0,1,3,4]                          ; Stuck at GND due to stuck port data_in                                          ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[7,15,23,31..36]                          ; Stuck at GND due to stuck port data_in                                          ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[37]                                      ; Stuck at VCC due to stuck port data_in                                          ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[38..44]                                  ; Stuck at GND due to stuck port data_in                                          ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[45]                                      ; Stuck at VCC due to stuck port data_in                                          ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[46,47,55,63,71,79..84]                   ; Stuck at GND due to stuck port data_in                                          ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[85]                                      ; Stuck at VCC due to stuck port data_in                                          ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[86..92]                                  ; Stuck at GND due to stuck port data_in                                          ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[93]                                      ; Stuck at VCC due to stuck port data_in                                          ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[94,95,103,111,119,127]                   ; Stuck at GND due to stuck port data_in                                          ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|BIT_COUNT[0..3]      ; Stuck at GND due to stuck port data_in                                          ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|CLK_COUNT[1,2,5..30] ; Stuck at GND due to stuck port data_in                                          ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|CLK_COUNT[0]         ; Stuck at VCC due to stuck port data_in                                          ;
+; LCD_DISPLAY:inst|TIMER:U_TIMER|MAX_COUNT[2,5,6,8..11,15]                   ; Merged with LCD_DISPLAY:inst|TIMER:U_TIMER|MAX_COUNT[16]                        ;
+; LCD_DISPLAY:inst|TIMER:U_TIMER|PREV_FAST_MODE                              ; Merged with LCD_DISPLAY:inst|TIMER:U_TIMER|MAX_COUNT[16]                        ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|N_REG[2]                          ; Merged with ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|N_REG[1]                   ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|R_W_REG                           ; Merged with ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|N_REG[1]                   ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|S_SLAVE[0]           ; Merged with ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|CLK_COUNT[31] ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|CLK_COUNT[3,4]       ; Merged with ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|BIT_COUNT[4]  ;
+; ADXL345:inst1|N[3..9,11..31]                                               ; Merged with ADXL345:inst1|N[10]                                                 ;
+; ADXL345:inst1|N[2]                                                         ; Merged with ADXL345:inst1|N[1]                                                  ;
+; ADXL345:inst1|R_W                                                          ; Merged with ADXL345:inst1|N[1]                                                  ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI_DATA_WR[7]                    ; Merged with ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI_DATA_WR[6]             ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|DATA_REG[4..7]                    ; Merged with ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|DATA_REG[2]                ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|REG_ADDR_REG[6,7]                 ; Merged with ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|REG_ADDR_REG[1]            ;
+; ADXL345:inst1|DATA[4..7]                                                   ; Merged with ADXL345:inst1|DATA[2]                                               ;
+; ADXL345:inst1|REG_ADDR[6,7]                                                ; Merged with ADXL345:inst1|REG_ADDR[1]                                           ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|REG_ADDR_REG[3]                   ; Merged with ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|REG_ADDR_REG[2]            ;
+; ADXL345:inst1|REG_ADDR[3]                                                  ; Merged with ADXL345:inst1|REG_ADDR[2]                                           ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|N_REG[3..9,11..30]                ; Merged with ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|N_REG[10]                  ;
+; ADXL345:inst1|DATA[2]                                                      ; Stuck at GND due to stuck port data_in                                          ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|DATA_REG[2]                       ; Stuck at GND due to stuck port data_in                                          ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[6]                                       ; Merged with ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[5]                                ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[14]                                      ; Merged with ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[13]                               ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[22]                                      ; Merged with ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[21]                               ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[30]                                      ; Merged with ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[29]                               ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[54]                                      ; Merged with ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[53]                               ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[62]                                      ; Merged with ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[61]                               ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[70]                                      ; Merged with ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[69]                               ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[78]                                      ; Merged with ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[77]                               ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[102]                                     ; Merged with ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[101]                              ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[110]                                     ; Merged with ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[109]                              ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[118]                                     ; Merged with ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[117]                              ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[126]                                     ; Merged with ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[125]                              ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|CLK_COUNT[31]        ; Merged with ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|BIT_COUNT[4]  ;
+; ADXL345:inst1|N[10]                                                        ; Stuck at GND due to stuck port data_in                                          ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|N_REG[10]                         ; Stuck at GND due to stuck port data_in                                          ;
+; ADXL345:inst1|STATE.WAIT_INIT_RISE                                         ; Stuck at GND due to stuck port data_in                                          ;
+; Total Number of Removed Registers = 204                                    ;                                                                                 ;
++----------------------------------------------------------------------------+---------------------------------------------------------------------------------+
 
 
-+------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                        ;
-+---------------+---------------------------+----------------------------------------+
-; Register name ; Reason for Removal        ; Registers Removed due to This Register ;
-+---------------+---------------------------+----------------------------------------+
-; DATA[2]       ; Stuck at GND              ; SPI_DRIVER:SPI_DRIVER_INST|DATA_REG[2] ;
-;               ; due to stuck port data_in ;                                        ;
-; N[10]         ; Stuck at GND              ; SPI_DRIVER:SPI_DRIVER_INST|N_REG[10]   ;
-;               ; due to stuck port data_in ;                                        ;
-+---------------+---------------------------+----------------------------------------+
++----------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                              ;
++-----------------------+---------------------------+------------------------------------------------------+
+; Register name         ; Reason for Removal        ; Registers Removed due to This Register               ;
++-----------------------+---------------------------+------------------------------------------------------+
+; ADXL345:inst1|DATA[2] ; Stuck at GND              ; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|DATA_REG[2] ;
+;                       ; due to stuck port data_in ;                                                      ;
+; ADXL345:inst1|N[10]   ; Stuck at GND              ; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|N_REG[10]   ;
+;                       ; due to stuck port data_in ;                                                      ;
++-----------------------+---------------------------+------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -308,96 +362,125 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 237   ;
-; Number of registers using Synchronous Clear  ; 25    ;
-; Number of registers using Synchronous Load   ; 5     ;
-; Number of registers using Asynchronous Clear ; 124   ;
+; Total registers                              ; 352   ;
+; Number of registers using Synchronous Clear  ; 47    ;
+; Number of registers using Synchronous Load   ; 6     ;
+; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 181   ;
+; Number of registers using Clock Enable       ; 258   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+-------------------------------------------------------------+
-; Inverted Register Statistics                                ;
-+---------------------------------------------------+---------+
-; Inverted Register                                 ; Fan out ;
-+---------------------------------------------------+---------+
-; SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|CS[0]     ; 4       ;
-; SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|COUNT[0]  ; 2       ;
-; SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|COUNT[31] ; 2       ;
-; SPI_DRIVER:SPI_DRIVER_INST|N_REG[31]              ; 2       ;
-; SPI_DRIVER:SPI_DRIVER_INST|N_REG[0]               ; 2       ;
-; N[0]                                              ; 2       ;
-; Total number of inverted registers = 6            ;         ;
-+---------------------------------------------------+---------+
++---------------------------------------------------------------------------+
+; Inverted Register Statistics                                              ;
++-----------------------------------------------------------------+---------+
+; Inverted Register                                               ; Fan out ;
++-----------------------------------------------------------------+---------+
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|COUNT[31] ; 2       ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|COUNT[0]  ; 4       ;
+; LCD_DISPLAY:inst|COUNT_2[0]                                     ; 33      ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[69]                           ; 1       ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[77]                           ; 1       ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[61]                           ; 1       ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[53]                           ; 1       ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[117]                          ; 1       ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[101]                          ; 1       ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[109]                          ; 1       ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[125]                          ; 1       ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[21]                           ; 1       ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[5]                            ; 1       ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[13]                           ; 1       ;
+; ADXL_LCD_BRIDGE:inst3|VECTOR_TEMP[29]                           ; 1       ;
+; LCD_DISPLAY:inst|TIMER:U_TIMER|MAX_COUNT[16]                    ; 4       ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|N_REG[0]               ; 2       ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|N_REG[31]              ; 5       ;
+; ADXL345:inst1|N[0]                                              ; 2       ;
+; Total number of inverted registers = 19                         ;         ;
++-----------------------------------------------------------------+---------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                            ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                  ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------+
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |ADXL345|DATA[0]                                            ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |ADXL345|SPI_DRIVER:SPI_DRIVER_INST|SPI_DATA_WR[3]          ;
-; 4:1                ; 30 bits   ; 60 LEs        ; 60 LEs               ; 0 LEs                  ; Yes        ; |ADXL345|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|COUNT[14]  ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |ADXL345|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|COUNT_T[3] ;
-; 5:1                ; 7 bits    ; 21 LEs        ; 7 LEs                ; 14 LEs                 ; Yes        ; |ADXL345|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|TX_DATA[6] ;
-; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |ADXL345|DELAY[18]                                          ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |ADXL345|N[10]                                              ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 2 LEs                ; 6 LEs                  ; Yes        ; |ADXL345|REG_ADDR[5]                                        ;
-; 8:1                ; 3 bits    ; 15 LEs        ; 6 LEs                ; 9 LEs                  ; Yes        ; |ADXL345|REG_ADDR[2]                                        ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |ADXL345|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|COUNT[0]   ;
-; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; No         ; |ADXL345|SPI_DRIVER:SPI_DRIVER_INST|Selector33              ;
-; 10:1               ; 3 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; No         ; |ADXL345|Selector2                                          ;
-; 12:1               ; 2 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; No         ; |ADXL345|Selector1                                          ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------+
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |ADXL345_and_LCD|ADXL345:inst1|DATA[0]                                            ;
+; 3:1                ; 17 bits   ; 34 LEs        ; 17 LEs               ; 17 LEs                 ; Yes        ; |ADXL345_and_LCD|LCD_DISPLAY:inst|TIMER:U_TIMER|COUNT[5]                          ;
+; 4:1                ; 30 bits   ; 60 LEs        ; 60 LEs               ; 0 LEs                  ; Yes        ; |ADXL345_and_LCD|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|COUNT[3]   ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |ADXL345_and_LCD|LCD_DISPLAY:inst|COUNT_2[1]                                      ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |ADXL345_and_LCD|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|COUNT_T[0] ;
+; 5:1                ; 7 bits    ; 21 LEs        ; 7 LEs                ; 14 LEs                 ; Yes        ; |ADXL345_and_LCD|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|TX_DATA[5] ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |ADXL345_and_LCD|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI_DATA_WR[2]          ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |ADXL345_and_LCD|ADXL345:inst1|DELAY[3]                                           ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |ADXL345_and_LCD|ADXL345:inst1|N[1]                                               ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 6 LEs                ; 3 LEs                  ; Yes        ; |ADXL345_and_LCD|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI_DATA_WR[3]          ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 2 LEs                ; 6 LEs                  ; Yes        ; |ADXL345_and_LCD|ADXL345:inst1|REG_ADDR[5]                                        ;
+; 8:1                ; 3 bits    ; 15 LEs        ; 6 LEs                ; 9 LEs                  ; Yes        ; |ADXL345_and_LCD|ADXL345:inst1|REG_ADDR[0]                                        ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |ADXL345_and_LCD|LCD_DISPLAY:inst|COUNT_1[3]                                      ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |ADXL345_and_LCD|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|COUNT[31]  ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; No         ; |ADXL345_and_LCD|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|Selector33              ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; No         ; |ADXL345_and_LCD|LCD_DISPLAY:inst|STATE                                           ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; No         ; |ADXL345_and_LCD|LCD_DISPLAY:inst|STATE                                           ;
+; 10:1               ; 4 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; No         ; |ADXL345_and_LCD|ADXL345:inst1|Selector3                                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------+
 
 
-+-------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: SPI_DRIVER:SPI_DRIVER_INST ;
-+-----------------+-------+-----------------------------------------------+
-; Parameter Name  ; Value ; Type                                          ;
-+-----------------+-------+-----------------------------------------------+
-; SLAVE           ; 1     ; Signed Integer                                ;
-; SLAVE_DATA_BITS ; 8     ; Signed Integer                                ;
-+-----------------+-------+-----------------------------------------------+
++---------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST ;
++-----------------+-------+-------------------------------------------------------------+
+; Parameter Name  ; Value ; Type                                                        ;
++-----------------+-------+-------------------------------------------------------------+
+; slave           ; 1     ; Signed Integer                                              ;
+; slave_data_bits ; 8     ; Signed Integer                                              ;
++-----------------+-------+-------------------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+--------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST ;
-+-----------------+-------+------------------------------------------------------------+
-; Parameter Name  ; Value ; Type                                                       ;
-+-----------------+-------+------------------------------------------------------------+
-; slave           ; 1     ; Signed Integer                                             ;
-; slave_data_bits ; 8     ; Signed Integer                                             ;
-+-----------------+-------+------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST ;
++-----------------+-------+--------------------------------------------------------------------------+
+; Parameter Name  ; Value ; Type                                                                     ;
++-----------------+-------+--------------------------------------------------------------------------+
+; slave           ; 1     ; Signed Integer                                                           ;
+; slave_data_bits ; 8     ; Signed Integer                                                           ;
++-----------------+-------+--------------------------------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+--------------------------------------------------------+
-; Port Connectivity Checks: "SPI_DRIVER:SPI_DRIVER_INST" ;
-+------------------+-------+----------+------------------+
-; Port             ; Type  ; Severity ; Details          ;
-+------------------+-------+----------+------------------+
-; cpol             ; Input ; Info     ; Stuck at VCC     ;
-; cpha             ; Input ; Info     ; Stuck at VCC     ;
-; clk_divi[19..18] ; Input ; Info     ; Stuck at VCC     ;
-; clk_divi[9..8]   ; Input ; Info     ; Stuck at VCC     ;
-; clk_divi[31..23] ; Input ; Info     ; Stuck at GND     ;
-; clk_divi[21..20] ; Input ; Info     ; Stuck at GND     ;
-; clk_divi[17..15] ; Input ; Info     ; Stuck at GND     ;
-; clk_divi[13..12] ; Input ; Info     ; Stuck at GND     ;
-; clk_divi[5..0]   ; Input ; Info     ; Stuck at GND     ;
-; clk_divi[22]     ; Input ; Info     ; Stuck at VCC     ;
-; clk_divi[14]     ; Input ; Info     ; Stuck at VCC     ;
-; clk_divi[11]     ; Input ; Info     ; Stuck at VCC     ;
-; clk_divi[10]     ; Input ; Info     ; Stuck at GND     ;
-; clk_divi[7]      ; Input ; Info     ; Stuck at GND     ;
-; clk_divi[6]      ; Input ; Info     ; Stuck at VCC     ;
-; cs_select        ; Input ; Info     ; Stuck at GND     ;
-+------------------+-------+----------+------------------+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: LCD_DISPLAY:inst ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; LCD_CHARS      ; 16    ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ADXL_LCD_BRIDGE:inst3 ;
++----------------+-------+-------------------------------------------+
+; Parameter Name ; Value ; Type                                      ;
++----------------+-------+-------------------------------------------+
+; LCD_CHARS      ; 16    ; Signed Integer                            ;
++----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------+
+; Port Connectivity Checks: "ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST" ;
++-----------------+-------+----------+---------------------------------+
+; Port            ; Type  ; Severity ; Details                         ;
++-----------------+-------+----------+---------------------------------+
+; cpol            ; Input ; Info     ; Stuck at VCC                    ;
+; cpha            ; Input ; Info     ; Stuck at VCC                    ;
+; clk_divi[4..3]  ; Input ; Info     ; Stuck at VCC                    ;
+; clk_divi[31..5] ; Input ; Info     ; Stuck at GND                    ;
+; clk_divi[2..1]  ; Input ; Info     ; Stuck at GND                    ;
+; clk_divi[0]     ; Input ; Info     ; Stuck at VCC                    ;
+; cs_select       ; Input ; Info     ; Stuck at GND                    ;
++-----------------+-------+----------+---------------------------------+
 
 
 +-----------------------------------------------------+
@@ -405,31 +488,27 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 55                          ;
-; cycloneiii_ff         ; 237                         ;
-;     CLR               ; 48                          ;
-;     CLR SCLR          ; 1                           ;
-;     CLR SLD           ; 2                           ;
-;     ENA               ; 84                          ;
-;     ENA CLR           ; 70                          ;
-;     ENA CLR SCLR      ; 2                           ;
-;     ENA CLR SLD       ; 1                           ;
-;     ENA SCLR          ; 22                          ;
+; boundary_port         ; 11                          ;
+; cycloneiii_ff         ; 352                         ;
+;     ENA               ; 229                         ;
+;     ENA SCLR          ; 27                          ;
 ;     ENA SLD           ; 2                           ;
-;     plain             ; 5                           ;
+;     SCLR              ; 20                          ;
+;     SLD               ; 4                           ;
+;     plain             ; 70                          ;
 ; cycloneiii_io_obuf    ; 1                           ;
-; cycloneiii_lcell_comb ; 298                         ;
-;     arith             ; 85                          ;
-;         2 data inputs ; 84                          ;
-;         3 data inputs ; 1                           ;
-;     normal            ; 213                         ;
-;         1 data inputs ; 8                           ;
-;         2 data inputs ; 40                          ;
-;         3 data inputs ; 42                          ;
-;         4 data inputs ; 123                         ;
+; cycloneiii_lcell_comb ; 502                         ;
+;     arith             ; 108                         ;
+;         2 data inputs ; 106                         ;
+;         3 data inputs ; 2                           ;
+;     normal            ; 394                         ;
+;         1 data inputs ; 22                          ;
+;         2 data inputs ; 54                          ;
+;         3 data inputs ; 69                          ;
+;         4 data inputs ; 249                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 5.10                        ;
-; Average LUT depth     ; 3.09                        ;
+; Max LUT depth         ; 7.00                        ;
+; Average LUT depth     ; 3.48                        ;
 +-----------------------+-----------------------------+
 
 
@@ -438,7 +517,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:03     ;
 +----------------+--------------+
 
 
@@ -448,10 +527,24 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Sun Feb 15 21:39:24 2026
+    Info: Processing started: Fri Feb 20 19:06:48 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ADXL345 -c ADXL345
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file adxl345_and_lcd.bdf
+    Info (12023): Found entity 1: ADXL345_and_LCD
+Info (12021): Found 2 design units, including 1 entities, in source file adxl_lcd_bridge.vhd
+    Info (12022): Found design unit 1: ADXL_LCD_BRIDGE-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL_LCD_BRIDGE.vhd Line: 22
+    Info (12023): Found entity 1: ADXL_LCD_BRIDGE File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL_LCD_BRIDGE.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file timer.vhd
+    Info (12022): Found design unit 1: TIMER-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/TIMER.vhd Line: 14
+    Info (12023): Found entity 1: TIMER File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/TIMER.vhd Line: 5
+Info (12021): Found 2 design units, including 0 entities, in source file lcd_control.vhd
+    Info (12022): Found design unit 1: LCD_CONTROL File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/LCD_CONTROL.vhd Line: 5
+    Info (12022): Found design unit 2: LCD_CONTROL-body File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/LCD_CONTROL.vhd Line: 41
+Info (12021): Found 2 design units, including 1 entities, in source file lcd_display.vhd
+    Info (12022): Found design unit 1: LCD_DISPLAY-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/LCD_DISPLAY.vhd Line: 21
+    Info (12023): Found entity 1: LCD_DISPLAY File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/LCD_DISPLAY.vhd Line: 6
 Info (12021): Found 2 design units, including 1 entities, in source file spi.vhd
     Info (12022): Found design unit 1: SPI-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/SPI.vhd Line: 36
     Info (12023): Found entity 1: SPI File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/SPI.vhd Line: 6
@@ -461,22 +554,24 @@ Info (12021): Found 2 design units, including 1 entities, in source file adxl345
 Info (12021): Found 2 design units, including 1 entities, in source file spi_driver.vhd
     Info (12022): Found design unit 1: SPI_DRIVER-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/SPI_DRIVER.vhd Line: 36
     Info (12023): Found entity 1: SPI_DRIVER File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/SPI_DRIVER.vhd Line: 5
-Info (12127): Elaborating entity "ADXL345" for the top level hierarchy
-Info (12128): Elaborating entity "SPI_DRIVER" for hierarchy "SPI_DRIVER:SPI_DRIVER_INST" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 100
-Info (12128): Elaborating entity "SPI" for hierarchy "SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/SPI_DRIVER.vhd Line: 95
-Info (13000): Registers with preset signals will power-up high File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/SPI.vhd Line: 58
-Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Info (12127): Elaborating entity "ADXL345_and_LCD" for the top level hierarchy
+Info (12128): Elaborating entity "ADXL345" for hierarchy "ADXL345:inst1"
+Info (12128): Elaborating entity "SPI_DRIVER" for hierarchy "ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/ADXL345.vhd Line: 100
+Info (12128): Elaborating entity "SPI" for hierarchy "ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/SPI_DRIVER.vhd Line: 95
+Info (12128): Elaborating entity "LCD_DISPLAY" for hierarchy "LCD_DISPLAY:inst"
+Info (12128): Elaborating entity "TIMER" for hierarchy "LCD_DISPLAY:inst|TIMER:U_TIMER" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/ADXL345/LCD_DISPLAY.vhd Line: 66
+Info (12128): Elaborating entity "ADXL_LCD_BRIDGE" for hierarchy "ADXL_LCD_BRIDGE:inst3"
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 449 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 3 input pins
-    Info (21059): Implemented 52 output pins
-    Info (21061): Implemented 394 logic cells
+Info (21057): Implemented 628 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 2 input pins
+    Info (21059): Implemented 9 output pins
+    Info (21061): Implemented 617 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4799 megabytes
-    Info: Processing ended: Sun Feb 15 21:39:39 2026
-    Info: Elapsed time: 00:00:15
-    Info: Total CPU time (on all processors): 00:00:34
+    Info: Peak virtual memory: 4821 megabytes
+    Info: Processing ended: Fri Feb 20 19:07:27 2026
+    Info: Elapsed time: 00:00:39
+    Info: Total CPU time (on all processors): 00:01:13
 
 

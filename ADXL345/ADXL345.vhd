@@ -56,7 +56,7 @@ ARCHITECTURE COMP OF ADXL345 IS
 
     CONSTANT CPOL : STD_LOGIC := '1';
     CONSTANT CPHA : STD_LOGIC := '1';
-    CONSTANT CLK_DIVI : INTEGER := 5_000_000;
+    CONSTANT CLK_DIVI : INTEGER := 25; -- ~1 MHz SPI @ 50 MHz sys clk
     CONSTANT CS_SELECT : INTEGER := 0;
 
     SIGNAL R_W : STD_LOGIC := '0';
@@ -125,7 +125,7 @@ BEGIN
 
     PROCESS (CLK, RESET)
     BEGIN
-        IF RESET = '1' THEN
+        IF RESET = '0' THEN
             STATE <= IDLE;
             REG_ADDR <= (OTHERS => '0');
             DATA <= (OTHERS => '0');
@@ -133,6 +133,16 @@ BEGIN
             Y_OUT <= (OTHERS => '0');
             Z_OUT <= (OTHERS => '0');
             READY <= '0';
+            R_W <= '0';
+            N <= 1;
+            START_SHOT <= '0';
+            INIT_CYCLES <= 0;
+            CAPUTURE_CYCLES <= 0;
+            DELAY <= 0;
+            DONE_PREV <= '0';
+            DONE_PULSE <= '0';
+            RX_VALID_PREV <= '0';
+            RX_VALID_PULSE <= '0';
         ELSIF RISING_EDGE(CLK) THEN
 
             START_SHOT <= '0';
@@ -210,9 +220,9 @@ BEGIN
                             Z_OUT(7 DOWNTO 0) <= RX_DATA;
                         WHEN 5 =>
                             Z_OUT(15 DOWNTO 8) <= RX_DATA;
-                        WHEN OTHERS =>
+                        WHEN OTHERS => NULL;
                     END CASE;
-                    IF CAPUTURE_CYCLES < 6 THEN
+                    IF CAPUTURE_CYCLES < 5 THEN
                         CAPUTURE_CYCLES <= CAPUTURE_CYCLES + 1;
                         STATE <= WAIT_READ;
                     ELSE

@@ -1,0 +1,91 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.NUMERIC_STD.ALL;
+
+ENTITY ADXL_LCD_BRIDGE IS
+    GENERIC (
+        LCD_CHARS : POSITIVE := 16
+    );
+    PORT (
+        CLK : IN STD_LOGIC;
+        RESET : IN STD_LOGIC;
+
+        X_IN : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+        Y_IN : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+        Z_IN : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+        READY : IN STD_LOGIC;
+
+        LINE1_VEC : OUT STD_LOGIC_VECTOR(8 * LCD_CHARS - 1 DOWNTO 0)
+    );
+END ENTITY;
+
+ARCHITECTURE COMP OF ADXL_LCD_BRIDGE IS
+    TYPE MACHINE IS (IDLE, UPDATE);
+    SIGNAL STATE : MACHINE := IDLE;
+    SIGNAL VECTOR_TEMP : STD_LOGIC_VECTOR(8 * LCD_CHARS - 1 DOWNTO 0) := X"20202020202020202020202020202020";
+
+    SIGNAL READY_SYNC1, READY_SYNC2 : STD_LOGIC := '0';
+    SIGNAL READY_RISE : STD_LOGIC;
+
+    FUNCTION HEX_TO_ASCII(nibble : STD_LOGIC_VECTOR(3 DOWNTO 0)) RETURN STD_LOGIC_VECTOR IS
+    BEGIN
+        CASE nibble IS
+            WHEN "0000" => RETURN x"30"; -- 0
+            WHEN "0001" => RETURN x"31"; -- 1
+            WHEN "0010" => RETURN x"32";
+            WHEN "0011" => RETURN x"33";
+            WHEN "0100" => RETURN x"34";
+            WHEN "0101" => RETURN x"35";
+            WHEN "0110" => RETURN x"36";
+            WHEN "0111" => RETURN x"37";
+            WHEN "1000" => RETURN x"38";
+            WHEN "1001" => RETURN x"39";
+            WHEN "1010" => RETURN x"41"; -- A
+            WHEN "1011" => RETURN x"42";
+            WHEN "1100" => RETURN x"43";
+            WHEN "1101" => RETURN x"44";
+            WHEN "1110" => RETURN x"45";
+            WHEN OTHERS => RETURN x"46"; -- F
+        END CASE;
+    END FUNCTION;
+
+    FUNCTION BIN_TO_ASCII_VECTOR(bin : STD_LOGIC_VECTOR(15 DOWNTO 0)) RETURN STD_LOGIC_VECTOR IS
+        VARIABLE ASCCI_VECTOR : STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
+    BEGIN
+        ASCCI_VECTOR(31 DOWNTO 24) := HEX_TO_ASCII(bin(15 DOWNTO 12));
+        ASCCI_VECTOR(23 DOWNTO 16) := HEX_TO_ASCII(bin(11 DOWNTO 8));
+        ASCCI_VECTOR(15 DOWNTO 8) := HEX_TO_ASCII(bin(7 DOWNTO 4));
+        ASCCI_VECTOR(7 DOWNTO 0) := HEX_TO_ASCII(bin(3 DOWNTO 0));
+        RETURN ASCCI_VECTOR;
+    END FUNCTION;
+BEGIN
+    PROCESS (CLK)
+    BEGIN
+        IF rising_edge(CLK) THEN
+
+            IF RESET = '0' THEN
+                VECTOR_TEMP <= X"20202020202020202020202020202020"; -- espacios ASCII
+                READY_SYNC1 <= '0';
+                READY_SYNC2 <= '0';
+                READY_RISE <= '0';
+
+            ELSE
+                READY_SYNC1 <= READY;
+                READY_SYNC2 <= READY_SYNC1;
+                READY_RISE <= READY_SYNC1 AND NOT READY_SYNC2;
+
+                IF READY_RISE = '1' THEN
+                    VECTOR_TEMP(127 DOWNTO 96) <= BIN_TO_ASCII_VECTOR(X_IN);
+                    VECTOR_TEMP(95 DOWNTO 88) <= x"20";
+                    VECTOR_TEMP(87 DOWNTO 80) <= x"20";
+                    VECTOR_TEMP(79 DOWNTO 48) <= BIN_TO_ASCII_VECTOR(Y_IN);
+                    VECTOR_TEMP(47 DOWNTO 40) <= x"20";
+                    VECTOR_TEMP(39 DOWNTO 32) <= x"20";
+                    VECTOR_TEMP(31 DOWNTO 0) <= BIN_TO_ASCII_VECTOR(Z_IN);
+                END IF;
+
+            END IF;
+        END IF;
+    END PROCESS;
+    LINE1_VEC <= VECTOR_TEMP;
+END ARCHITECTURE;

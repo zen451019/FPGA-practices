@@ -113,7 +113,7 @@ BEGIN
 
     PROCESS(CLK, RESET)
     BEGIN
-        IF RESET = '1' THEN
+        IF RESET = '0' THEN
 
             STATE <= IDLE;
             SPI_FIRE <= '0';
@@ -183,6 +183,14 @@ BEGIN
                     END IF;
 
                 WHEN WAIT_SPI_RISE =>
+                    -- Pre-load next byte on DATA_WR so SPI grabs correct
+                    -- data when A_CON='1' continues to the next byte
+                    IF R_W_REG = '1' THEN
+                        SPI_DATA_WR <= DUMMY_BYTE;
+                    ELSE
+                        SPI_DATA_WR <= DATA_REG;
+                    END IF;
+
                     IF SPI_BUSY = '1' THEN
                         STATE <= WAIT_SPI_LOW;
                     END IF;

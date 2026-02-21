@@ -1,0 +1,3 @@
+work lcd_control.vhd
+work timer.vhd
+work lcd_display.vhd

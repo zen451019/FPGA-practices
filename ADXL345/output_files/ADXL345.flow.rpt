@@ -1,5 +1,5 @@
 Flow report for ADXL345
-Sun Feb 15 21:39:39 2026
+Fri Feb 20 19:07:57 2026
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -40,23 +40,23 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Sun Feb 15 21:39:39 2026       ;
+; Flow Status                        ; Successful - Fri Feb 20 19:07:51 2026       ;
 ; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; ADXL345                                     ;
-; Top-level Entity Name              ; ADXL345                                     ;
+; Top-level Entity Name              ; ADXL345_and_LCD                             ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M08SCE144C8G                              ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 389                                         ;
-;     Total combinational functions  ; 297                                         ;
-;     Dedicated logic registers      ; 237                                         ;
-; Total registers                    ; 237                                         ;
-; Total pins                         ; 55                                          ;
+; Total logic elements               ; 592 / 8,064 ( 7 % )                         ;
+;     Total combinational functions  ; 506 / 8,064 ( 6 % )                         ;
+;     Dedicated logic registers      ; 352 / 8,064 ( 4 % )                         ;
+; Total registers                    ; 352                                         ;
+; Total pins                         ; 11 / 101 ( 11 % )                           ;
 ; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 0                                           ;
-; Embedded Multiplier 9-bit elements ; 0                                           ;
-; Total PLLs                         ; 0                                           ;
-; UFM blocks                         ; 0                                           ;
+; Total memory bits                  ; 0 / 387,072 ( 0 % )                         ;
+; Embedded Multiplier 9-bit elements ; 0 / 48 ( 0 % )                              ;
+; Total PLLs                         ; 0 / 1 ( 0 % )                               ;
+; UFM blocks                         ; 0 / 1 ( 0 % )                               ;
 ; ADC blocks                         ; 0                                           ;
 +------------------------------------+---------------------------------------------+
 
@@ -66,54 +66,67 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 02/15/2026 21:39:24 ;
+; Start date & time ; 02/20/2026 19:06:49 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; ADXL345             ;
 +-------------------+---------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                        ;
-+-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
-+-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 88972150710489.177120956422880         ; --            ; --          ; --         ;
-; FLOW_ENABLE_POWER_ANALYZER          ; On                                     ; Off           ; --          ; --         ;
-; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
-; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
-; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                    ; --            ; --          ; --         ;
-; POWER_DEFAULT_INPUT_IO_TOGGLE_RATE  ; 12.5 %                                 ; 12.5%         ; --          ; --         ;
-; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --            ; --          ; --         ;
-; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --            ; --          ; --         ;
-+-------------------------------------+----------------------------------------+---------------+-------------+------------+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                            ;
++-------------------------------------+----------------------------------------+---------------+-----------------+------------+
+; Assignment Name                     ; Value                                  ; Default Value ; Entity Name     ; Section Id ;
++-------------------------------------+----------------------------------------+---------------+-----------------+------------+
+; COMPILER_SIGNATURE_ID               ; 88972150710489.177163240817656         ; --            ; --              ; --         ;
+; FLOW_ENABLE_POWER_ANALYZER          ; On                                     ; Off           ; --              ; --         ;
+; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --              ; --         ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --              ; --         ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; ADXL345_and_LCD ; Top        ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; ADXL345_and_LCD ; Top        ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; ADXL345_and_LCD ; Top        ;
+; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                    ; --            ; --              ; --         ;
+; POWER_DEFAULT_INPUT_IO_TOGGLE_RATE  ; 12.5 %                                 ; 12.5%         ; --              ; --         ;
+; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --            ; --              ; --         ;
+; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --            ; --              ; --         ;
+; TOP_LEVEL_ENTITY                    ; ADXL345_and_LCD                        ; ADXL345       ; --              ; --         ;
++-------------------------------------+----------------------------------------+---------------+-----------------+------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------+
-; Flow Elapsed Time                                                                                                        ;
-+----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
-+----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:15     ; 1.0                     ; 4799 MB             ; 00:00:34                           ;
-; Total                ; 00:00:15     ; --                      ; --                  ; 00:00:34                           ;
-+----------------------+--------------+-------------------------+---------------------+------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                             ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis      ; 00:00:38     ; 1.0                     ; 4821 MB             ; 00:01:12                           ;
+; Fitter                    ; 00:00:14     ; 1.1                     ; 5573 MB             ; 00:00:15                           ;
+; Assembler                 ; 00:00:02     ; 1.0                     ; 4686 MB             ; 00:00:02                           ;
+; Power Analyzer            ; 00:00:04     ; 1.3                     ; 4827 MB             ; 00:00:04                           ;
+; TimeQuest Timing Analyzer ; 00:00:05     ; 1.2                     ; 4793 MB             ; 00:00:05                           ;
+; Total                     ; 00:01:03     ; --                      ; --                  ; 00:01:38                           ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+------------------------------------------------------------------------------------+
-; Flow OS Summary                                                                    ;
-+----------------------+------------------+------------+------------+----------------+
-; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
-+----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; PC-PC            ; Windows 10 ; 10.0       ; x86_64         ;
-+----------------------+------------------+------------+------------+----------------+
++-----------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                         ;
++---------------------------+------------------+------------+------------+----------------+
+; Module Name               ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
++---------------------------+------------------+------------+------------+----------------+
+; Analysis & Synthesis      ; PC-PC            ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter                    ; PC-PC            ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler                 ; PC-PC            ; Windows 10 ; 10.0       ; x86_64         ;
+; Power Analyzer            ; PC-PC            ; Windows 10 ; 10.0       ; x86_64         ;
+; TimeQuest Timing Analyzer ; PC-PC            ; Windows 10 ; 10.0       ; x86_64         ;
++---------------------------+------------------+------------+------------+----------------+
 
 
 ------------
 ; Flow Log ;
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off ADXL345 -c ADXL345
+quartus_fit --read_settings_files=off --write_settings_files=off ADXL345 -c ADXL345
+quartus_asm --read_settings_files=off --write_settings_files=off ADXL345 -c ADXL345
+quartus_pow --read_settings_files=off --write_settings_files=off ADXL345 -c ADXL345
+quartus_sta ADXL345 -c ADXL345
 
 
 
