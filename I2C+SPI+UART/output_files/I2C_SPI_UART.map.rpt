@@ -1,5 +1,5 @@
 Analysis & Synthesis report for I2C_SPI_UART
-Thu Feb 26 19:23:39 2026
+Sun Mar 01 16:46:17 2026
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -13,20 +13,38 @@ Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. Analysis & Synthesis IP Cores Summary
-  9. State Machine - |I2C_SPI_UART|STATE
- 10. Registers Removed During Synthesis
- 11. Removed Registers Triggering Further Register Optimizations
- 12. General Register Statistics
- 13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Source assignments for FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|altsyncram_cvl1:FIFOram
- 15. Parameter Settings for User Entity Instance: Top-level Entity: |I2C_SPI_UART
- 16. Parameter Settings for User Entity Instance: FIFO:FIFO_inst|scfifo:scfifo_component
- 17. scfifo Parameter Settings by Entity Instance
- 18. Port Connectivity Checks: "FIFO:FIFO_inst"
- 19. Post-Synthesis Netlist Statistics for Top Partition
- 20. Elapsed Time Per Partition
- 21. Analysis & Synthesis Messages
+  8. Analysis & Synthesis RAM Summary
+  9. Analysis & Synthesis IP Cores Summary
+ 10. State Machine - |I2C_SPI_UART_BLOCK|SINGLE_SHOT:inst2|STATE
+ 11. State Machine - |I2C_SPI_UART_BLOCK|SINGLE_SHOT:inst2|ADS1115:U_ADS1115|STATE_AFTER_WAIT
+ 12. State Machine - |I2C_SPI_UART_BLOCK|SINGLE_SHOT:inst2|ADS1115:U_ADS1115|STATE
+ 13. State Machine - |I2C_SPI_UART_BLOCK|SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C|STATE
+ 14. State Machine - |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|RETURN_STATE
+ 15. State Machine - |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|STATE
+ 16. State Machine - |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|UART_STATE
+ 17. State Machine - |I2C_SPI_UART_BLOCK|UART:inst6|STATE
+ 18. State Machine - |I2C_SPI_UART_BLOCK|UART:inst6|UART_TX:UART_TX_INST|STATE
+ 19. State Machine - |I2C_SPI_UART_BLOCK|ADXL345:inst1|STATE
+ 20. State Machine - |I2C_SPI_UART_BLOCK|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|STATE
+ 21. Registers Removed During Synthesis
+ 22. Removed Registers Triggering Further Register Optimizations
+ 23. General Register Statistics
+ 24. Inverted Register Statistics
+ 25. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 26. Source assignments for I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|altsyncram_cvl1:FIFOram
+ 27. Parameter Settings for User Entity Instance: ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST
+ 28. Parameter Settings for User Entity Instance: ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST
+ 29. Parameter Settings for User Entity Instance: I2C_SPI_UART:inst
+ 30. Parameter Settings for User Entity Instance: I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component
+ 31. Parameter Settings for User Entity Instance: SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C
+ 32. scfifo Parameter Settings by Entity Instance
+ 33. Port Connectivity Checks: "SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C"
+ 34. Port Connectivity Checks: "SINGLE_SHOT:inst2|ADS1115:U_ADS1115"
+ 35. Port Connectivity Checks: "UART:inst6|BAUD_GEN:BAUD_GEN_INST"
+ 36. Port Connectivity Checks: "ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST"
+ 37. Post-Synthesis Netlist Statistics for Top Partition
+ 38. Elapsed Time Per Partition
+ 39. Analysis & Synthesis Messages
 
 
 
@@ -52,18 +70,18 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Feb 26 19:23:39 2026       ;
+; Analysis & Synthesis Status        ; Successful - Sun Mar 01 16:46:16 2026       ;
 ; Quartus Prime Version              ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; I2C_SPI_UART                                ;
-; Top-level Entity Name              ; I2C_SPI_UART                                ;
+; Top-level Entity Name              ; I2C_SPI_UART_BLOCK                          ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 0                                           ;
-;     Total combinational functions  ; 0                                           ;
-;     Dedicated logic registers      ; 0                                           ;
-; Total registers                    ; 0                                           ;
-; Total pins                         ; 77                                          ;
+; Total logic elements               ; 782                                         ;
+;     Total combinational functions  ; 721                                         ;
+;     Dedicated logic registers      ; 426                                         ;
+; Total registers                    ; 426                                         ;
+; Total pins                         ; 9                                           ;
 ; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 0                                           ;
+; Total memory bits                  ; 1,024                                       ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
 ; Total PLLs                         ; 0                                           ;
 ; UFM blocks                         ; 0                                           ;
@@ -77,7 +95,7 @@ refer to the applicable agreement for further details.
 ; Option                                                                     ; Setting            ; Default Value      ;
 +----------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                     ; 10M08SCE144C8G     ;                    ;
-; Top-level entity name                                                      ; I2C_SPI_UART       ; I2C_SPI_UART       ;
+; Top-level entity name                                                      ; I2C_SPI_UART_BLOCK ; I2C_SPI_UART       ;
 ; Family name                                                                ; MAX 10             ; Cyclone V          ;
 ; Use smart compilation                                                      ; Off                ; Off                ;
 ; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
@@ -166,164 +184,373 @@ refer to the applicable agreement for further details.
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
+; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processor 3            ;   0.0%      ;
+;     Processor 4            ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                         ;
-+----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                     ; Library ;
-+----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------------------+---------+
-; I2C_SPI_UART.vhd                 ; yes             ; User VHDL File               ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd       ;         ;
-; FIFO.vhd                         ; yes             ; User Wizard-Generated File   ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/FIFO.vhd               ;         ;
-; scfifo.tdf                       ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/scfifo.tdf                                ;         ;
-; a_regfifo.inc                    ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/a_regfifo.inc                             ;         ;
-; a_dpfifo.inc                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/a_dpfifo.inc                              ;         ;
-; a_i2fifo.inc                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/a_i2fifo.inc                              ;         ;
-; a_fffifo.inc                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/a_fffifo.inc                              ;         ;
-; a_f2fifo.inc                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/a_f2fifo.inc                              ;         ;
-; aglobal171.inc                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/aglobal171.inc                            ;         ;
-; db/scfifo_ep11.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/scfifo_ep11.tdf     ;         ;
-; db/a_dpfifo_lv11.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/a_dpfifo_lv11.tdf   ;         ;
-; db/a_fefifo_u7e.tdf              ; yes             ; Auto-Generated Megafunction  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/a_fefifo_u7e.tdf    ;         ;
-; db/cntr_437.tdf                  ; yes             ; Auto-Generated Megafunction  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/cntr_437.tdf        ;         ;
-; db/altsyncram_cvl1.tdf           ; yes             ; Auto-Generated Megafunction  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/altsyncram_cvl1.tdf ;         ;
-; db/cntr_o2b.tdf                  ; yes             ; Auto-Generated Megafunction  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/cntr_o2b.tdf        ;         ;
-+----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------------------+---------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                               ;
++----------------------------------+-----------------+------------------------------------+--------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                          ; File Name with Absolute Path                                                                     ; Library ;
++----------------------------------+-----------------+------------------------------------+--------------------------------------------------------------------------------------------------+---------+
+; UART_TX.vhd                      ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/UART_TX.vhd            ;         ;
+; UART.vhd                         ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/UART.vhd               ;         ;
+; BAUD_GEN.vhd                     ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/BAUD_GEN.vhd           ;         ;
+; SPI_DRIVER.vhd                   ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/SPI_DRIVER.vhd         ;         ;
+; SPI.vhd                          ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/SPI.vhd                ;         ;
+; SINGLE_SHOT.vhd                  ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/SINGLE_SHOT.vhd        ;         ;
+; I2C.vhd                          ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C.vhd                ;         ;
+; ADXL345.vhd                      ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/ADXL345.vhd            ;         ;
+; ADS1115.vhd                      ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/ADS1115.vhd            ;         ;
+; I2C_SPI_UART.vhd                 ; yes             ; User VHDL File                     ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd       ;         ;
+; FIFO.vhd                         ; yes             ; User Wizard-Generated File         ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/FIFO.vhd               ;         ;
+; I2C_SPI_UART_BLOCK.bdf           ; yes             ; User Block Diagram/Schematic File  ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART_BLOCK.bdf ;         ;
+; scfifo.tdf                       ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/scfifo.tdf                                ;         ;
+; a_regfifo.inc                    ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/a_regfifo.inc                             ;         ;
+; a_dpfifo.inc                     ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/a_dpfifo.inc                              ;         ;
+; a_i2fifo.inc                     ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/a_i2fifo.inc                              ;         ;
+; a_fffifo.inc                     ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/a_fffifo.inc                              ;         ;
+; a_f2fifo.inc                     ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/a_f2fifo.inc                              ;         ;
+; aglobal171.inc                   ; yes             ; Megafunction                       ; c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/aglobal171.inc                            ;         ;
+; db/scfifo_ep11.tdf               ; yes             ; Auto-Generated Megafunction        ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/scfifo_ep11.tdf     ;         ;
+; db/a_dpfifo_lv11.tdf             ; yes             ; Auto-Generated Megafunction        ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/a_dpfifo_lv11.tdf   ;         ;
+; db/a_fefifo_u7e.tdf              ; yes             ; Auto-Generated Megafunction        ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/a_fefifo_u7e.tdf    ;         ;
+; db/cntr_437.tdf                  ; yes             ; Auto-Generated Megafunction        ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/cntr_437.tdf        ;         ;
+; db/altsyncram_cvl1.tdf           ; yes             ; Auto-Generated Megafunction        ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/altsyncram_cvl1.tdf ;         ;
+; db/cntr_o2b.tdf                  ; yes             ; Auto-Generated Megafunction        ; C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/cntr_o2b.tdf        ;         ;
++----------------------------------+-----------------+------------------------------------+--------------------------------------------------------------------------------------------------+---------+
 
 
-+------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                ;
-+---------------------------------------------+--------------+
-; Resource                                    ; Usage        ;
-+---------------------------------------------+--------------+
-;                                             ;              ;
-; Total combinational functions               ; 0            ;
-; Logic element usage by number of LUT inputs ;              ;
-;     -- 4 input functions                    ; 0            ;
-;     -- 3 input functions                    ; 0            ;
-;     -- <=2 input functions                  ; 0            ;
-;                                             ;              ;
-; Logic elements by mode                      ;              ;
-;     -- normal mode                          ; 0            ;
-;     -- arithmetic mode                      ; 0            ;
-;                                             ;              ;
-; Total registers                             ; 0            ;
-;     -- Dedicated logic registers            ; 0            ;
-;     -- I/O registers                        ; 0            ;
-;                                             ;              ;
-; I/O pins                                    ; 77           ;
-;                                             ;              ;
-; Embedded Multiplier 9-bit elements          ; 0            ;
-;                                             ;              ;
-; Maximum fan-out node                        ; SPI_X_OUT[0] ;
-; Maximum fan-out                             ; 1            ;
-; Total fan-out                               ; 77           ;
-; Average fan-out                             ; 0.50         ;
-+---------------------------------------------+--------------+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimated Total logic elements              ; 782       ;
+;                                             ;           ;
+; Total combinational functions               ; 721       ;
+; Logic element usage by number of LUT inputs ;           ;
+;     -- 4 input functions                    ; 277       ;
+;     -- 3 input functions                    ; 118       ;
+;     -- <=2 input functions                  ; 326       ;
+;                                             ;           ;
+; Logic elements by mode                      ;           ;
+;     -- normal mode                          ; 507       ;
+;     -- arithmetic mode                      ; 214       ;
+;                                             ;           ;
+; Total registers                             ; 426       ;
+;     -- Dedicated logic registers            ; 426       ;
+;     -- I/O registers                        ; 0         ;
+;                                             ;           ;
+; I/O pins                                    ; 9         ;
+; Total memory bits                           ; 1024      ;
+;                                             ;           ;
+; Embedded Multiplier 9-bit elements          ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; CLK~input ;
+; Maximum fan-out                             ; 434       ;
+; Total fan-out                               ; 3763      ;
+; Average fan-out                             ; 3.20      ;
++---------------------------------------------+-----------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                 ;
-+----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+--------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name ; Entity Name  ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+--------------+--------------+
-; |I2C_SPI_UART              ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 77   ; 0            ; 0          ; |I2C_SPI_UART       ; I2C_SPI_UART ; work         ;
-+----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+--------------+--------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                                                              ;
++---------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+--------------+
+; Compilation Hierarchy Node                  ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                                                                                                                       ; Entity Name        ; Library Name ;
++---------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+--------------+
+; |I2C_SPI_UART_BLOCK                         ; 721 (0)             ; 426 (0)                   ; 1024        ; 0          ; 0            ; 0       ; 0         ; 9    ; 0            ; 0          ; |I2C_SPI_UART_BLOCK                                                                                                                                                       ; I2C_SPI_UART_BLOCK ; work         ;
+;    |ADXL345:inst1|                          ; 279 (57)            ; 165 (48)                  ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |I2C_SPI_UART_BLOCK|ADXL345:inst1                                                                                                                                         ; ADXL345            ; work         ;
+;       |SPI_DRIVER:SPI_DRIVER_INST|          ; 222 (108)           ; 117 (63)                  ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |I2C_SPI_UART_BLOCK|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST                                                                                                              ; SPI_DRIVER         ; work         ;
+;          |SPI:SPI_INST|                     ; 114 (114)           ; 54 (54)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |I2C_SPI_UART_BLOCK|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST                                                                                                 ; SPI                ; work         ;
+;    |I2C_SPI_UART:inst|                      ; 172 (140)           ; 107 (84)                  ; 1024        ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst                                                                                                                                     ; I2C_SPI_UART       ; work         ;
+;       |FIFO:FIFO_inst|                      ; 32 (0)              ; 23 (0)                    ; 1024        ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|FIFO:FIFO_inst                                                                                                                      ; FIFO               ; work         ;
+;          |scfifo:scfifo_component|          ; 32 (0)              ; 23 (0)                    ; 1024        ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component                                                                                              ; scfifo             ; work         ;
+;             |scfifo_ep11:auto_generated|    ; 32 (0)              ; 23 (0)                    ; 1024        ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated                                                                   ; scfifo_ep11        ; work         ;
+;                |a_dpfifo_lv11:dpfifo|       ; 32 (2)              ; 23 (0)                    ; 1024        ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo                                              ; a_dpfifo_lv11      ; work         ;
+;                   |a_fefifo_u7e:fifo_state| ; 16 (9)              ; 9 (2)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|a_fefifo_u7e:fifo_state                      ; a_fefifo_u7e       ; work         ;
+;                      |cntr_437:count_usedw| ; 7 (7)               ; 7 (7)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|a_fefifo_u7e:fifo_state|cntr_437:count_usedw ; cntr_437           ; work         ;
+;                   |altsyncram_cvl1:FIFOram| ; 0 (0)               ; 0 (0)                     ; 1024        ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|altsyncram_cvl1:FIFOram                      ; altsyncram_cvl1    ; work         ;
+;                   |cntr_o2b:rd_ptr_count|   ; 7 (7)               ; 7 (7)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|cntr_o2b:rd_ptr_count                        ; cntr_o2b           ; work         ;
+;                   |cntr_o2b:wr_ptr|         ; 7 (7)               ; 7 (7)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|cntr_o2b:wr_ptr                              ; cntr_o2b           ; work         ;
+;    |SINGLE_SHOT:inst2|                      ; 174 (5)             ; 88 (5)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |I2C_SPI_UART_BLOCK|SINGLE_SHOT:inst2                                                                                                                                     ; SINGLE_SHOT        ; work         ;
+;       |ADS1115:U_ADS1115|                   ; 169 (81)            ; 83 (50)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |I2C_SPI_UART_BLOCK|SINGLE_SHOT:inst2|ADS1115:U_ADS1115                                                                                                                   ; ADS1115            ; work         ;
+;          |I2C:U_I2C|                        ; 88 (88)             ; 33 (33)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |I2C_SPI_UART_BLOCK|SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C                                                                                                         ; I2C                ; work         ;
+;    |UART:inst6|                             ; 96 (10)             ; 66 (15)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |I2C_SPI_UART_BLOCK|UART:inst6                                                                                                                                            ; UART               ; work         ;
+;       |BAUD_GEN:BAUD_GEN_INST|              ; 65 (65)             ; 33 (33)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |I2C_SPI_UART_BLOCK|UART:inst6|BAUD_GEN:BAUD_GEN_INST                                                                                                                     ; BAUD_GEN           ; work         ;
+;       |UART_TX:UART_TX_INST|                ; 21 (21)             ; 18 (18)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |I2C_SPI_UART_BLOCK|UART:inst6|UART_TX:UART_TX_INST                                                                                                                       ; UART_TX            ; work         ;
++---------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+----------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis IP Cores Summary                                                                          ;
-+--------+--------------+---------+--------------+--------------+------------------------------+-----------------+
-; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance              ; IP Include File ;
-+--------+--------------+---------+--------------+--------------+------------------------------+-----------------+
-; Altera ; FIFO         ; 17.1    ; N/A          ; N/A          ; |I2C_SPI_UART|FIFO:FIFO_inst ; FIFO.vhd        ;
-+--------+--------------+---------+--------------+--------------+------------------------------+-----------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                                                                ;
++---------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; Name                                                                                                                                        ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF  ;
++---------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|altsyncram_cvl1:FIFOram|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 128          ; 8            ; 128          ; 8            ; 1024 ; None ;
++---------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                                                  ;
++--------+--------------+---------+--------------+--------------+------------------------------------------------------+-----------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance                                      ; IP Include File ;
++--------+--------------+---------+--------------+--------------+------------------------------------------------------+-----------------+
+; Altera ; FIFO         ; 17.1    ; N/A          ; N/A          ; |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|FIFO:FIFO_inst ; FIFO.vhd        ;
++--------+--------------+---------+--------------+--------------+------------------------------------------------------+-----------------+
 
 
 Encoding Type:  One-Hot
-+-----------------------------------------------------------------------------------------------------------------+
-; State Machine - |I2C_SPI_UART|STATE                                                                             ;
-+-------------------+------------+----------------+---------------+-------------------+--------------+------------+
-; Name              ; STATE.DONE ; STATE.CHECKSUM ; STATE.PAYLOAD ; STATE.DATA_LENGTH ; STATE.HEADER ; STATE.IDLE ;
-+-------------------+------------+----------------+---------------+-------------------+--------------+------------+
-; STATE.IDLE        ; 0          ; 0              ; 0             ; 0                 ; 0            ; 0          ;
-; STATE.HEADER      ; 0          ; 0              ; 0             ; 0                 ; 1            ; 1          ;
-; STATE.DATA_LENGTH ; 0          ; 0              ; 0             ; 1                 ; 0            ; 1          ;
-; STATE.PAYLOAD     ; 0          ; 0              ; 1             ; 0                 ; 0            ; 1          ;
-; STATE.CHECKSUM    ; 0          ; 1              ; 0             ; 0                 ; 0            ; 1          ;
-; STATE.DONE        ; 1          ; 0              ; 0             ; 0                 ; 0            ; 1          ;
-+-------------------+------------+----------------+---------------+-------------------+--------------+------------+
++-----------------------------------------------------------------------+
+; State Machine - |I2C_SPI_UART_BLOCK|SINGLE_SHOT:inst2|STATE           ;
++--------------------+----------------+--------------------+------------+
+; Name               ; STATE.WAIT_PIN ; STATE.SEND_COMMAND ; STATE.IDLE ;
++--------------------+----------------+--------------------+------------+
+; STATE.IDLE         ; 0              ; 0                  ; 0          ;
+; STATE.SEND_COMMAND ; 0              ; 1                  ; 1          ;
+; STATE.WAIT_PIN     ; 1              ; 0                  ; 1          ;
++--------------------+----------------+--------------------+------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                                                                                                                      ;
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------+
-; Register name                                                                                                                                             ; Reason for Removal                          ;
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------+
-; FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|cntr_o2b:rd_ptr_count|counter_reg_bit[0..6]                        ; Stuck at GND due to stuck port clock_enable ;
-; SPI_BUFFER[0..47]                                                                                                                                         ; Lost fanout                                 ;
-; I2C_BUFFER[0..15]                                                                                                                                         ; Lost fanout                                 ;
-; data_sig[0..7]                                                                                                                                            ; Lost fanout                                 ;
-; CHECKSUM_ACC[0..7]                                                                                                                                        ; Lost fanout                                 ;
-; FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|cntr_o2b:wr_ptr|counter_reg_bit[0..6]                              ; Lost fanout                                 ;
-; FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|a_fefifo_u7e:fifo_state|b_full                                     ; Stuck at VCC due to stuck port data_in      ;
-; PAYLOAD_COUNTER[0..31]                                                                                                                                    ; Stuck at GND due to stuck port clock_enable ;
-; wrreq_sig                                                                                                                                                 ; Stuck at GND due to stuck port data_in      ;
-; FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|a_fefifo_u7e:fifo_state|b_non_empty                                ; Lost fanout                                 ;
-; FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|a_fefifo_u7e:fifo_state|cntr_437:count_usedw|counter_reg_bit[0..6] ; Stuck at GND due to stuck port clock_enable ;
-; PROCESSING_I2C                                                                                                                                            ; Lost fanout                                 ;
-; STATE.DONE                                                                                                                                                ; Stuck at GND due to stuck port data_in      ;
-; SPI_PEDING                                                                                                                                                ; Lost fanout                                 ;
-; I2C_PENDING                                                                                                                                               ; Lost fanout                                 ;
-; SPI_READY_PULSE                                                                                                                                           ; Lost fanout                                 ;
-; NEXT_PRIORITY                                                                                                                                             ; Lost fanout                                 ;
-; I2C_READY_PULSE                                                                                                                                           ; Lost fanout                                 ;
-; SPI_READY_PREV                                                                                                                                            ; Lost fanout                                 ;
-; I2C_READY_PREV                                                                                                                                            ; Lost fanout                                 ;
-; STATE.IDLE                                                                                                                                                ; Lost fanout                                 ;
-; STATE.HEADER                                                                                                                                              ; Lost fanout                                 ;
-; STATE.DATA_LENGTH                                                                                                                                         ; Lost fanout                                 ;
-; STATE.PAYLOAD                                                                                                                                             ; Lost fanout                                 ;
-; STATE.CHECKSUM                                                                                                                                            ; Lost fanout                                 ;
-; Total Number of Removed Registers = 150                                                                                                                   ;                                             ;
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |I2C_SPI_UART_BLOCK|SINGLE_SHOT:inst2|ADS1115:U_ADS1115|STATE_AFTER_WAIT                                                                                                                                ;
++----------------------------------+--------------------------------+--------------------------------+----------------------------+----------------------------------+----------------------------+-----------------------+
+; Name                             ; STATE_AFTER_WAIT.WAIT_I2C_DONE ; STATE_AFTER_WAIT.WAIT_I2C_BUSY ; STATE_AFTER_WAIT.READ_DATA ; STATE_AFTER_WAIT.WAIT_CONVERSION ; STATE_AFTER_WAIT.CONFIGURE ; STATE_AFTER_WAIT.IDLE ;
++----------------------------------+--------------------------------+--------------------------------+----------------------------+----------------------------------+----------------------------+-----------------------+
+; STATE_AFTER_WAIT.IDLE            ; 0                              ; 0                              ; 0                          ; 0                                ; 0                          ; 0                     ;
+; STATE_AFTER_WAIT.CONFIGURE       ; 0                              ; 0                              ; 0                          ; 0                                ; 1                          ; 1                     ;
+; STATE_AFTER_WAIT.WAIT_CONVERSION ; 0                              ; 0                              ; 0                          ; 1                                ; 0                          ; 1                     ;
+; STATE_AFTER_WAIT.READ_DATA       ; 0                              ; 0                              ; 1                          ; 0                                ; 0                          ; 1                     ;
+; STATE_AFTER_WAIT.WAIT_I2C_BUSY   ; 0                              ; 1                              ; 0                          ; 0                                ; 0                          ; 1                     ;
+; STATE_AFTER_WAIT.WAIT_I2C_DONE   ; 1                              ; 0                              ; 0                          ; 0                                ; 0                          ; 1                     ;
++----------------------------------+--------------------------------+--------------------------------+----------------------------+----------------------------------+----------------------------+-----------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                                                                                                                                                                                                                ;
-+---------------------------------------------------------------------------------------------------------------------------------+--------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Register name                                                                                                                   ; Reason for Removal             ; Registers Removed due to This Register                                                                                                                  ;
-+---------------------------------------------------------------------------------------------------------------------------------+--------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
-; FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|a_fefifo_u7e:fifo_state|b_full           ; Stuck at VCC                   ; PAYLOAD_COUNTER[31], PAYLOAD_COUNTER[30], PAYLOAD_COUNTER[29], PAYLOAD_COUNTER[28],                                                                     ;
-;                                                                                                                                 ; due to stuck port data_in      ; PAYLOAD_COUNTER[27], PAYLOAD_COUNTER[26], PAYLOAD_COUNTER[25], PAYLOAD_COUNTER[24],                                                                     ;
-;                                                                                                                                 ;                                ; PAYLOAD_COUNTER[23], PAYLOAD_COUNTER[22], PAYLOAD_COUNTER[21], PAYLOAD_COUNTER[20],                                                                     ;
-;                                                                                                                                 ;                                ; PAYLOAD_COUNTER[19], PAYLOAD_COUNTER[18], PAYLOAD_COUNTER[17], PAYLOAD_COUNTER[16],                                                                     ;
-;                                                                                                                                 ;                                ; PAYLOAD_COUNTER[15], PAYLOAD_COUNTER[14], PAYLOAD_COUNTER[13], PAYLOAD_COUNTER[12],                                                                     ;
-;                                                                                                                                 ;                                ; PAYLOAD_COUNTER[11], PAYLOAD_COUNTER[10], PAYLOAD_COUNTER[9], PAYLOAD_COUNTER[8],                                                                       ;
-;                                                                                                                                 ;                                ; PAYLOAD_COUNTER[7], PAYLOAD_COUNTER[6], PAYLOAD_COUNTER[5], PAYLOAD_COUNTER[4],                                                                         ;
-;                                                                                                                                 ;                                ; PAYLOAD_COUNTER[3], PAYLOAD_COUNTER[2], PAYLOAD_COUNTER[1], PAYLOAD_COUNTER[0],                                                                         ;
-;                                                                                                                                 ;                                ; FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|a_fefifo_u7e:fifo_state|b_non_empty,                             ;
-;                                                                                                                                 ;                                ; FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|a_fefifo_u7e:fifo_state|cntr_437:count_usedw|counter_reg_bit[2], ;
-;                                                                                                                                 ;                                ; FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|a_fefifo_u7e:fifo_state|cntr_437:count_usedw|counter_reg_bit[1], ;
-;                                                                                                                                 ;                                ; FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|a_fefifo_u7e:fifo_state|cntr_437:count_usedw|counter_reg_bit[0], ;
-;                                                                                                                                 ;                                ; PROCESSING_I2C, SPI_PEDING, I2C_PENDING, NEXT_PRIORITY                                                                                                  ;
-; FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|cntr_o2b:rd_ptr_count|counter_reg_bit[6] ; Stuck at GND                   ; data_sig[7], data_sig[6], data_sig[5], data_sig[4], data_sig[3], data_sig[2], data_sig[1],                                                              ;
-;                                                                                                                                 ; due to stuck port clock_enable ; data_sig[0],                                                                                                                                            ;
-;                                                                                                                                 ;                                ; FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|cntr_o2b:wr_ptr|counter_reg_bit[1],                              ;
-;                                                                                                                                 ;                                ; FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|cntr_o2b:wr_ptr|counter_reg_bit[0]                               ;
-; wrreq_sig                                                                                                                       ; Stuck at GND                   ; FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|a_fefifo_u7e:fifo_state|cntr_437:count_usedw|counter_reg_bit[6], ;
-;                                                                                                                                 ; due to stuck port data_in      ; FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|a_fefifo_u7e:fifo_state|cntr_437:count_usedw|counter_reg_bit[5], ;
-;                                                                                                                                 ;                                ; FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|a_fefifo_u7e:fifo_state|cntr_437:count_usedw|counter_reg_bit[4], ;
-;                                                                                                                                 ;                                ; FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|a_fefifo_u7e:fifo_state|cntr_437:count_usedw|counter_reg_bit[3]  ;
-; STATE.DONE                                                                                                                      ; Stuck at GND                   ; SPI_READY_PULSE, I2C_READY_PULSE, SPI_READY_PREV, I2C_READY_PREV                                                                                        ;
-;                                                                                                                                 ; due to stuck port data_in      ;                                                                                                                                                         ;
-+---------------------------------------------------------------------------------------------------------------------------------+--------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |I2C_SPI_UART_BLOCK|SINGLE_SHOT:inst2|ADS1115:U_ADS1115|STATE                                                              ;
++-----------------------+---------------------+---------------------+-----------------+-----------------------+-----------------+------------+
+; Name                  ; STATE.WAIT_I2C_DONE ; STATE.WAIT_I2C_BUSY ; STATE.READ_DATA ; STATE.WAIT_CONVERSION ; STATE.CONFIGURE ; STATE.IDLE ;
++-----------------------+---------------------+---------------------+-----------------+-----------------------+-----------------+------------+
+; STATE.IDLE            ; 0                   ; 0                   ; 0               ; 0                     ; 0               ; 0          ;
+; STATE.CONFIGURE       ; 0                   ; 0                   ; 0               ; 0                     ; 1               ; 1          ;
+; STATE.WAIT_CONVERSION ; 0                   ; 0                   ; 0               ; 1                     ; 0               ; 1          ;
+; STATE.READ_DATA       ; 0                   ; 0                   ; 1               ; 0                     ; 0               ; 1          ;
+; STATE.WAIT_I2C_BUSY   ; 0                   ; 1                   ; 0               ; 0                     ; 0               ; 1          ;
+; STATE.WAIT_I2C_DONE   ; 1                   ; 0                   ; 0               ; 0                     ; 0               ; 1          ;
++-----------------------+---------------------+---------------------+-----------------+-----------------------+-----------------+------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |I2C_SPI_UART_BLOCK|SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C|STATE                                                          ;
++----------------+------------+----------------+----------+----------------+----------+----------------+---------------+-------------+-------------+
+; Name           ; STATE.STOP ; STATE.MSTR_ACK ; STATE.RD ; STATE.SLV_ACK2 ; STATE.WR ; STATE.SLV_ACK1 ; STATE.COMMAND ; STATE.START ; STATE.READY ;
++----------------+------------+----------------+----------+----------------+----------+----------------+---------------+-------------+-------------+
+; STATE.READY    ; 0          ; 0              ; 0        ; 0              ; 0        ; 0              ; 0             ; 0           ; 0           ;
+; STATE.START    ; 0          ; 0              ; 0        ; 0              ; 0        ; 0              ; 0             ; 1           ; 1           ;
+; STATE.COMMAND  ; 0          ; 0              ; 0        ; 0              ; 0        ; 0              ; 1             ; 0           ; 1           ;
+; STATE.SLV_ACK1 ; 0          ; 0              ; 0        ; 0              ; 0        ; 1              ; 0             ; 0           ; 1           ;
+; STATE.WR       ; 0          ; 0              ; 0        ; 0              ; 1        ; 0              ; 0             ; 0           ; 1           ;
+; STATE.SLV_ACK2 ; 0          ; 0              ; 0        ; 1              ; 0        ; 0              ; 0             ; 0           ; 1           ;
+; STATE.RD       ; 0          ; 0              ; 1        ; 0              ; 0        ; 0              ; 0             ; 0           ; 1           ;
+; STATE.MSTR_ACK ; 0          ; 1              ; 0        ; 0              ; 0        ; 0              ; 0             ; 0           ; 1           ;
+; STATE.STOP     ; 1          ; 0              ; 0        ; 0              ; 0        ; 0              ; 0             ; 0           ; 1           ;
++----------------+------------+----------------+----------+----------------+----------+----------------+---------------+-------------+-------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|RETURN_STATE                                                                                                                         ;
++--------------------------+-------------------------+-------------------+-----------------------+----------------------+--------------------------+---------------------+-------------------+
+; Name                     ; RETURN_STATE.WRITE_FIFO ; RETURN_STATE.DONE ; RETURN_STATE.CHECKSUM ; RETURN_STATE.PAYLOAD ; RETURN_STATE.DATA_LENGTH ; RETURN_STATE.HEADER ; RETURN_STATE.IDLE ;
++--------------------------+-------------------------+-------------------+-----------------------+----------------------+--------------------------+---------------------+-------------------+
+; RETURN_STATE.IDLE        ; 0                       ; 0                 ; 0                     ; 0                    ; 0                        ; 0                   ; 0                 ;
+; RETURN_STATE.HEADER      ; 0                       ; 0                 ; 0                     ; 0                    ; 0                        ; 1                   ; 1                 ;
+; RETURN_STATE.DATA_LENGTH ; 0                       ; 0                 ; 0                     ; 0                    ; 1                        ; 0                   ; 1                 ;
+; RETURN_STATE.PAYLOAD     ; 0                       ; 0                 ; 0                     ; 1                    ; 0                        ; 0                   ; 1                 ;
+; RETURN_STATE.CHECKSUM    ; 0                       ; 0                 ; 1                     ; 0                    ; 0                        ; 0                   ; 1                 ;
+; RETURN_STATE.DONE        ; 0                       ; 1                 ; 0                     ; 0                    ; 0                        ; 0                   ; 1                 ;
+; RETURN_STATE.WRITE_FIFO  ; 1                       ; 0                 ; 0                     ; 0                    ; 0                        ; 0                   ; 1                 ;
++--------------------------+-------------------------+-------------------+-----------------------+----------------------+--------------------------+---------------------+-------------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|STATE                                                                        ;
++-------------------+------------------+------------+----------------+---------------+-------------------+--------------+------------+
+; Name              ; STATE.WRITE_FIFO ; STATE.DONE ; STATE.CHECKSUM ; STATE.PAYLOAD ; STATE.DATA_LENGTH ; STATE.HEADER ; STATE.IDLE ;
++-------------------+------------------+------------+----------------+---------------+-------------------+--------------+------------+
+; STATE.IDLE        ; 0                ; 0          ; 0              ; 0             ; 0                 ; 0            ; 0          ;
+; STATE.HEADER      ; 0                ; 0          ; 0              ; 0             ; 0                 ; 1            ; 1          ;
+; STATE.DATA_LENGTH ; 0                ; 0          ; 0              ; 0             ; 1                 ; 0            ; 1          ;
+; STATE.PAYLOAD     ; 0                ; 0          ; 0              ; 1             ; 0                 ; 0            ; 1          ;
+; STATE.CHECKSUM    ; 0                ; 0          ; 1              ; 0             ; 0                 ; 0            ; 1          ;
+; STATE.DONE        ; 0                ; 1          ; 0              ; 0             ; 0                 ; 0            ; 1          ;
+; STATE.WRITE_FIFO  ; 1                ; 0          ; 0              ; 0             ; 0                 ; 0            ; 1          ;
++-------------------+------------------+------------+----------------+---------------+-------------------+--------------+------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|UART_STATE                                                                  ;
++------------------------+------------------------+-------------------+--------------------+--------------------+-------------------+
+; Name                   ; UART_STATE.U_WAIT_UART ; UART_STATE.U_SEND ; UART_STATE.U_LATCH ; UART_STATE.U_RDREQ ; UART_STATE.U_IDLE ;
++------------------------+------------------------+-------------------+--------------------+--------------------+-------------------+
+; UART_STATE.U_IDLE      ; 0                      ; 0                 ; 0                  ; 0                  ; 0                 ;
+; UART_STATE.U_RDREQ     ; 0                      ; 0                 ; 0                  ; 1                  ; 1                 ;
+; UART_STATE.U_LATCH     ; 0                      ; 0                 ; 1                  ; 0                  ; 1                 ;
+; UART_STATE.U_SEND      ; 0                      ; 1                 ; 0                  ; 0                  ; 1                 ;
+; UART_STATE.U_WAIT_UART ; 1                      ; 0                 ; 0                  ; 0                  ; 1                 ;
++------------------------+------------------------+-------------------+--------------------+--------------------+-------------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------+
+; State Machine - |I2C_SPI_UART_BLOCK|UART:inst6|STATE                                          ;
++----------------------+--------------------+----------------------+---------------+------------+
+; Name                 ; STATE.WAIT_TX_DONE ; STATE.WAIT_TX_ACCEPT ; STATE.CAPTURE ; STATE.IDLE ;
++----------------------+--------------------+----------------------+---------------+------------+
+; STATE.IDLE           ; 0                  ; 0                    ; 0             ; 0          ;
+; STATE.CAPTURE        ; 0                  ; 0                    ; 1             ; 1          ;
+; STATE.WAIT_TX_ACCEPT ; 0                  ; 1                    ; 0             ; 1          ;
+; STATE.WAIT_TX_DONE   ; 1                  ; 0                    ; 0             ; 1          ;
++----------------------+--------------------+----------------------+---------------+------------+
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------+
+; State Machine - |I2C_SPI_UART_BLOCK|UART:inst6|UART_TX:UART_TX_INST|STATE ;
++-------------+------------+------------+-------------+---------------------+
+; Name        ; STATE.STOP ; STATE.DATA ; STATE.START ; STATE.IDLE          ;
++-------------+------------+------------+-------------+---------------------+
+; STATE.IDLE  ; 0          ; 0          ; 0           ; 0                   ;
+; STATE.START ; 0          ; 0          ; 1           ; 1                   ;
+; STATE.DATA  ; 0          ; 1          ; 0           ; 1                   ;
+; STATE.STOP  ; 1          ; 0          ; 0           ; 1                   ;
++-------------+------------+------------+-------------+---------------------+
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |I2C_SPI_UART_BLOCK|ADXL345:inst1|STATE                                                                                                             ;
++----------------------+---------------+-----------------+------------------+-----------------+----------------------+------------+----------------------+------------+
+; Name                 ; STATE.CAPTURE ; STATE.WAIT_READ ; STATE.START_READ ; STATE.WAIT_INIT ; STATE.WAIT_INIT_RISE ; STATE.INIT ; STATE.POWER_UP_DELAY ; STATE.IDLE ;
++----------------------+---------------+-----------------+------------------+-----------------+----------------------+------------+----------------------+------------+
+; STATE.IDLE           ; 0             ; 0               ; 0                ; 0               ; 0                    ; 0          ; 0                    ; 0          ;
+; STATE.POWER_UP_DELAY ; 0             ; 0               ; 0                ; 0               ; 0                    ; 0          ; 1                    ; 1          ;
+; STATE.INIT           ; 0             ; 0               ; 0                ; 0               ; 0                    ; 1          ; 0                    ; 1          ;
+; STATE.WAIT_INIT_RISE ; 0             ; 0               ; 0                ; 0               ; 1                    ; 0          ; 0                    ; 1          ;
+; STATE.WAIT_INIT      ; 0             ; 0               ; 0                ; 1               ; 0                    ; 0          ; 0                    ; 1          ;
+; STATE.START_READ     ; 0             ; 0               ; 1                ; 0               ; 0                    ; 0          ; 0                    ; 1          ;
+; STATE.WAIT_READ      ; 0             ; 1               ; 0                ; 0               ; 0                    ; 0          ; 0                    ; 1          ;
+; STATE.CAPTURE        ; 1             ; 0               ; 0                ; 0               ; 0                    ; 0          ; 0                    ; 1          ;
++----------------------+---------------+-----------------+------------------+-----------------+----------------------+------------+----------------------+------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------+
+; State Machine - |I2C_SPI_UART_BLOCK|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|STATE        ;
++---------------------+--------------------+---------------------+-------------+------------+
+; Name                ; STATE.WAIT_SPI_LOW ; STATE.WAIT_SPI_RISE ; STATE.START ; STATE.IDLE ;
++---------------------+--------------------+---------------------+-------------+------------+
+; STATE.IDLE          ; 0                  ; 0                   ; 0           ; 0          ;
+; STATE.START         ; 0                  ; 0                   ; 1           ; 1          ;
+; STATE.WAIT_SPI_RISE ; 0                  ; 1                   ; 0           ; 1          ;
+; STATE.WAIT_SPI_LOW  ; 1                  ; 0                   ; 0           ; 1          ;
++---------------------+--------------------+---------------------+-------------+------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                                                              ;
++---------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+; Register name                                                                                                 ; Reason for Removal                                                              ;
++---------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+; SINGLE_SHOT:inst2|CONFIG_EN                                                                                   ; Lost fanout                                                                     ;
+; SINGLE_SHOT:inst2|CONFIGURED                                                                                  ; Lost fanout                                                                     ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|CONFIGURED                                                                ; Lost fanout                                                                     ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|MAX_WAIT[4..7,11,12,14,15,19..30]                                         ; Stuck at GND due to stuck port data_in                                          ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|CONFIG_REG[14,15]                                                         ; Stuck at VCC due to stuck port data_in                                          ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|CONFIG_REG[9..13]                                                         ; Stuck at GND due to stuck port data_in                                          ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|CONFIG_REG[7,8]                                                           ; Stuck at VCC due to stuck port data_in                                          ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|CONFIG_REG[2..6]                                                          ; Stuck at GND due to stuck port data_in                                          ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|CONFIG_REG[0,1]                                                           ; Stuck at VCC due to stuck port data_in                                          ;
+; I2C_SPI_UART:inst|SPI_ACTIVE_BUFFER[0,3,4,7,9,11,13,15..17,19..21,23,26,27,30..32,34..36,38,39,41..43,45..47] ; Stuck at GND due to stuck port data_in                                          ;
+; I2C_SPI_UART:inst|I2C_ACTIVE_BUFFER[0,1,3,6..8,10,11,13..15]                                                  ; Stuck at GND due to stuck port data_in                                          ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|BIT_COUNT[0..3]                                         ; Stuck at GND due to stuck port data_in                                          ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|CLK_COUNT[1,2,5..30]                                    ; Stuck at GND due to stuck port data_in                                          ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|CLK_COUNT[0]                                            ; Stuck at VCC due to stuck port data_in                                          ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|MAX_WAIT[31]                                                              ; Merged with SINGLE_SHOT:inst2|ADS1115:U_ADS1115|MAX_WAIT[0]                     ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|MAX_WAIT[1..3,8,9,13,16..18]                                              ; Merged with SINGLE_SHOT:inst2|ADS1115:U_ADS1115|MAX_WAIT[10]                    ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C|ADDR_RW[7]                                                      ; Merged with SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C|ADDR_RW[4]            ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C|ADDR_RW[2,3,5,6]                                                ; Merged with SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C|ADDR_RW[1]            ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|N_REG[2]                                                             ; Merged with ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|N_REG[1]                   ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|R_W_REG                                                              ; Merged with ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|N_REG[1]                   ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|S_SLAVE[0]                                              ; Merged with ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|CLK_COUNT[31] ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|CLK_COUNT[3,4]                                          ; Merged with ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|BIT_COUNT[4]  ;
+; UART:inst6|BAUD_GEN:BAUD_GEN_INST|ACC[1..3]                                                                   ; Merged with UART:inst6|BAUD_GEN:BAUD_GEN_INST|ACC[0]                            ;
+; ADXL345:inst1|N[3..9,11..31]                                                                                  ; Merged with ADXL345:inst1|N[10]                                                 ;
+; ADXL345:inst1|N[2]                                                                                            ; Merged with ADXL345:inst1|N[1]                                                  ;
+; ADXL345:inst1|R_W                                                                                             ; Merged with ADXL345:inst1|N[1]                                                  ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI_DATA_WR[7]                                                       ; Merged with ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI_DATA_WR[6]             ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|DATA_REG[4..7]                                                       ; Merged with ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|DATA_REG[2]                ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|REG_ADDR_REG[6,7]                                                    ; Merged with ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|REG_ADDR_REG[1]            ;
+; ADXL345:inst1|DATA[4..7]                                                                                      ; Merged with ADXL345:inst1|DATA[2]                                               ;
+; ADXL345:inst1|REG_ADDR[6,7]                                                                                   ; Merged with ADXL345:inst1|REG_ADDR[1]                                           ;
+; I2C_SPI_UART:inst|SPI_ACTIVE_BUFFER[1,2,5,6,8,12,14,18,22,24,25,28,29,33,37,40,44]                            ; Merged with I2C_SPI_UART:inst|SPI_ACTIVE_BUFFER[10]                             ;
+; I2C_SPI_UART:inst|I2C_ACTIVE_BUFFER[2,4,5,9]                                                                  ; Merged with I2C_SPI_UART:inst|I2C_ACTIVE_BUFFER[12]                             ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|REG_ADDR_REG[3]                                                      ; Merged with ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|REG_ADDR_REG[2]            ;
+; ADXL345:inst1|REG_ADDR[3]                                                                                     ; Merged with ADXL345:inst1|REG_ADDR[2]                                           ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|N_REG[3..9,11..30]                                                   ; Merged with ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|N_REG[10]                  ;
+; UART:inst6|BAUD_GEN:BAUD_GEN_INST|ACC[0]                                                                      ; Stuck at GND due to stuck port data_in                                          ;
+; ADXL345:inst1|DATA[2]                                                                                         ; Stuck at GND due to stuck port data_in                                          ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|DATA_REG[2]                                                          ; Stuck at GND due to stuck port data_in                                          ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|DATA_WR[2..4]                                                             ; Merged with SINGLE_SHOT:inst2|ADS1115:U_ADS1115|DATA_WR[5]                      ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C|ADDR_RW[1]                                                      ; Stuck at GND due to stuck port data_in                                          ;
+; ADXL345:inst1|N[10]                                                                                           ; Stuck at GND due to stuck port data_in                                          ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|DATA_WR[5]                                                                ; Stuck at GND due to stuck port data_in                                          ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|N_REG[10]                                                            ; Stuck at GND due to stuck port data_in                                          ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C|DATA_TX[2..5]                                                   ; Stuck at GND due to stuck port data_in                                          ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C|ADDR_RW[4]                                                      ; Stuck at VCC due to stuck port data_in                                          ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|STATE_AFTER_WAIT.IDLE                                                     ; Lost fanout                                                                     ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|STATE_AFTER_WAIT.WAIT_CONVERSION                                          ; Lost fanout                                                                     ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|STATE_AFTER_WAIT.WAIT_I2C_BUSY                                            ; Lost fanout                                                                     ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|STATE_AFTER_WAIT.WAIT_I2C_DONE                                            ; Lost fanout                                                                     ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|CLK_COUNT[31]                                           ; Merged with ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|BIT_COUNT[4]  ;
+; I2C_SPI_UART:inst|RETURN_STATE.HEADER                                                                         ; Merged with I2C_SPI_UART:inst|RETURN_STATE.CHECKSUM                             ;
+; I2C_SPI_UART:inst|RETURN_STATE.WRITE_FIFO                                                                     ; Merged with I2C_SPI_UART:inst|RETURN_STATE.CHECKSUM                             ;
+; ADXL345:inst1|STATE.WAIT_INIT_RISE                                                                            ; Stuck at GND due to stuck port data_in                                          ;
+; I2C_SPI_UART:inst|RETURN_STATE.CHECKSUM                                                                       ; Stuck at GND due to stuck port data_in                                          ;
+; I2C_SPI_UART:inst|UART_STATE.U_RDREQ                                                                          ; Merged with I2C_SPI_UART:inst|rdreq_sig                                         ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|MAX_WAIT[0]                                                               ; Stuck at GND due to stuck port data_in                                          ;
+; Total Number of Removed Registers = 255                                                                       ;                                                                                 ;
++---------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                              ;
++--------------------------------------------------+---------------------------+-----------------------------------------------------------+
+; Register name                                    ; Reason for Removal        ; Registers Removed due to This Register                    ;
++--------------------------------------------------+---------------------------+-----------------------------------------------------------+
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|MAX_WAIT[30] ; Stuck at GND              ; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|DATA_WR[5],           ;
+;                                                  ; due to stuck port data_in ; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C|DATA_TX[5], ;
+;                                                  ;                           ; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C|DATA_TX[4], ;
+;                                                  ;                           ; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C|DATA_TX[3], ;
+;                                                  ;                           ; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C|DATA_TX[2]  ;
+; SINGLE_SHOT:inst2|CONFIG_EN                      ; Lost Fanouts              ; SINGLE_SHOT:inst2|CONFIGURED                              ;
+; ADXL345:inst1|DATA[2]                            ; Stuck at GND              ; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|DATA_REG[2]      ;
+;                                                  ; due to stuck port data_in ;                                                           ;
+; ADXL345:inst1|N[10]                              ; Stuck at GND              ; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|N_REG[10]        ;
+;                                                  ; due to stuck port data_in ;                                                           ;
++--------------------------------------------------+---------------------------+-----------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -331,98 +558,240 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 0     ;
-; Number of registers using Synchronous Clear  ; 0     ;
-; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 0     ;
+; Total registers                              ; 426   ;
+; Number of registers using Synchronous Clear  ; 98    ;
+; Number of registers using Synchronous Load   ; 5     ;
+; Number of registers using Asynchronous Clear ; 285   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Clock Enable       ; 270   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 8:1                ; 6 bits    ; 30 LEs        ; 12 LEs               ; 18 LEs                 ; No         ; |I2C_SPI_UART|Selector0    ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
++---------------------------------------------------------------------------+
+; Inverted Register Statistics                                              ;
++-----------------------------------------------------------------+---------+
+; Inverted Register                                               ; Fan out ;
++-----------------------------------------------------------------+---------+
+; UART:inst6|UART_TX:UART_TX_INST|TX_REG                          ; 2       ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|CS[0]     ; 3       ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|COUNT[31] ; 2       ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|COUNT[0]  ; 4       ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|N_REG[31]              ; 5       ;
+; ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|N_REG[0]               ; 2       ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C|SDA_INT           ; 2       ;
+; ADXL345:inst1|N[0]                                              ; 2       ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C|BIT_CNT[2]        ; 10      ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C|BIT_CNT[1]        ; 12      ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C|BIT_CNT[0]        ; 13      ;
+; SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C|BUSY              ; 11      ;
+; Total number of inverted registers = 12                         ;         ;
++-----------------------------------------------------------------+---------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------+
-; Source assignments for FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|altsyncram_cvl1:FIFOram ;
-+---------------------------------+--------------------+------+-------------------------------------------------------------------------+
-; Assignment                      ; Value              ; From ; To                                                                      ;
-+---------------------------------+--------------------+------+-------------------------------------------------------------------------+
-; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                       ;
-+---------------------------------+--------------------+------+-------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------+
+; 3:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |I2C_SPI_UART_BLOCK|SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C|DATA_TX[4]         ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |I2C_SPI_UART_BLOCK|ADXL345:inst1|DATA[1]                                            ;
+; 4:1                ; 30 bits   ; 60 LEs        ; 60 LEs               ; 0 LEs                  ; Yes        ; |I2C_SPI_UART_BLOCK|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|COUNT[7]   ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |I2C_SPI_UART_BLOCK|UART:inst6|BAUD_GEN:BAUD_GEN_INST|DIV16_CNT[2]                   ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |I2C_SPI_UART_BLOCK|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|COUNT_T[0] ;
+; 5:1                ; 7 bits    ; 21 LEs        ; 7 LEs                ; 14 LEs                 ; Yes        ; |I2C_SPI_UART_BLOCK|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|TX_DATA[6] ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |I2C_SPI_UART_BLOCK|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI_DATA_WR[5]          ;
+; 5:1                ; 20 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |I2C_SPI_UART_BLOCK|ADXL345:inst1|DELAY[18]                                          ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 32 LEs               ; 64 LEs                 ; Yes        ; |I2C_SPI_UART_BLOCK|SINGLE_SHOT:inst2|ADS1115:U_ADS1115|WAIT_COUNT[24]               ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |I2C_SPI_UART_BLOCK|ADXL345:inst1|N[10]                                              ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |I2C_SPI_UART_BLOCK|SINGLE_SHOT:inst2|ADS1115:U_ADS1115|DATA_WR[5]                   ;
+; 6:1                ; 7 bits    ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|CHECKSUM_ACC[7]                                ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 6 LEs                ; 3 LEs                  ; Yes        ; |I2C_SPI_UART_BLOCK|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI_DATA_WR[3]          ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 2 LEs                ; 6 LEs                  ; Yes        ; |I2C_SPI_UART_BLOCK|SINGLE_SHOT:inst2|ADS1115:U_ADS1115|BYTE_COUNT[1]                ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 2 LEs                ; 6 LEs                  ; Yes        ; |I2C_SPI_UART_BLOCK|ADXL345:inst1|REG_ADDR[1]                                        ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |I2C_SPI_UART_BLOCK|SINGLE_SHOT:inst2|ADS1115:U_ADS1115|DATA_WR[7]                   ;
+; 8:1                ; 3 bits    ; 15 LEs        ; 6 LEs                ; 9 LEs                  ; Yes        ; |I2C_SPI_UART_BLOCK|ADXL345:inst1|REG_ADDR[4]                                        ;
+; 10:1               ; 3 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|data_sig[6]                                    ;
+; 10:1               ; 3 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|data_sig[1]                                    ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |I2C_SPI_UART_BLOCK|SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C|BIT_CNT[1]         ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |I2C_SPI_UART_BLOCK|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST|COUNT[0]   ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |I2C_SPI_UART_BLOCK|UART:inst6|UART_TX:UART_TX_INST|STATE                            ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; No         ; |I2C_SPI_UART_BLOCK|UART:inst6|UART_TX:UART_TX_INST|STATE                            ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |I2C_SPI_UART_BLOCK|UART:inst6|Selector2                                             ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; No         ; |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|Selector20                                     ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; No         ; |I2C_SPI_UART_BLOCK|UART:inst6|Selector1                                             ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; No         ; |I2C_SPI_UART_BLOCK|ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|Selector35              ;
+; 10:1               ; 4 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; No         ; |I2C_SPI_UART_BLOCK|ADXL345:inst1|Selector0                                          ;
+; 11:1               ; 2 bits    ; 14 LEs        ; 8 LEs                ; 6 LEs                  ; No         ; |I2C_SPI_UART_BLOCK|SINGLE_SHOT:inst2|ADS1115:U_ADS1115|Selector7                    ;
+; 11:1               ; 2 bits    ; 14 LEs        ; 8 LEs                ; 6 LEs                  ; No         ; |I2C_SPI_UART_BLOCK|SINGLE_SHOT:inst2|ADS1115:U_ADS1115|Selector4                    ;
+; 11:1               ; 2 bits    ; 14 LEs        ; 6 LEs                ; 8 LEs                  ; No         ; |I2C_SPI_UART_BLOCK|SINGLE_SHOT:inst2|ADS1115:U_ADS1115|Selector3                    ;
+; 8:1                ; 5 bits    ; 25 LEs        ; 15 LEs               ; 10 LEs                 ; No         ; |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|Selector10                                     ;
+; 10:1               ; 2 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; No         ; |I2C_SPI_UART_BLOCK|I2C_SPI_UART:inst|Selector9                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------+
 
 
-+------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: Top-level Entity: |I2C_SPI_UART ;
-+------------------+-------+---------------------------------------------------+
-; Parameter Name   ; Value ; Type                                              ;
-+------------------+-------+---------------------------------------------------+
-; SPI_BYTES_LENGTH ; 6     ; Signed Integer                                    ;
-; I2C_BYTES_LENGTH ; 2     ; Signed Integer                                    ;
-+------------------+-------+---------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|altsyncram_cvl1:FIFOram ;
++---------------------------------+--------------------+------+-------------------------------------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                                                        ;
++---------------------------------+--------------------+------+-------------------------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                                         ;
++---------------------------------+--------------------+------+-------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST ;
++-----------------+-------+-------------------------------------------------------------+
+; Parameter Name  ; Value ; Type                                                        ;
++-----------------+-------+-------------------------------------------------------------+
+; slave           ; 1     ; Signed Integer                                              ;
+; slave_data_bits ; 8     ; Signed Integer                                              ;
++-----------------+-------+-------------------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+-------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: FIFO:FIFO_inst|scfifo:scfifo_component ;
-+-------------------------+-------------+---------------------------------------------+
-; Parameter Name          ; Value       ; Type                                        ;
-+-------------------------+-------------+---------------------------------------------+
-; AUTO_CARRY_CHAINS       ; ON          ; AUTO_CARRY                                  ;
-; IGNORE_CARRY_BUFFERS    ; OFF         ; IGNORE_CARRY                                ;
-; AUTO_CASCADE_CHAINS     ; ON          ; AUTO_CASCADE                                ;
-; IGNORE_CASCADE_BUFFERS  ; OFF         ; IGNORE_CASCADE                              ;
-; lpm_width               ; 8           ; Signed Integer                              ;
-; LPM_NUMWORDS            ; 128         ; Signed Integer                              ;
-; LPM_WIDTHU              ; 7           ; Signed Integer                              ;
-; LPM_SHOWAHEAD           ; OFF         ; Untyped                                     ;
-; UNDERFLOW_CHECKING      ; ON          ; Untyped                                     ;
-; OVERFLOW_CHECKING       ; ON          ; Untyped                                     ;
-; ALLOW_RWCYCLE_WHEN_FULL ; OFF         ; Untyped                                     ;
-; ADD_RAM_OUTPUT_REGISTER ; OFF         ; Untyped                                     ;
-; ALMOST_FULL_VALUE       ; 0           ; Untyped                                     ;
-; ALMOST_EMPTY_VALUE      ; 0           ; Untyped                                     ;
-; ENABLE_ECC              ; FALSE       ; Untyped                                     ;
-; USE_EAB                 ; ON          ; Untyped                                     ;
-; MAXIMIZE_SPEED          ; 5           ; Untyped                                     ;
-; DEVICE_FAMILY           ; MAX 10      ; Untyped                                     ;
-; OPTIMIZE_FOR_SPEED      ; 5           ; Untyped                                     ;
-; CBXI_PARAMETER          ; scfifo_ep11 ; Untyped                                     ;
-+-------------------------+-------------+---------------------------------------------+
++----------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST ;
++-----------------+-------+--------------------------------------------------------------------------+
+; Parameter Name  ; Value ; Type                                                                     ;
++-----------------+-------+--------------------------------------------------------------------------+
+; slave           ; 1     ; Signed Integer                                                           ;
+; slave_data_bits ; 8     ; Signed Integer                                                           ;
++-----------------+-------+--------------------------------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+---------------------------------------------------------------------+
-; scfifo Parameter Settings by Entity Instance                        ;
-+----------------------------+----------------------------------------+
-; Name                       ; Value                                  ;
-+----------------------------+----------------------------------------+
-; Number of entity instances ; 1                                      ;
-; Entity Instance            ; FIFO:FIFO_inst|scfifo:scfifo_component ;
-;     -- FIFO Type           ; Single Clock                           ;
-;     -- lpm_width           ; 8                                      ;
-;     -- LPM_NUMWORDS        ; 128                                    ;
-;     -- LPM_SHOWAHEAD       ; OFF                                    ;
-;     -- USE_EAB             ; ON                                     ;
-+----------------------------+----------------------------------------+
++----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: I2C_SPI_UART:inst ;
++------------------+-------+-------------------------------------+
+; Parameter Name   ; Value ; Type                                ;
++------------------+-------+-------------------------------------+
+; SPI_BYTES_LENGTH ; 6     ; Signed Integer                      ;
+; I2C_BYTES_LENGTH ; 2     ; Signed Integer                      ;
++------------------+-------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+-----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "FIFO:FIFO_inst"                                                                      ;
-+-------+--------+----------+-------------------------------------------------------------------------------------+
-; Port  ; Type   ; Severity ; Details                                                                             ;
-+-------+--------+----------+-------------------------------------------------------------------------------------+
-; rdreq ; Input  ; Info     ; Stuck at GND                                                                        ;
-; empty ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; q     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------+--------+----------+-------------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component ;
++-------------------------+-------------+---------------------------------------------------------------+
+; Parameter Name          ; Value       ; Type                                                          ;
++-------------------------+-------------+---------------------------------------------------------------+
+; AUTO_CARRY_CHAINS       ; ON          ; AUTO_CARRY                                                    ;
+; IGNORE_CARRY_BUFFERS    ; OFF         ; IGNORE_CARRY                                                  ;
+; AUTO_CASCADE_CHAINS     ; ON          ; AUTO_CASCADE                                                  ;
+; IGNORE_CASCADE_BUFFERS  ; OFF         ; IGNORE_CASCADE                                                ;
+; lpm_width               ; 8           ; Signed Integer                                                ;
+; LPM_NUMWORDS            ; 128         ; Signed Integer                                                ;
+; LPM_WIDTHU              ; 7           ; Signed Integer                                                ;
+; LPM_SHOWAHEAD           ; OFF         ; Untyped                                                       ;
+; UNDERFLOW_CHECKING      ; ON          ; Untyped                                                       ;
+; OVERFLOW_CHECKING       ; ON          ; Untyped                                                       ;
+; ALLOW_RWCYCLE_WHEN_FULL ; OFF         ; Untyped                                                       ;
+; ADD_RAM_OUTPUT_REGISTER ; OFF         ; Untyped                                                       ;
+; ALMOST_FULL_VALUE       ; 0           ; Untyped                                                       ;
+; ALMOST_EMPTY_VALUE      ; 0           ; Untyped                                                       ;
+; ENABLE_ECC              ; FALSE       ; Untyped                                                       ;
+; USE_EAB                 ; ON          ; Untyped                                                       ;
+; MAXIMIZE_SPEED          ; 5           ; Untyped                                                       ;
+; DEVICE_FAMILY           ; MAX 10      ; Untyped                                                       ;
+; OPTIMIZE_FOR_SPEED      ; 5           ; Untyped                                                       ;
+; CBXI_PARAMETER          ; scfifo_ep11 ; Untyped                                                       ;
++-------------------------+-------------+---------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C ;
++----------------+----------+----------------------------------------------------------------+
+; Parameter Name ; Value    ; Type                                                           ;
++----------------+----------+----------------------------------------------------------------+
+; clk_freq_hz    ; 50000000 ; Signed Integer                                                 ;
+; i2c_freq_hz    ; 100000   ; Signed Integer                                                 ;
++----------------+----------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------+
+; scfifo Parameter Settings by Entity Instance                                          ;
++----------------------------+----------------------------------------------------------+
+; Name                       ; Value                                                    ;
++----------------------------+----------------------------------------------------------+
+; Number of entity instances ; 1                                                        ;
+; Entity Instance            ; I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component ;
+;     -- FIFO Type           ; Single Clock                                             ;
+;     -- lpm_width           ; 8                                                        ;
+;     -- LPM_NUMWORDS        ; 128                                                      ;
+;     -- LPM_SHOWAHEAD       ; OFF                                                      ;
+;     -- USE_EAB             ; ON                                                       ;
++----------------------------+----------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C"                                            ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port       ; Type   ; Severity ; Details                                                                             ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+; addr[5..4] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; addr[2..0] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; addr[6]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; addr[3]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; ack_err    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "SINGLE_SHOT:inst2|ADS1115:U_ADS1115"                                                           ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; channel[1..0]   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; channel[2]      ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; pga             ; Input  ; Info     ; Stuck at GND                                                                        ;
+; data_rate[1..0] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; data_rate[2]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; continuous      ; Input  ; Info     ; Stuck at GND                                                                        ;
+; busy            ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "UART:inst6|BAUD_GEN:BAUD_GEN_INST"                                                               ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port              ; Type   ; Severity ; Details                                                                             ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+; baud_step[22..21] ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; baud_step[19..13] ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; baud_step[11..10] ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; baud_step[31..28] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; baud_step[26..25] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; baud_step[9..8]   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; baud_step[6..5]   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; baud_step[3..0]   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; baud_step[27]     ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; baud_step[24]     ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; baud_step[23]     ; Input  ; Info     ; Stuck at GND                                                                        ;
+; baud_step[20]     ; Input  ; Info     ; Stuck at GND                                                                        ;
+; baud_step[12]     ; Input  ; Info     ; Stuck at GND                                                                        ;
+; baud_step[7]      ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; baud_step[4]      ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; tick16            ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------+
+; Port Connectivity Checks: "ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST" ;
++-----------------+-------+----------+---------------------------------+
+; Port            ; Type  ; Severity ; Details                         ;
++-----------------+-------+----------+---------------------------------+
+; cpol            ; Input ; Info     ; Stuck at VCC                    ;
+; cpha            ; Input ; Info     ; Stuck at VCC                    ;
+; clk_divi[4..3]  ; Input ; Info     ; Stuck at VCC                    ;
+; clk_divi[31..5] ; Input ; Info     ; Stuck at GND                    ;
+; clk_divi[2..1]  ; Input ; Info     ; Stuck at GND                    ;
+; clk_divi[0]     ; Input ; Info     ; Stuck at VCC                    ;
+; cs_select       ; Input ; Info     ; Stuck at GND                    ;
++-----------------+-------+----------+---------------------------------+
 
 
 +-----------------------------------------------------+
@@ -430,13 +799,34 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 77                          ;
-; cycloneiii_lcell_comb ; 1                           ;
-;     normal            ; 1                           ;
+; boundary_port         ; 9                           ;
+; cycloneiii_ff         ; 426                         ;
+;     CLR               ; 119                         ;
+;     CLR SCLR          ; 2                           ;
+;     CLR SLD           ; 2                           ;
+;     ENA               ; 104                         ;
+;     ENA CLR           ; 68                          ;
+;     ENA CLR SCLR      ; 93                          ;
+;     ENA CLR SLD       ; 1                           ;
+;     ENA SCLR          ; 2                           ;
+;     ENA SLD           ; 2                           ;
+;     SCLR              ; 1                           ;
+;     plain             ; 32                          ;
+; cycloneiii_io_obuf    ; 3                           ;
+; cycloneiii_lcell_comb ; 723                         ;
+;     arith             ; 214                         ;
+;         2 data inputs ; 196                         ;
+;         3 data inputs ; 18                          ;
+;     normal            ; 509                         ;
 ;         0 data inputs ; 1                           ;
+;         1 data inputs ; 22                          ;
+;         2 data inputs ; 109                         ;
+;         3 data inputs ; 100                         ;
+;         4 data inputs ; 277                         ;
+; cycloneiii_ram_block  ; 8                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 0.00                        ;
-; Average LUT depth     ; 0.00                        ;
+; Max LUT depth         ; 6.20                        ;
+; Average LUT depth     ; 3.44                        ;
 +-----------------------+-----------------------------+
 
 
@@ -445,7 +835,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -455,27 +845,61 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Thu Feb 26 19:23:09 2026
+    Info: Processing started: Sun Mar 01 16:45:59 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off I2C_SPI_UART -c I2C_SPI_UART
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file uart_tx.vhd
+    Info (12022): Found design unit 1: UART_TX-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/UART_TX.vhd Line: 18
+    Info (12023): Found entity 1: UART_TX File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/UART_TX.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file uart.vhd
+    Info (12022): Found design unit 1: UART-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/UART.vhd Line: 16
+    Info (12023): Found entity 1: UART File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/UART.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file baud_gen.vhd
+    Info (12022): Found design unit 1: BAUD_GEN-RTL File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/BAUD_GEN.vhd Line: 16
+    Info (12023): Found entity 1: BAUD_GEN File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/BAUD_GEN.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file spi_driver.vhd
+    Info (12022): Found design unit 1: SPI_DRIVER-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/SPI_DRIVER.vhd Line: 36
+    Info (12023): Found entity 1: SPI_DRIVER File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/SPI_DRIVER.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file spi.vhd
+    Info (12022): Found design unit 1: SPI-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/SPI.vhd Line: 36
+    Info (12023): Found entity 1: SPI File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/SPI.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file single_shot.vhd
+    Info (12022): Found design unit 1: SINGLE_SHOT-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/SINGLE_SHOT.vhd Line: 16
+    Info (12023): Found entity 1: SINGLE_SHOT File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/SINGLE_SHOT.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file i2c.vhd
+    Info (12022): Found design unit 1: I2C-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C.vhd Line: 25
+    Info (12023): Found entity 1: I2C File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file adxl345.vhd
+    Info (12022): Found design unit 1: ADXL345-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/ADXL345.vhd Line: 21
+    Info (12023): Found entity 1: ADXL345 File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/ADXL345.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file ads1115.vhd
+    Info (12022): Found design unit 1: ADS1115-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/ADS1115.vhd Line: 32
+    Info (12023): Found entity 1: ADS1115 File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/ADS1115.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file i2c_spi_uart.vhd
-    Info (12022): Found design unit 1: I2C_SPI_UART-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 30
+    Info (12022): Found design unit 1: I2C_SPI_UART-COMP File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 31
     Info (12023): Found entity 1: I2C_SPI_UART File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file fifo.vhd
     Info (12022): Found design unit 1: fifo-SYN File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/FIFO.vhd Line: 56
     Info (12023): Found entity 1: FIFO File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/FIFO.vhd Line: 42
-Info (12127): Elaborating entity "I2C_SPI_UART" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at I2C_SPI_UART.vhd(25): used implicit default value for signal "UART_TX" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 25
-Warning (10541): VHDL Signal Declaration warning at I2C_SPI_UART.vhd(26): used implicit default value for signal "UART_READY" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 26
-Warning (10036): Verilog HDL or VHDL warning at I2C_SPI_UART.vhd(51): object "empty_sig" assigned a value but never read File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 51
-Warning (10036): Verilog HDL or VHDL warning at I2C_SPI_UART.vhd(53): object "q_sig" assigned a value but never read File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 53
-Warning (10631): VHDL Process Statement warning at I2C_SPI_UART.vhd(108): inferring latch(es) for signal or variable "rdreq_sig", which holds its previous value in one or more paths through the process File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 108
-Info (10041): Inferred latch for "rdreq_sig" at I2C_SPI_UART.vhd(108) File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 108
-Info (12128): Elaborating entity "FIFO" for hierarchy "FIFO:FIFO_inst" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 98
-Info (12128): Elaborating entity "scfifo" for hierarchy "FIFO:FIFO_inst|scfifo:scfifo_component" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/FIFO.vhd Line: 93
-Info (12130): Elaborated megafunction instantiation "FIFO:FIFO_inst|scfifo:scfifo_component" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/FIFO.vhd Line: 93
-Info (12133): Instantiated megafunction "FIFO:FIFO_inst|scfifo:scfifo_component" with the following parameter: File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/FIFO.vhd Line: 93
+Info (12021): Found 1 design units, including 1 entities, in source file i2c_spi_uart_block.bdf
+    Info (12023): Found entity 1: I2C_SPI_UART_BLOCK
+Info (12127): Elaborating entity "I2C_SPI_UART_BLOCK" for the top level hierarchy
+Warning (275011): Block or symbol "ADXL345" of instance "inst1" overlaps another block or symbol
+Info (12128): Elaborating entity "ADXL345" for hierarchy "ADXL345:inst1"
+Info (12128): Elaborating entity "SPI_DRIVER" for hierarchy "ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/ADXL345.vhd Line: 100
+Info (12128): Elaborating entity "SPI" for hierarchy "ADXL345:inst1|SPI_DRIVER:SPI_DRIVER_INST|SPI:SPI_INST" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/SPI_DRIVER.vhd Line: 95
+Info (12128): Elaborating entity "UART" for hierarchy "UART:inst6"
+Warning (10036): Verilog HDL or VHDL warning at UART.vhd(18): object "TICK16" assigned a value but never read File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/UART.vhd Line: 18
+Info (12128): Elaborating entity "BAUD_GEN" for hierarchy "UART:inst6|BAUD_GEN:BAUD_GEN_INST" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/UART.vhd Line: 58
+Info (12128): Elaborating entity "UART_TX" for hierarchy "UART:inst6|UART_TX:UART_TX_INST" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/UART.vhd Line: 67
+Info (12128): Elaborating entity "I2C_SPI_UART" for hierarchy "I2C_SPI_UART:inst"
+Warning (10036): Verilog HDL or VHDL warning at I2C_SPI_UART.vhd(69): object "SPI_BUFFER" assigned a value but never read File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 69
+Warning (10036): Verilog HDL or VHDL warning at I2C_SPI_UART.vhd(70): object "I2C_BUFFER" assigned a value but never read File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 70
+Info (12128): Elaborating entity "FIFO" for hierarchy "I2C_SPI_UART:inst|FIFO:FIFO_inst" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 113
+Info (12128): Elaborating entity "scfifo" for hierarchy "I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/FIFO.vhd Line: 93
+Info (12130): Elaborated megafunction instantiation "I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/FIFO.vhd Line: 93
+Info (12133): Instantiated megafunction "I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component" with the following parameter: File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/FIFO.vhd Line: 93
     Info (12134): Parameter "add_ram_output_register" = "OFF"
     Info (12134): Parameter "intended_device_family" = "MAX 10"
     Info (12134): Parameter "lpm_numwords" = "128"
@@ -488,121 +912,51 @@ Info (12133): Instantiated megafunction "FIFO:FIFO_inst|scfifo:scfifo_component"
     Info (12134): Parameter "use_eab" = "ON"
 Info (12021): Found 1 design units, including 1 entities, in source file db/scfifo_ep11.tdf
     Info (12023): Found entity 1: scfifo_ep11 File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/scfifo_ep11.tdf Line: 24
-Info (12128): Elaborating entity "scfifo_ep11" for hierarchy "FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated" File: c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/scfifo.tdf Line: 299
+Info (12128): Elaborating entity "scfifo_ep11" for hierarchy "I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated" File: c:/intelfpga_lite/17.1/quartus/libraries/megafunctions/scfifo.tdf Line: 299
 Info (12021): Found 1 design units, including 1 entities, in source file db/a_dpfifo_lv11.tdf
     Info (12023): Found entity 1: a_dpfifo_lv11 File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/a_dpfifo_lv11.tdf Line: 28
-Info (12128): Elaborating entity "a_dpfifo_lv11" for hierarchy "FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/scfifo_ep11.tdf Line: 35
+Info (12128): Elaborating entity "a_dpfifo_lv11" for hierarchy "I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/scfifo_ep11.tdf Line: 35
 Info (12021): Found 1 design units, including 1 entities, in source file db/a_fefifo_u7e.tdf
     Info (12023): Found entity 1: a_fefifo_u7e File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/a_fefifo_u7e.tdf Line: 24
-Info (12128): Elaborating entity "a_fefifo_u7e" for hierarchy "FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|a_fefifo_u7e:fifo_state" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/a_dpfifo_lv11.tdf Line: 40
+Info (12128): Elaborating entity "a_fefifo_u7e" for hierarchy "I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|a_fefifo_u7e:fifo_state" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/a_dpfifo_lv11.tdf Line: 40
 Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_437.tdf
     Info (12023): Found entity 1: cntr_437 File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/cntr_437.tdf Line: 25
-Info (12128): Elaborating entity "cntr_437" for hierarchy "FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|a_fefifo_u7e:fifo_state|cntr_437:count_usedw" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/a_fefifo_u7e.tdf Line: 37
+Info (12128): Elaborating entity "cntr_437" for hierarchy "I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|a_fefifo_u7e:fifo_state|cntr_437:count_usedw" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/a_fefifo_u7e.tdf Line: 37
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_cvl1.tdf
     Info (12023): Found entity 1: altsyncram_cvl1 File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/altsyncram_cvl1.tdf Line: 27
-Info (12128): Elaborating entity "altsyncram_cvl1" for hierarchy "FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|altsyncram_cvl1:FIFOram" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/a_dpfifo_lv11.tdf Line: 41
+Info (12128): Elaborating entity "altsyncram_cvl1" for hierarchy "I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|altsyncram_cvl1:FIFOram" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/a_dpfifo_lv11.tdf Line: 41
 Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_o2b.tdf
     Info (12023): Found entity 1: cntr_o2b File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/cntr_o2b.tdf Line: 25
-Info (12128): Elaborating entity "cntr_o2b" for hierarchy "FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|cntr_o2b:rd_ptr_count" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/a_dpfifo_lv11.tdf Line: 42
-Warning (14284): Synthesized away the following node(s):
-    Warning (14285): Synthesized away the following RAM node(s):
-        Warning (14320): Synthesized away node "FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|altsyncram_cvl1:FIFOram|q_b[0]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/altsyncram_cvl1.tdf Line: 39
-        Warning (14320): Synthesized away node "FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|altsyncram_cvl1:FIFOram|q_b[1]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/altsyncram_cvl1.tdf Line: 69
-        Warning (14320): Synthesized away node "FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|altsyncram_cvl1:FIFOram|q_b[2]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/altsyncram_cvl1.tdf Line: 99
-        Warning (14320): Synthesized away node "FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|altsyncram_cvl1:FIFOram|q_b[3]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/altsyncram_cvl1.tdf Line: 129
-        Warning (14320): Synthesized away node "FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|altsyncram_cvl1:FIFOram|q_b[4]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/altsyncram_cvl1.tdf Line: 159
-        Warning (14320): Synthesized away node "FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|altsyncram_cvl1:FIFOram|q_b[5]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/altsyncram_cvl1.tdf Line: 189
-        Warning (14320): Synthesized away node "FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|altsyncram_cvl1:FIFOram|q_b[6]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/altsyncram_cvl1.tdf Line: 219
-        Warning (14320): Synthesized away node "FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|altsyncram_cvl1:FIFOram|q_b[7]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/altsyncram_cvl1.tdf Line: 249
-Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "UART_TX[0]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 25
-    Warning (13410): Pin "UART_TX[1]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 25
-    Warning (13410): Pin "UART_TX[2]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 25
-    Warning (13410): Pin "UART_TX[3]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 25
-    Warning (13410): Pin "UART_TX[4]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 25
-    Warning (13410): Pin "UART_TX[5]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 25
-    Warning (13410): Pin "UART_TX[6]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 25
-    Warning (13410): Pin "UART_TX[7]" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 25
-    Warning (13410): Pin "UART_READY" is stuck at GND File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 26
-Info (17049): 101 registers lost all their fanouts during netlist optimizations.
+Info (12128): Elaborating entity "cntr_o2b" for hierarchy "I2C_SPI_UART:inst|FIFO:FIFO_inst|scfifo:scfifo_component|scfifo_ep11:auto_generated|a_dpfifo_lv11:dpfifo|cntr_o2b:rd_ptr_count" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/db/a_dpfifo_lv11.tdf Line: 42
+Info (12128): Elaborating entity "SINGLE_SHOT" for hierarchy "SINGLE_SHOT:inst2"
+Warning (10540): VHDL Signal Declaration warning at SINGLE_SHOT.vhd(48): used explicit default value for signal "CHANNEL" because signal was never assigned a value File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/SINGLE_SHOT.vhd Line: 48
+Warning (10540): VHDL Signal Declaration warning at SINGLE_SHOT.vhd(49): used explicit default value for signal "PGA" because signal was never assigned a value File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/SINGLE_SHOT.vhd Line: 49
+Warning (10540): VHDL Signal Declaration warning at SINGLE_SHOT.vhd(50): used explicit default value for signal "DATA_RATE" because signal was never assigned a value File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/SINGLE_SHOT.vhd Line: 50
+Warning (10540): VHDL Signal Declaration warning at SINGLE_SHOT.vhd(51): used explicit default value for signal "CONTINUOUS" because signal was never assigned a value File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/SINGLE_SHOT.vhd Line: 51
+Warning (10036): Verilog HDL or VHDL warning at SINGLE_SHOT.vhd(54): object "BUSY" assigned a value but never read File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/SINGLE_SHOT.vhd Line: 54
+Info (12128): Elaborating entity "ADS1115" for hierarchy "SINGLE_SHOT:inst2|ADS1115:U_ADS1115" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/SINGLE_SHOT.vhd Line: 59
+Warning (10036): Verilog HDL or VHDL warning at ADS1115.vhd(102): object "ACK_ERR" assigned a value but never read File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/ADS1115.vhd Line: 102
+Info (12128): Elaborating entity "I2C" for hierarchy "SINGLE_SHOT:inst2|ADS1115:U_ADS1115|I2C:U_I2C" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/ADS1115.vhd Line: 118
+Info (13000): Registers with preset signals will power-up high File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/UART_TX.vhd Line: 32
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Info (286030): Timing-Driven Synthesis is running
+Critical Warning (18061): Ignored Power-Up Level option on the following registers
+    Critical Warning (18010): Register SINGLE_SHOT:inst2|ADS1115:U_ADS1115|MAX_WAIT[0] will power up to Low File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/ADS1115.vhd Line: 135
+Info (17049): 7 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 68 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "SPI_X_OUT[0]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 15
-    Warning (15610): No output dependent on input pin "SPI_X_OUT[1]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 15
-    Warning (15610): No output dependent on input pin "SPI_X_OUT[2]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 15
-    Warning (15610): No output dependent on input pin "SPI_X_OUT[3]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 15
-    Warning (15610): No output dependent on input pin "SPI_X_OUT[4]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 15
-    Warning (15610): No output dependent on input pin "SPI_X_OUT[5]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 15
-    Warning (15610): No output dependent on input pin "SPI_X_OUT[6]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 15
-    Warning (15610): No output dependent on input pin "SPI_X_OUT[7]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 15
-    Warning (15610): No output dependent on input pin "SPI_X_OUT[8]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 15
-    Warning (15610): No output dependent on input pin "SPI_X_OUT[9]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 15
-    Warning (15610): No output dependent on input pin "SPI_X_OUT[10]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 15
-    Warning (15610): No output dependent on input pin "SPI_X_OUT[11]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 15
-    Warning (15610): No output dependent on input pin "SPI_X_OUT[12]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 15
-    Warning (15610): No output dependent on input pin "SPI_X_OUT[13]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 15
-    Warning (15610): No output dependent on input pin "SPI_X_OUT[14]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 15
-    Warning (15610): No output dependent on input pin "SPI_X_OUT[15]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 15
-    Warning (15610): No output dependent on input pin "SPI_Y_OUT[0]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 16
-    Warning (15610): No output dependent on input pin "SPI_Y_OUT[1]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 16
-    Warning (15610): No output dependent on input pin "SPI_Y_OUT[2]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 16
-    Warning (15610): No output dependent on input pin "SPI_Y_OUT[3]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 16
-    Warning (15610): No output dependent on input pin "SPI_Y_OUT[4]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 16
-    Warning (15610): No output dependent on input pin "SPI_Y_OUT[5]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 16
-    Warning (15610): No output dependent on input pin "SPI_Y_OUT[6]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 16
-    Warning (15610): No output dependent on input pin "SPI_Y_OUT[7]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 16
-    Warning (15610): No output dependent on input pin "SPI_Y_OUT[8]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 16
-    Warning (15610): No output dependent on input pin "SPI_Y_OUT[9]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 16
-    Warning (15610): No output dependent on input pin "SPI_Y_OUT[10]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 16
-    Warning (15610): No output dependent on input pin "SPI_Y_OUT[11]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 16
-    Warning (15610): No output dependent on input pin "SPI_Y_OUT[12]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 16
-    Warning (15610): No output dependent on input pin "SPI_Y_OUT[13]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 16
-    Warning (15610): No output dependent on input pin "SPI_Y_OUT[14]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 16
-    Warning (15610): No output dependent on input pin "SPI_Y_OUT[15]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 16
-    Warning (15610): No output dependent on input pin "SPI_Z_OUT[0]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 17
-    Warning (15610): No output dependent on input pin "SPI_Z_OUT[1]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 17
-    Warning (15610): No output dependent on input pin "SPI_Z_OUT[2]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 17
-    Warning (15610): No output dependent on input pin "SPI_Z_OUT[3]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 17
-    Warning (15610): No output dependent on input pin "SPI_Z_OUT[4]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 17
-    Warning (15610): No output dependent on input pin "SPI_Z_OUT[5]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 17
-    Warning (15610): No output dependent on input pin "SPI_Z_OUT[6]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 17
-    Warning (15610): No output dependent on input pin "SPI_Z_OUT[7]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 17
-    Warning (15610): No output dependent on input pin "SPI_Z_OUT[8]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 17
-    Warning (15610): No output dependent on input pin "SPI_Z_OUT[9]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 17
-    Warning (15610): No output dependent on input pin "SPI_Z_OUT[10]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 17
-    Warning (15610): No output dependent on input pin "SPI_Z_OUT[11]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 17
-    Warning (15610): No output dependent on input pin "SPI_Z_OUT[12]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 17
-    Warning (15610): No output dependent on input pin "SPI_Z_OUT[13]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 17
-    Warning (15610): No output dependent on input pin "SPI_Z_OUT[14]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 17
-    Warning (15610): No output dependent on input pin "SPI_Z_OUT[15]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 17
-    Warning (15610): No output dependent on input pin "I2C_DATA_OUT[0]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 22
-    Warning (15610): No output dependent on input pin "I2C_DATA_OUT[1]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 22
-    Warning (15610): No output dependent on input pin "I2C_DATA_OUT[2]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 22
-    Warning (15610): No output dependent on input pin "I2C_DATA_OUT[3]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 22
-    Warning (15610): No output dependent on input pin "I2C_DATA_OUT[4]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 22
-    Warning (15610): No output dependent on input pin "I2C_DATA_OUT[5]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 22
-    Warning (15610): No output dependent on input pin "I2C_DATA_OUT[6]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 22
-    Warning (15610): No output dependent on input pin "I2C_DATA_OUT[7]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 22
-    Warning (15610): No output dependent on input pin "I2C_DATA_OUT[8]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 22
-    Warning (15610): No output dependent on input pin "I2C_DATA_OUT[9]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 22
-    Warning (15610): No output dependent on input pin "I2C_DATA_OUT[10]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 22
-    Warning (15610): No output dependent on input pin "I2C_DATA_OUT[11]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 22
-    Warning (15610): No output dependent on input pin "I2C_DATA_OUT[12]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 22
-    Warning (15610): No output dependent on input pin "I2C_DATA_OUT[13]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 22
-    Warning (15610): No output dependent on input pin "I2C_DATA_OUT[14]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 22
-    Warning (15610): No output dependent on input pin "I2C_DATA_OUT[15]" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 22
-    Warning (15610): No output dependent on input pin "CLK" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 11
-    Warning (15610): No output dependent on input pin "RESET" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 12
-    Warning (15610): No output dependent on input pin "SPI_READY" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 18
-    Warning (15610): No output dependent on input pin "I2C_READY" File: C:/Users/steel/Documents/FPGA_tasks/FPGA_REPO/FPGA-practices/I2C+SPI+UART/I2C_SPI_UART.vhd Line: 21
-Info (21057): Implemented 77 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 68 input pins
-    Info (21059): Implemented 9 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 95 warnings
-    Info: Peak virtual memory: 4807 megabytes
-    Info: Processing ended: Thu Feb 26 19:23:39 2026
-    Info: Elapsed time: 00:00:30
-    Info: Total CPU time (on all processors): 00:00:26
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "MISO"
+Info (21057): Implemented 814 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 3 input pins
+    Info (21059): Implemented 4 output pins
+    Info (21060): Implemented 2 bidirectional pins
+    Info (21061): Implemented 797 logic cells
+    Info (21064): Implemented 8 RAM segments
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 15 warnings
+    Info: Peak virtual memory: 4816 megabytes
+    Info: Processing ended: Sun Mar 01 16:46:17 2026
+    Info: Elapsed time: 00:00:18
+    Info: Total CPU time (on all processors): 00:00:34
 
 
