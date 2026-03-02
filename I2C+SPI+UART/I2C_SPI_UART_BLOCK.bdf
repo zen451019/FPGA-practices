@@ -244,7 +244,7 @@ refer to the applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 120 488 336 600)
+	(rect 80 488 296 600)
 	(text "SINGLE_SHOT" (rect 5 0 80 12)(font "Arial" ))
 	(text "inst2" (rect 8 96 30 113)(font "Intel Clear" ))
 	(port
@@ -440,15 +440,6 @@ refer to the applicable agreement for further details.
 	(annotation_block (parameter)(rect 720 120 944 184))
 )
 (connector
-	(pt 336 520)
-	(pt 480 520)
-)
-(connector
-	(pt 336 536)
-	(pt 496 536)
-	(bus)
-)
-(connector
 	(pt 32 336)
 	(pt 32 280)
 )
@@ -457,45 +448,12 @@ refer to the applicable agreement for further details.
 	(pt 48 352)
 )
 (connector
-	(pt 120 520)
-	(pt -64 520)
-)
-(connector
-	(pt -64 520)
-	(pt -64 336)
-)
-(connector
-	(pt -128 336)
-	(pt -64 336)
-)
-(connector
-	(pt 120 536)
-	(pt -88 536)
-)
-(connector
-	(pt -88 536)
-	(pt -88 352)
-)
-(connector
-	(pt -128 352)
-	(pt -88 352)
-)
-(connector
 	(pt 480 448)
 	(pt 720 448)
 )
 (connector
 	(pt 496 464)
 	(pt 720 464)
-	(bus)
-)
-(connector
-	(pt 480 520)
-	(pt 480 448)
-)
-(connector
-	(pt 496 536)
-	(pt 496 464)
 	(bus)
 )
 (connector
@@ -573,16 +531,8 @@ refer to the applicable agreement for further details.
 	(pt 296 368)
 )
 (connector
-	(pt -64 336)
-	(pt 32 336)
-)
-(connector
 	(pt 32 336)
 	(pt 104 336)
-)
-(connector
-	(pt -88 352)
-	(pt 48 352)
 )
 (connector
 	(pt 48 352)
@@ -626,6 +576,64 @@ refer to the applicable agreement for further details.
 (connector
 	(pt 1344 336)
 	(pt 1344 568)
+)
+(connector
+	(pt 336 552)
+	(pt 296 552)
+)
+(connector
+	(pt 336 568)
+	(pt 296 568)
+)
+(connector
+	(pt -64 520)
+	(pt 80 520)
+)
+(connector
+	(pt -64 336)
+	(pt -64 520)
+)
+(connector
+	(pt -88 536)
+	(pt 80 536)
+)
+(connector
+	(pt -88 352)
+	(pt -88 536)
+)
+(connector
+	(pt 480 448)
+	(pt 480 520)
+)
+(connector
+	(pt 496 464)
+	(pt 496 536)
+	(bus)
+)
+(connector
+	(pt -128 336)
+	(pt -64 336)
+)
+(connector
+	(pt -64 336)
+	(pt 32 336)
+)
+(connector
+	(pt -128 352)
+	(pt -88 352)
+)
+(connector
+	(pt -88 352)
+	(pt 48 352)
+)
+(connector
+	(pt 296 520)
+	(pt 480 520)
+)
+(connector
+	(pt 296 536)
+	(pt 496 536)
+	(bus)
 )
 (junction (pt 32 336))
 (junction (pt 48 352))

@@ -31,7 +31,7 @@ END ENTITY;
 ARCHITECTURE COMP OF I2C_SPI_UART IS
 
     TYPE PACKET_BUILDER IS (IDLE, HEADER, DATA_LENGTH, PAYLOAD, CHECKSUM, DONE, WRITE_FIFO);
-    SIGNAL STATE       : PACKET_BUILDER := IDLE;
+    SIGNAL STATE : PACKET_BUILDER := IDLE;
     SIGNAL RETURN_STATE : PACKET_BUILDER := IDLE; -- state to return to after WRITE_FIFO
 
     TYPE UART_STATE_TYPE IS (
@@ -106,8 +106,11 @@ ARCHITECTURE COMP OF I2C_SPI_UART IS
     -- Signals to detect rising edges of SPI_READY and I2C_READY
     SIGNAL SPI_READY_PREV : STD_LOGIC := '0';
     SIGNAL I2C_READY_PREV : STD_LOGIC := '0';
-    SIGNAL SPI_READY_PULSE : STD_LOGIC := '0';
-    SIGNAL I2C_READY_PULSE : STD_LOGIC := '0';
+
+    -- 10 ms SPI sample timer (50 MHz clock → 500 000 cycles)
+    CONSTANT SPI_SAMPLE_CYCLES : INTEGER := 2_500_000;
+    SIGNAL SPI_SAMPLE_TIMER : INTEGER RANGE 0 TO 2_500_000 := 0;
+    SIGNAL SPI_SAMPLE_TICK : STD_LOGIC := '0';
 
 BEGIN
     FIFO_inst : FIFO PORT MAP(
@@ -184,8 +187,8 @@ BEGIN
             I2C_ACTIVE_BUFFER <= (OTHERS => '0');
             SPI_READY_PREV <= '0';
             I2C_READY_PREV <= '0';
-            SPI_READY_PULSE <= '0';
-            I2C_READY_PULSE <= '0';
+            SPI_SAMPLE_TIMER <= 0;
+            SPI_SAMPLE_TICK <= '0';
 
         ELSIF RISING_EDGE(CLK) THEN
 
@@ -193,9 +196,14 @@ BEGIN
             SPI_READY_PREV <= SPI_READY;
             I2C_READY_PREV <= I2C_READY;
 
-            -- Generate pulses on rising edge of SPI_READY and I2C_READY
-            SPI_READY_PULSE <= SPI_READY AND NOT SPI_READY_PREV;
-            I2C_READY_PULSE <= I2C_READY AND NOT I2C_READY_PREV;
+            -- 10 ms free-running timer
+            SPI_SAMPLE_TICK <= '0';
+            IF SPI_SAMPLE_TIMER = SPI_SAMPLE_CYCLES - 1 THEN
+                SPI_SAMPLE_TIMER <= 0;
+                SPI_SAMPLE_TICK <= '1';
+            ELSE
+                SPI_SAMPLE_TIMER <= SPI_SAMPLE_TIMER + 1;
+            END IF;
 
             -- Default assignments to avoid latches
             wrreq_sig <= '0';
@@ -207,12 +215,12 @@ BEGIN
                         -- TEMPORAL: patron de prueba para diagnostico (todos los bytes son unicos)
                         -- Paquete esperado: FE 06 11 22 33 44 55 66 C3
                         -- FE=header  06=len  11 22 33 44 55 66=payload  C3=checksum(sum mod256)
-                        SPI_ACTIVE_BUFFER <= x"112233445566";
+                        SPI_ACTIVE_BUFFER <= SPI_BUFFER;
                         STATE <= HEADER;
                     ELSIF I2C_PENDING = '1' THEN
                         PROCESSING_I2C <= '1';
                         -- TEMPORAL: patron de prueba para diagnostico
-                        I2C_ACTIVE_BUFFER <= x"1234"; -- datos conocidos en vez de I2C_BUFFER
+                        I2C_ACTIVE_BUFFER <= I2C_BUFFER;
                         STATE <= HEADER;
                     END IF;
 
@@ -300,13 +308,18 @@ BEGIN
 
             END CASE;
 
-            -- Capture data into buffers AFTER the state machine
-            -- (so new data capture wins over DONE state clearing)
-            IF SPI_READY_PULSE = '1' THEN
+            -- Always keep SPI_BUFFER fresh with the latest sensor reading
+            IF SPI_READY = '1' AND SPI_READY_PREV = '0' THEN
                 SPI_BUFFER <= FORMAT_SPI_DATA(SPI_X_OUT, SPI_Y_OUT, SPI_Z_OUT);
+            END IF;
+
+            -- Only trigger a SPI packet every 10 ms
+            IF SPI_SAMPLE_TICK = '1' THEN
                 SPI_PEDING <= '1';
             END IF;
-            IF I2C_READY_PULSE = '1' THEN
+
+            -- I2C is still event-driven (no rate limit)
+            IF I2C_READY = '1' AND I2C_READY_PREV = '0' THEN
                 I2C_BUFFER <= I2C_DATA_OUT;
                 I2C_PENDING <= '1';
             END IF;
